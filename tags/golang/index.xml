@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on ItGae Blog</title>
-    <link>http://ippoeyeslhw.github.io/tags/golang/</link>
+    <link>https://ippoeyeslhw.github.io/tags/golang/</link>
     <description>Recent content in Golang on ItGae Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Wed, 03 Aug 2016 23:23:37 +0900</lastBuildDate>
-    <atom:link href="http://ippoeyeslhw.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ippoeyeslhw.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>cpgo lib</title>
-      <link>http://ippoeyeslhw.github.io/post/cpgo-lib/</link>
+      <link>https://ippoeyeslhw.github.io/post/cpgo-lib/</link>
       <pubDate>Wed, 03 Aug 2016 23:23:37 +0900</pubDate>
       
-      <guid>http://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
       <description>
 
 &lt;p&gt;저번에 올렸던 &lt;a href=&#34;http://ippoeyeslhw.github.io/blog/post/golang-with-cybosplus/&#34;&gt;포스트&lt;/a&gt;
@@ -107,10 +107,10 @@ PumpWaitingMessages 함수를 유사하게 구현하였다.&lt;/p&gt;
     
     <item>
       <title>golang-with-cybosplus</title>
-      <link>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
+      <link>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
       <pubDate>Sat, 23 Jul 2016 23:11:34 +0900</pubDate>
       
-      <guid>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
       <description>
 
 &lt;p&gt;증권 API 중에 사이보스플러스가 사용하기 쉽다.
@@ -842,10 +842,10 @@ func main() {
     
     <item>
       <title>rename file</title>
-      <link>http://ippoeyeslhw.github.io/post/rename-file/</link>
+      <link>https://ippoeyeslhw.github.io/post/rename-file/</link>
       <pubDate>Thu, 23 Jun 2016 20:13:36 +0900</pubDate>
       
-      <guid>http://ippoeyeslhw.github.io/post/rename-file/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/rename-file/</guid>
       <description>
 
 &lt;p&gt;8년전 보았던 미드가 생각나서 구했는데
@@ -954,10 +954,10 @@ slice 를 활용하여 아래처럼 사용했다.&lt;/p&gt;
     
     <item>
       <title>mandelbrot fractal golang</title>
-      <link>http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</link>
+      <link>https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</link>
       <pubDate>Sat, 28 May 2016 16:56:02 +0900</pubDate>
       
-      <guid>http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</guid>
       <description>
 
 &lt;p&gt;go언어의 &lt;a href=&#34;https://golang.org/pkg/&#34;&gt;package&lt;/a&gt;문서를 보다보니
@@ -965,7 +965,7 @@ slice 를 활용하여 아래처럼 사용했다.&lt;/p&gt;
 go언어 익숙해질겸 기존에 몇번 작성해보았던 Mandelbrot Fractal
 을 만들어 보기로 마음 먹었다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1_600_400.png&#34; alt=&#34;mandelbrot fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1_600_400.png&#34; alt=&#34;mandelbrot fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;픽셀-콘트롤:1d83e155d6be62d461d335add2587317&#34;&gt;픽셀 콘트롤&lt;/h2&gt;
 
@@ -1069,7 +1069,7 @@ for i := 0; i &amp;lt; 100; i++ {
 //... 코드생략
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/test_line.png&#34; alt=&#34;test line&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/test_line.png&#34; alt=&#34;test line&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;빨간선이 그어졌다!&lt;/p&gt;
 
@@ -1293,7 +1293,7 @@ func saveImg(img *image.RGBA, fname string) error {
 
 &lt;p&gt;그러면 아래와 같은 첫번쨰 프랙탈 이미지가 나온다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/fractal_1.png&#34; alt=&#34;first fractal&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/fractal_1.png&#34; alt=&#34;first fractal&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;색상입히기:1d83e155d6be62d461d335add2587317&#34;&gt;색상입히기&lt;/h2&gt;
 
@@ -1363,7 +1363,7 @@ func saveImg(img *image.RGBA, fname string) error {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/fractal_2.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/fractal_2_600_400.png&#34; alt=&#34;color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/fractal_2.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/fractal_2_600_400.png&#34; alt=&#34;color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;계산현상-없애기:1d83e155d6be62d461d335add2587317&#34;&gt;계산현상 없애기&lt;/h2&gt;
 
@@ -1430,7 +1430,7 @@ func saveImg(img *image.RGBA, fname string) error {
 &lt;p&gt;level+1 처리를 위해 팔레트 크기를 하나 더 늘렸다.
 모든것을 적용한 최종 결과는 다음과 같다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/fractal_3.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/fractal_3_600_400.png&#34; alt=&#34;smooth color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/fractal_3.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/fractal_3_600_400.png&#34; alt=&#34;smooth color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;후기:1d83e155d6be62d461d335add2587317&#34;&gt;후기&lt;/h2&gt;
 
@@ -1438,7 +1438,7 @@ func saveImg(img *image.RGBA, fname string) error {
 모양을 그렸지만 실은 부분부분을 계속적으로 확대해 나갈때
 프랙탈의 다채로운 모양이 나온다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/zoom_fractal.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/zoom_fractal_600_400.png&#34; alt=&#34;zoom fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/zoom_fractal.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/zoom_fractal_600_400.png&#34; alt=&#34;zoom fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;image패키지와 웹서버를 구현하여 확대할 좌표를 구하고
 이를 보여주는 식으로 계속 확대해 나가는 것을 구현해봐도 괜찮을 것이다.&lt;/p&gt;
