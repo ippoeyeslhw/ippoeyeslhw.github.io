@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GO언어와 사이보스플러스 연동하기">
+  <meta name="generator" content="Hugo 0.15" />
+
+  <title>golang-with-cybosplus &middot; ItGae Blog</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="http://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="http://ippoeyeslhw.github.io/">ItGae</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>golang-with-cybosplus</h1>
+  <h2>GO언어와 사이보스플러스 연동하기</h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>23 Jul 2016, 23:11</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="http://ippoeyeslhw.github.io/topics/golang">golang</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/cybosplus">cybosplus</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/%EC%A6%9D%EA%B6%8Capi">증권API</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<p>증권 API 중에 사이보스플러스가 사용하기 쉽다.
+하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야
+프로그래밍이 가능하다.</p>
+
+<p>GO언어로 만든 Github의 프로젝트중에 <a href="https://github.com/go-ole/go-ole">go-ole</a> 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것
+같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지
+그 과정을 적어보고자 한다.</p>
+
+<hr />
+
+<h2 id="환경:2284214a0333b1f3f4b041ec3c1d6e0e">환경</h2>
+
+<ul>
+<li>윈도우 운영체제</li>
+<li>사이보스플러스 설치</li>
+<li><a href="https://golang.org/dl/">Go언어 설치</a> (주의!: 32비트 버젼이어야함)</li>
+<li>개발에디터 (필자는 <a href="https://www.sublimetext.com/">Sublime Text</a>를 사용)</li>
+<li>빌드 및 실행 (주의!: 관리자권한으로 실행하여야함)</li>
+<li><a href="https://git-scm.com/downloads">git 설치</a> (go get 명령으로 github의 프로젝트를 받아오기 위해)</li>
+<li><a href="https://github.com/go-ole/go-ole">go-ole 패키지 설치</a></li>
+<li>Oleviewer 혹은 tih 파일 (Optional)</li>
+</ul>
+
+<p>아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데
+64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.
+마찬가지 현상을 요번에 발견하여 32비트 버젼으로 재설치하였다.</p>
+
+<p>만일 서브라임텍스트를 사용한다면 Package Control Install 에서 Go Build로
+검색하면 플러그인이 나올것이다. 이것을 추천한다.
+Ctrl+Shift+B 단축키로 현재 열려있는 go파일을 빌드 및 실행까지 한번에
+가능하다. 다만 GOPATH 환경변수를 요구할수도 있다. 에러메시지를 잘 읽어보고 적당한 위치를 지정해주면 될 것이다.</p>
+
+<p>go get 명령을 사용해서 github의 프로젝트를 가져오려고 하면 git이 필요하다.</p>
+
+<p>Oleviewer 는 CLSID, IID 를 보기위한 것이다. 구하기 힘들다면 사이보스플러스
+개발예제에서 VC 예제에 항시 .tih 파일이 있을것이다. 이를 활용해도 된다.</p>
+
+<h2 id="기본연동순서:2284214a0333b1f3f4b041ec3c1d6e0e">기본연동순서</h2>
+
+<ol>
+<li>사용하고자하는 사이보스플러스 객체를 만들기 위해 CLSID를 알아낸다.</li>
+<li>CLSID와 IID_IUnknown 정보를 이용하여 IUnknown 객체 생성한다.</li>
+<li>IUnknown 객체에 QueryInterface로 IID_IDispatch 정보를 사용하여 객체를 얻어낸다.</li>
+<li>IDispatch객체를 사용하여 원하는 메스드를 Call 하거나 속성을 사용한다.</li>
+</ol>
+
+<p>COM이란 것을 써본적이 없으면 무슨소리인가 할 것이다.
+일단 만만한 CpUtil쪽 을 연동하면서 소스로 확인해본다.</p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    ole &quot;github.com/go-ole/go-ole&quot;
+    &quot;github.com/go-ole/go-ole/oleutil&quot;
+)
+
+func main() {
+    // ole inti
+    ole.CoInitialize(0)
+    defer ole.CoUninitialize()
+
+    // 1. clsid 구함
+    stkcod_clsid, err := ole.CLSIDFromString(&quot;CPUTIL.CpStockCode&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(stkcod_clsid)
+
+    // 2. unknown 객체 생성
+    unknown, err := ole.CreateInstance(stkcod_clsid, ole.IID_IUnknown)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(unknown)
+
+    // 3. Get obj
+    cpstkcod, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(cpstkcod)
+
+    // 4. call method       
+    r, err := oleutil.CallMethod(cpstkcod, &quot;CodeToName&quot;, &quot;A000270&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+</code></pre>
+
+<p>실행결과는</p>
+
+<pre><code>{2297F381-FFB1-45C6-AA80-4C6913F45E91}
+&amp;{0x5f5734}
+&amp;{{0x5f5734}}
+기아차
+</code></pre>
+
+<p>Oleviewer 를 사용하여 CpStockCode  coclass 를 살펴보면 아래와 같이 나온다.</p>
+
+<pre><code>[
+  uuid(2297F381-FFB1-45C6-AA80-4C6913F45E91),
+  helpstring(&quot;CpStockCode Class&quot;)
+]
+coclass CpStockCode {
+    [default] interface ICpStockCode;
+};
+</code></pre>
+
+<p>여기서의 uuid를 보면 바로 첫번쨰로 출력된 그 값이다.
+결국 사이보스플러스 도움말에 나오는 클래스들.. 즉
+CpCybos, CpStockCode, StockMst, StockCur, &hellip;.
+이런 놈들은 coclass라고 부르며 각각 16bytes 의 GUID를 가지고 있다.</p>
+
+<p>요 CLSID를 일단 구한뒤에 일단 객체로 생성한다. 이떄 가장 기본적인 IID_IUnknown 인터페이스로 생성한다.
+그리고 QueryInterface 메서드와 IID_IDispatch 를 사용하여 실제로 사용할 객체를 얻어낸다.</p>
+
+<p>이는 COM의 핵심이며 자세한 내용을 알아보려면
+아래 링크를 추천한다. C언어에 대한 지식이 있어야한다.
+<a href="http://www.codeproject.com/Articles/13601/COM-in-plain-C">COM in plain C</a></p>
+
+<h2 id="blockrequest:2284214a0333b1f3f4b041ec3c1d6e0e">BlockRequest</h2>
+
+<p>BlockRequest는 동기적으로 네트워크 요청을 하고 응답을 받는것이다.
+즉 요청을 하면 실행이 멈추었다가 응답을 받아야 그 다음으로 진행이 된다.
+이는 개념적으로 위 예제와 거의 유사한 방식으로 처리할수 있다.</p>
+
+<p>다만 위 예제는 함수의 리턴값을 받아온 것이고
+block-request 는 네트워크 요청으로 응답을 받아온것이라는것이 큰 차이이다.
+네트워크로 요청하였으니 결과값은 GetHeaderValue, GetDataValue 와 같은 함수를 호출하여 얻어와야한다.</p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    ole &quot;github.com/go-ole/go-ole&quot;
+    &quot;github.com/go-ole/go-ole/oleutil&quot;
+)
+
+func main() {
+    // ole inti
+    ole.CoInitialize(0)
+    defer ole.CoUninitialize()
+
+    // clsid 구함
+    stkmst_clsid, err := ole.CLSIDFromString(&quot;DSCBO1.StockMst&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(stkmst_clsid)
+
+    // unknown
+    unknown, err := ole.CreateInstance(stkmst_clsid, ole.IID_IUnknown)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(unknown)
+
+    // get obj
+    cpstkmst, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(cpstkmst)
+
+    // call method
+
+    r, err := oleutil.CallMethod(cpstkmst, &quot;SetInputValue&quot;,0, &quot;A000270&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    r, err = oleutil.CallMethod(cpstkmst, &quot;BlockRequest&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    r, err = oleutil.CallMethod(cpstkmst, &quot;GetHeaderValue&quot;, 1)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+</code></pre>
+
+<p>실행결과는</p>
+
+<pre><code>{9FF543E2-FB11-11D3-8224-00105A7C4F8C}
+&amp;{0x324c1134}
+&amp;{{0x324c1134}}
+&amp;{VT_EMPTY 0 0 0 0}
+&amp;{VT_I2 0 0 0 0}
+기아차
+</code></pre>
+
+<h2 id="event-handler:2284214a0333b1f3f4b041ec3c1d6e0e">Event Handler</h2>
+
+<p>BlockRequest 는 네트워크 요청이후 실행흐름이 멈춘다고 설명했다.
+이는 컴퓨터자원을 엄청나게 낭비하는 것이다. 이를 방지하기 위해
+비동기적 실행흐름을 생각해볼수 있다.
+비동기적 처리흐름은 일단 요청을 하고 응답이 왔을때 처리할 함수를 알려준다(콜백) 실제 응답이 오면 콜백을 실행한다.</p>
+
+<p>Request 함수로 요청을 날렸을때 이런 방식대로 수행이된다.
+그리고 실시간으로 데이터가 전달되는 Sub/Pub 방식의 통신도 이렇게 이벤트
+핸들링을 해야 처리가 가능하다.</p>
+
+<p>그럼 COM에서는 이벤트를 어떻게 처리할까? 결론부터 말하자면 COM서버측의 IConnectionPoint와 이를 관리하는 IConnectionPointContainer 그리고 클라이언트의 sink 인터페이스 구현으로 처리한다.
+COM서버는 사이보스플러스이고 우리가 작성하는 프로그램이 클라이언트이다.</p>
+
+<p>go-ole 프로젝트에 보면 <a href="https://github.com/go-ole/go-ole/blob/master/example/winsock/winsock.go">example 폴더에 winsock예제</a>가 있다.
+이를 응용하여 사이보스플러스에 적용시켜보기로 한다.</p>
+
+<p>Oleviewer로 DSCBO1Lib의 dispinterface _IDibEvents
+를 보면 아래와 같이 나온다.</p>
+
+<pre><code>[
+  uuid(B8944520-09C3-11D4-8232-00105A7C4F8C),
+  helpstring(&quot;_IDibEvents Interface&quot;)
+]
+dispinterface _IDibEvents {
+    properties:
+    methods:
+        [id(0x00000001), helpstring(&quot;method Received&quot;)]
+        void Received();
+};
+</code></pre>
+
+<p>요 IID를 사용하여 ConnectionPoint를 지정해줄것이다.</p>
+
+<p>위 winsock예제와 같이 가상함수 테이블을 구현하는 구조체를 선언해준다.</p>
+
+<pre><code>type CpReceiveEvent struct {
+    lpVtbl *CpReceivedEvntVtbl
+    ref    int32
+    host   *ole.IDispatch
+}
+type CpReceivedEvntVtbl struct {
+    // IUnknown
+    pQueryInterface   uintptr
+    pAddRef           uintptr
+    pRelease          uintptr
+    // IDispatch
+    pGetTypeInfoCount uintptr
+    pGetTypeInfo      uintptr
+    pGetIDsOfNames    uintptr
+    pInvoke           uintptr
+}
+</code></pre>
+
+<p>void Received 함수는 포인터로 지정하지 않는다.
+host는 요 이벤트를 연결할 사이보스플러스 객체이다.</p>
+
+<pre><code>func QueryInterface(this *ole.IUnknown, iid *ole.GUID, punk **ole.IUnknown) uint32 {
+    s, _ := ole.StringFromCLSID(iid)
+    *punk = nil
+    if ole.IsEqualGUID(iid, ole.IID_IUnknown) ||
+        ole.IsEqualGUID(iid, ole.IID_IDispatch) {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }       
+    if s == &quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&quot; {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }
+
+    return ole.E_NOINTERFACE
+}
+
+func AddRef(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref++
+    return pthis.ref
+}
+
+func Release(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref--
+    return pthis.ref
+}
+</code></pre>
+
+<p>IUnknown 인테페이스를 구현한다. QueryInterface함수에서
+_IDibEvents의 IID를 받았을때 자기자신의 포인터를 아웃풋변수에
+넣도록 해준다.</p>
+
+<pre><code>func GetIDsOfNames(this *ole.IUnknown, iid *ole.GUID, wnames []*uint16, namelen int, lcid int, pdisp []int32) uintptr {
+    for n := 0; n &lt; namelen; n++ {
+        pdisp[n] = int32(n)
+    }
+    return uintptr(ole.S_OK)
+}
+func GetTypeInfoCount(this *ole.IUnknown,pcount *int) uint32 {
+    if pcount != nil {
+        *pcount = 0
+    }
+    return ole.S_OK
+}
+
+func GetTypeInfo(this *ole.IUnknown, namelen int, lcid int) uint32 {
+    return ole.E_NOTIMPL
+}
+func Invoke(this *ole.IDispatch, dispid int, riid *ole.GUID, lcid int, flags int16, dispparams *ole.DISPPARAMS, result *ole.VARIANT, pexcepinfo *ole.EXCEPINFO, nerr *uint) uintptr {
+    if dispid == 1 {
+        // call Received
+    }
+    return ole.E_NOTIMPL
+}
+</code></pre>
+
+<p>IDispatch 인터페이스를 구현한다.
+COM서버와 클라이언트간 약속된 인터페이스는 여기까지이다.
+여기서 dispinterface 였던 _IDibEvents 인터페이스는 Received 함수만 존재했었지만 실제로 구현하지 않고
+Invoke 함수가 dispid 로 함수의 ID 값을 넘겨받아 호출된다.
+이는 GetIDsOfNames가 구현됨으로서 가능하다.
+_IDibEvents는 간단하게도 Received 함수 하나뿐이라 ID값이 1로 전달될 것이다.
+이런 구조는 실제로 여러 언어나 개발환경에서는 자동화되어 생성이 되지만
+GO언어에서는 딱히 지원되는것이 아니므로 이렇게 일일히 구현이 되어야 한다.</p>
+
+<p>여기서 GetIDsOfNames 함수를 선언할때 문제점이 있다.</p>
+
+<pre><code>dest:= (new (CpReceiveEvent))
+dest.lpVtbl = (new (CpReceivedEvntVtbl))
+dest.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+dest.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+dest.lpVtbl.pRelease = syscall.NewCallback(Release)
+dest.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+dest.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+dest.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+</code></pre>
+
+<p>이렇게 syscall.NewCallback 을 사용하여 콜백함수를 지정을 하면</p>
+
+<pre><code>panic: compileCallback: input parameter size is wrong
+</code></pre>
+
+<p>라는 에러가 나올것이다. 이는 GetIDsOfNames 함수를 NewCallback 인자로 넘겨주었을때 발생하는데 해당 소스는 다음과 같다.</p>
+
+<pre><code>func compileCallback(fn eface, cleanstack bool) (code uintptr) {
+if fn._type == nil || (fn._type.kind&amp;kindMask) != kindFunc {
+    panic(&quot;compileCallback: not a function&quot;)
+}
+ft := (*functype)(unsafe.Pointer(fn._type))
+if len(ft.out) != 1 {
+    panic(&quot;compileCallback: function must have one output parameter&quot;)
+}
+uintptrSize := unsafe.Sizeof(uintptr(0))
+if ft.out[0].size != uintptrSize {
+    panic(&quot;compileCallback: output parameter size is wrong&quot;)
+}
+argsize := uintptr(0)
+for _, t := range ft.in {
+    if t.size &gt; uintptrSize {
+        panic(&quot;compileCallback: input parameter size is wrong&quot;)
+    }
+    argsize += uintptrSize
+}
+</code></pre>
+
+<p>이상하다. 정확히는 모르겠지만 uintptrSize와 각각의 인풋파라미터의 타입을 비교하는 것처럼 보인다. 하지만 괴상하게도 되지 않는다.
+이것때문에 한동안 막혀 진행이 되지 않다가 다음과 같은 소스를 찾고나서
+해결하였다.
+<a href="https://gist.github.com/mattn/794587">https://gist.github.com/mattn/794587</a></p>
+
+<p>결국 GetIDsOfNames 함수는 아래와같이 만들어준다.</p>
+
+<pre><code>func GetIDsOfNames(args *uintptr) uint32 {
+    p := (*[6]int32)(unsafe.Pointer(args))
+    //this := (*ole.IDispatch)(unsafe.Pointer(uintptr(p[0])))
+    //iid := (*ole.GUID)(unsafe.Pointer(uintptr(p[1])))
+    wnames := *(*[]*uint16)(unsafe.Pointer(uintptr(p[2])))
+    namelen := int(uintptr(p[3]))
+    //lcid := int(uintptr(p[4]))
+    pdisp := *(*[]int32)(unsafe.Pointer(uintptr(p[5])))
+    for n := 0; n &lt; namelen; n++ {
+        s := ole.UTF16PtrToString(wnames[n])
+        println(s)
+        pdisp[n] = int32(n)
+    }
+    return ole.S_OK
+}
+</code></pre>
+
+<p>oleutil에 있는 ConnectObject 함수도 결국은 GetIDsOfNames 함수를 가지고
+NewCallback을 호출하는데
+<a href="https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go">https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go</a>
+를 보면 이것도 마찬가지로 같은 에러가 난다. 따라서 oleutil을 활용할수가 없다.</p>
+
+<p>결국 IConnectionPoint를 직접 만들어줘야하는 번거로움이 생기게 된다.
+이걸 사용하는 순서는 아래와 같다.</p>
+
+<ol>
+<li>사이보스플러스 객체에서 QueryInterface로 IID_IConnectionPointContainer 인터페이스를 요청하여 생성</li>
+<li>FindConnectionPoint 함수에 _IDibEvents의 iid 를 이용하여
+point 를 알아낸다.</li>
+<li>해당 point의 Advise 함수 호출</li>
+</ol>
+
+<p>아래와 같이 구현해보면 된다.</p>
+
+<pre><code>    // get event iid
+    dibevnt_iid, err := ole.CLSIDFromString(&quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&quot;)
+    if  err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(dibevnt_iid)
+
+    // 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
+    evnt:= (new (CpReceiveEvent))
+    evnt.lpVtbl = (new (CpReceivedEvntVtbl))
+    evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+    evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+    evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
+    evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+    evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+    evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+    evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
+    evnt.host = cpstkmst
+
+    // connectionpoint container
+    unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+
+    fmt.Println(unknown_con)
+
+    // get point
+    container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
+    var point *ole.IConnectionPoint
+    err = container.FindConnectionPoint(dibevnt_iid, &amp;point)
+    if err != nil {
+        return
+    }
+    fmt.Println(point)
+
+    // Advise
+    cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
+    container.Release()
+    if err != nil {
+        point.Release()
+        fmt.Println(err)
+        return
+    }
+</code></pre>
+
+<p>Request 요청을 날리게 되면 응답을 받을때까지 대기를 하여야 한다.
+이는 어느시점에 발생할지 모르기 떄문에 무한루프로 대기를 하도록 한다.
+아래는 적당한 시점에 종료되도록 만든것이다.</p>
+
+<pre><code>    // wating infinite  
+    cnt := 0
+    var m ole.Msg
+    for evnt.ref != 0 {
+        time.Sleep(10)
+        ole.GetMessage(&amp;m,0,0,0)
+        ole.DispatchMessage(&amp;m)
+        if cnt &gt; 1000 {
+            break
+        }
+        cnt++
+    }
+</code></pre>
+
+<p>실제 콜백이 수행되는것은 Invoke 가 수행이 되며
+여기에 메서드의 ID값을 넘겨주게 된다.
+_IDibEvents는 어차피 메서드가 Received 한개이므로
+무조건 1일 것이다.</p>
+
+<p>적당히 Received를 꾸민뒤에 Invoke에서 호출된다고 가정하고
+Received를 작성해보았다.</p>
+
+<pre><code>func Received(this *ole.IDispatch) {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    r, err := oleutil.CallMethod(pthis.host, &quot;GetHeaderValue&quot;, 1)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+</code></pre>
+
+<p>실행결과는</p>
+
+<pre><code>call Received
+기아차
+</code></pre>
+
+<h2 id="전체소스:2284214a0333b1f3f4b041ec3c1d6e0e">전체소스</h2>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    ole &quot;github.com/go-ole/go-ole&quot;
+    &quot;github.com/go-ole/go-ole/oleutil&quot;
+    &quot;unsafe&quot;
+    &quot;syscall&quot;
+    &quot;time&quot;
+)
+
+type CpReceiveEvent struct {
+    lpVtbl *CpReceivedEvntVtbl
+    ref    int32
+    host   *ole.IDispatch
+}
+type CpReceivedEvntVtbl struct {
+    // IUnknown
+    pQueryInterface   uintptr
+    pAddRef           uintptr
+    pRelease          uintptr
+    // IDispatch
+    pGetTypeInfoCount uintptr
+    pGetTypeInfo      uintptr
+    pGetIDsOfNames    uintptr
+    pInvoke           uintptr
+}
+
+func QueryInterface(this *ole.IUnknown, iid *ole.GUID, punk **ole.IUnknown) uint32 {
+    s, _ := ole.StringFromCLSID(iid)
+    *punk = nil
+    if ole.IsEqualGUID(iid, ole.IID_IUnknown) ||
+        ole.IsEqualGUID(iid, ole.IID_IDispatch) {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }       
+    if s == &quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&quot; {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }
+
+    return ole.E_NOINTERFACE
+}
+
+func AddRef(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref++
+    return pthis.ref
+}
+
+func Release(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref--
+    return pthis.ref
+}
+func GetIDsOfNames(args *uintptr) uint32 {
+    fmt.Println(&quot;gettypeinfo?&quot;)
+    p := (*[6]int32)(unsafe.Pointer(args))
+    //this := (*ole.IDispatch)(unsafe.Pointer(uintptr(p[0])))
+    //iid := (*ole.GUID)(unsafe.Pointer(uintptr(p[1])))
+    wnames := *(*[]*uint16)(unsafe.Pointer(uintptr(p[2])))
+    namelen := int(uintptr(p[3]))
+    //lcid := int(uintptr(p[4]))
+    pdisp := *(*[]int32)(unsafe.Pointer(uintptr(p[5])))
+    for n := 0; n &lt; namelen; n++ {
+        s := ole.UTF16PtrToString(wnames[n])
+        println(s)
+        pdisp[n] = int32(n)
+    }
+    return ole.S_OK
+}
+func GetTypeInfoCount(this *ole.IUnknown,pcount *int) uint32 {
+    if pcount != nil {
+        *pcount = 0
+    }
+    return ole.S_OK
+}
+
+func GetTypeInfo(this *ole.IUnknown, namelen int, lcid int) uint32 {
+    return ole.E_NOTIMPL
+}
+func Invoke(this *ole.IDispatch, dispid int, riid *ole.GUID, lcid int, flags int16, dispparams *ole.DISPPARAMS, result *ole.VARIANT, pexcepinfo *ole.EXCEPINFO, nerr *uint) uintptr {
+    if dispid == 1 {
+        // call Received
+        fmt.Println(&quot;call Received&quot;)
+        Received(this)
+    }
+    return ole.E_NOTIMPL
+}
+
+func Received(this *ole.IDispatch) {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    r, err := oleutil.CallMethod(pthis.host, &quot;GetHeaderValue&quot;, 1)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+
+func main() {
+    // ole inti
+    ole.CoInitialize(0)
+    defer ole.CoUninitialize()
+
+    // clsid 구함
+    stkmst_clsid, err := ole.CLSIDFromString(&quot;DSCBO1.StockMst&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(stkmst_clsid)
+
+    // unknown
+    unknown, err := ole.CreateInstance(stkmst_clsid, ole.IID_IUnknown)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(unknown)
+
+    // get obj
+    cpstkmst, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(cpstkmst)
+
+    // get event iid
+    dibevnt_iid, err := ole.CLSIDFromString(&quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&quot;)
+    if  err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(dibevnt_iid)
+
+    // 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
+    evnt:= (new (CpReceiveEvent))
+    evnt.lpVtbl = (new (CpReceivedEvntVtbl))
+    evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+    evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+    evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
+    evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+    evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+    evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+    evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
+    evnt.host = cpstkmst
+
+    // connectionpoint container
+    unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+
+    fmt.Println(unknown_con)
+
+    // get point
+    container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
+    var point *ole.IConnectionPoint
+    err = container.FindConnectionPoint(dibevnt_iid, &amp;point)
+    if err != nil {
+        return
+    }
+    fmt.Println(point)
+
+    // Advise
+    cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
+    container.Release()
+    if err != nil {
+        point.Release()
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(&quot;cookies&quot;)
+    fmt.Println(cookie)     
+
+    // call method
+
+    r, err := oleutil.CallMethod(cpstkmst, &quot;SetInputValue&quot;,0, &quot;A000270&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    r, err = oleutil.CallMethod(cpstkmst, &quot;Request&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    fmt.Println(&quot;request after&quot;)
+
+    // wating infinite  
+    cnt := 0
+    var m ole.Msg
+    for evnt.ref != 0 {
+        time.Sleep(10)
+        ole.GetMessage(&amp;m,0,0,0)
+        ole.DispatchMessage(&amp;m)
+        if cnt &gt; 1000 {
+            break
+        }
+        cnt++
+    }
+}
+</code></pre>
+
+<p>여기까지는 단지 연동만 해본것일 뿐이다.
+이를 사용하기 쉽도록 묶고 라이브러리 처럼 만들려면
+이를 응용하여 만들면 될 것이다.</p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="http://ippoeyeslhw.github.io/post/rename-file/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="http://ippoeyeslhw.github.io/post/rename-file/">rename file</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="http://ippoeyeslhw.github.io/post/cpgo-lib/">cpgo lib</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="http://ippoeyeslhw.github.io/post/cpgo-lib/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'httpippoeyeslhwgithubioblog';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="http://ippoeyeslhw.github.io/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+

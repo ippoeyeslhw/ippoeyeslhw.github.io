@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://ippoeyeslhw.github.io/</loc>
+    <lastmod>2016-08-03T23:23:37+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ippoeyeslhw.github.io/post/cpgo-lib/</loc>
+    <lastmod>2016-08-03T23:23:37+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</loc>
+    <lastmod>2016-07-23T23:11:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ippoeyeslhw.github.io/post/rename-file/</loc>
+    <lastmod>2016-06-23T20:13:36+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</loc>
+    <lastmod>2016-05-28T16:56:02+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ippoeyeslhw.github.io/post/hello-hugo/</loc>
+    <lastmod>2016-05-26T23:08:11+09:00</lastmod>
+  </url>
+  
+</urlset>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.15" />
+
+  <title>rename file &middot; ItGae Blog</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="http://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="http://ippoeyeslhw.github.io/">ItGae</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>rename file</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>23 Jun 2016, 20:13</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="http://ippoeyeslhw.github.io/topics/golang">golang</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/golang">golang</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<p>8년전 보았던 미드가 생각나서 구했는데
+워낙 예전것이라 자막과 영상의 소스가 달라
+일괄 변경할 필요가 생겼다. 그래서 go언어로 짜보았다.</p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;flag&quot;  
+    &quot;io/ioutil&quot;
+    &quot;os&quot;
+    &quot;path/filepath&quot;
+)
+
+
+func getFileName( p string ) string {
+    return p[0:len(p)-len(filepath.Ext(p))]
+}
+
+func main(){
+    fmt.Println(&quot;start renaming&quot;)
+
+    src_ext := flag.String(&quot;src&quot;, &quot;.avi&quot;, &quot;source file-extension&quot;)
+    dst_ext := flag.String(&quot;dst&quot;, &quot;.smi&quot;, &quot;destination file-extension&quot;)
+
+    flag.Parse()
+
+    fmt.Println(*src_ext, *dst_ext)
+
+    // 현재 디렉토리 파일 검색
+    files, err := ioutil.ReadDir(&quot;.&quot;)
+    if err != nil {
+        fmt.Println(&quot;read dir fail&quot;)
+        os.Exit(1)
+    }
+
+    src_list := make([]string, 0)
+    dst_list := make([]string, 0)
+
+    for _, file := range files {
+        if filepath.Ext(file.Name()) == *src_ext {
+            src_list = append(src_list, file.Name())
+        }
+        if filepath.Ext(file.Name()) == *dst_ext {
+            dst_list = append(dst_list, file.Name())
+        }
+    }
+
+    if len(src_list) != len(dst_list) {
+        fmt.Println(&quot;diff num of files&quot;, len(src_list), len(dst_list))
+        os.Exit(1)
+    }
+
+    for i, nm := range src_list {
+        fmt.Println(i, dst_list[i], &quot;-&gt;&quot;, getFileName(nm) + filepath.Ext(dst_list[i]) )
+        os.Rename(dst_list[i], getFileName(nm) + filepath.Ext(dst_list[i]))
+    }
+}
+</code></pre>
+
+<h2 id="flag:4a2955fb02c481cb9d3c315b615b797c">flag</h2>
+
+<p><a href="https://golang.org/pkg/flag/">flag</a> 패키지는 커맨드라인에서
+flag를 달아줄때 해당 값을 읽어올때 사용한다.
+만일 -h 옵션을 주면 도움말을 알아서 만들어준다.</p>
+
+<h2 id="path-filepath:4a2955fb02c481cb9d3c315b615b797c">path/filepath</h2>
+
+<p>filepath를 파일 확장자를 발라내는데 사용했다.
+다만 확장자를 뺸 나머지 이름을 가져오는 방법이 없어
+slice 를 활용하여 아래처럼 사용했다.</p>
+
+<pre><code>return p[0:len(p)-len(filepath.Ext(p))]
+</code></pre>
+
+<h2 id="slice:4a2955fb02c481cb9d3c315b615b797c">slice</h2>
+
+<p>목적확장자를 가진 파일과 대상 확장자를 가진 파일을 각각 slice에 담도록 했다.</p>
+
+<pre><code>    src_list := make([]string, 0)
+    dst_list := make([]string, 0)
+
+    for _, file := range files {
+        if filepath.Ext(file.Name()) == *src_ext {
+            src_list = append(src_list, file.Name())
+        }
+        if filepath.Ext(file.Name()) == *dst_ext {
+            dst_list = append(dst_list, file.Name())
+        }
+    }
+</code></pre>
+
+<h2 id="rename:4a2955fb02c481cb9d3c315b615b797c">rename</h2>
+
+<p>os.Rename을 사용하면 파일명을 바꿀수 있다.</p>
+
+<pre><code>    for i, nm := range src_list {
+        fmt.Println(i, dst_list[i], &quot;-&gt;&quot;, getFileName(nm) + filepath.Ext(dst_list[i]) )
+        os.Rename(dst_list[i], getFileName(nm) + filepath.Ext(dst_list[i]))
+    }
+</code></pre>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/">mandelbrot fractal golang</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="http://ippoeyeslhw.github.io/post/golang-with-cybosplus/">golang-with-cybosplus</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="http://ippoeyeslhw.github.io/post/golang-with-cybosplus/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'httpippoeyeslhwgithubioblog';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="http://ippoeyeslhw.github.io/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+

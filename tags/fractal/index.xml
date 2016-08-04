@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fractal on ItGae Blog</title>
+    <link>http://ippoeyeslhw.github.io/tags/fractal/</link>
+    <description>Recent content in Fractal on ItGae Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 28 May 2016 16:56:02 +0900</lastBuildDate>
+    <atom:link href="http://ippoeyeslhw.github.io/tags/fractal/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>mandelbrot fractal golang</title>
+      <link>http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</link>
+      <pubDate>Sat, 28 May 2016 16:56:02 +0900</pubDate>
+      
+      <guid>http://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</guid>
+      <description>
+
+&lt;p&gt;go언어의 &lt;a href=&#34;https://golang.org/pkg/&#34;&gt;package&lt;/a&gt;문서를 보다보니
+&lt;a href=&#34;https://golang.org/pkg/image/&#34;&gt;image&lt;/a&gt;패키지를 보게 되었다.
+go언어 익숙해질겸 기존에 몇번 작성해보았던 Mandelbrot Fractal
+을 만들어 보기로 마음 먹었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1_600_400.png&#34; alt=&#34;mandelbrot fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;픽셀-콘트롤:1d83e155d6be62d461d335add2587317&#34;&gt;픽셀 콘트롤&lt;/h2&gt;
+
+&lt;p&gt;표준라이브러리의 &lt;a href=&#34;https://golang.org/pkg/image/&#34;&gt;image&lt;/a&gt;패키지를
+찾아보다보니 픽셀을 Set하는 것처럼 보이는 부분이 있었다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (p *RGBA) Set(x, y int, c color.Color)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;RGBA 구조체에 특정 x,y좌표의 픽셀에 Color를 지정하는것으로 보인다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 몇가지 의문이 생긴다.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jpeg, Png 같은 이미지로 저장을 할수 있는지&lt;/li&gt;
+&lt;li&gt;Color는 무엇인지&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;이미지-생성-및-저장:1d83e155d6be62d461d335add2587317&#34;&gt;이미지 생성 및 저장&lt;/h2&gt;
+
+&lt;p&gt;간단하게 이미지를 생성 및 저장해보기로 한다.
+png 포맷으로 저장하는 방법을 찾아보다가 보니
+image 패키지의 서브디렉토리에 Png가 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://golang.org/pkg/image/png/&#34;&gt;png패키지&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 Encode함수 정의를 보면&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func Encode(w io.Writer, m image.Image) error
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;첫번쨰 인자가 io.Writer 인것을 볼수 있다.
+이를 파일로 지정하면 얼추 되지 않을까?&lt;/p&gt;
+
+&lt;p&gt;저 Writer 를 클릭해보면&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type Writer interface {
+        Write(p []byte) (n int, err error)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Write 인터페이스가 구현되는 구조체? 이면 저 Encode 함수 인자로 넘길수
+있는것 같아보인다.
+그리고 &lt;a href=&#34;https://golang.org/pkg/os#File.Write&#34;&gt;os패키지&lt;/a&gt;
+에  File구조체의 Write 함수를 보자&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (f *File) Write(b []byte) (n int, err error)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;그냥 저렇게 함수를 구현하면 위 인터페이스가 구현이 되는것인지
+의문이 든다. Java 같은 언어처럼 인터페이스를 상속하도록 지정할 필요가 없는것인지
+이는 실제로 코드를 짜서 확인해보도록 한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import(
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;image&amp;quot;
+    &amp;quot;image/png&amp;quot;
+    &amp;quot;os&amp;quot;
+)
+
+func main(){
+
+    fmt.Println(&amp;quot;step 1&amp;quot;)
+
+    // 이미지생성
+    img := image.NewRGBA(image.Rect(0,0,300,200))
+
+    // 파일생성 및 open
+    f, f_err := os.Create(&amp;quot;test.png&amp;quot;)
+    if f_err != nil {
+        os.Exit(1)
+    }
+
+    png_err := png.Encode(f, img)
+    if png_err != nil {
+        os.Exit(1)
+    }
+
+    // 파일 닫기
+    f.Close()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;테스트용으로 짠코드이다. 이를 수행하면 뭔가 파일이 생성됨을 알수 있다.
+결국 File 구조체는 Write 함수를 Writer 인터페이스 형식에 맞게 구현했기 때문에 인터페이스가 구현되었고 png.Encode의 첫번쨰 인자로 집어넣을수 있다.&lt;/p&gt;
+
+&lt;p&gt;생성된 png파일은 열어보면 아무것도 보이지 않는다.
+실제로 맞게 생성이 된것인지 확인 및
+img.Set 함수가 제대로 동작을 하는건지 확인하기 위해
+직선을 그어서 확인해보도록 한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 이미지생성
+img := image.NewRGBA(image.Rect(0,0,300,200))
+
+// test draw
+for i := 0; i &amp;lt; 100; i++ {
+    img.Set(50 + i, 100, color.RGBA{255,0,0,255})
+}
+//... 코드생략
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/test_line.png&#34; alt=&#34;test line&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;빨간선이 그어졌다!&lt;/p&gt;
+
+&lt;p&gt;RGBA 임을 생각해보면 A = Alpha 값임을 생각해보면 된다.
+즉 그냥 이미지를 생성하면 투명한상태의 이미지파일이 생성되는 것이다.&lt;/p&gt;
+
+&lt;p&gt;여기서 color는 &lt;a href=&#34;https://golang.org/pkg/image/color/&#34;&gt;image/color 패키지&lt;/a&gt;
+의 인터페이스이다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type Color interface {
+        // RGBA returns the alpha-premultiplied red, green, blue and alpha values
+        // for the color. Each value ranges within [0, 0xffff], but is represented
+        // by a uint32 so that multiplying by a blend factor up to 0xffff will not
+        // overflow.
+        //
+        // An alpha-premultiplied color component c has been scaled by alpha (a),
+        // so has valid values 0 &amp;lt;= c &amp;lt;= a.
+        RGBA() (r, g, b, a uint32)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위의 Writer와 비슷하게 RGBA 함수가 구현된 type이면 인자로 넘길수 있는것이다.&lt;/p&gt;
+
+&lt;p&gt;다른 표준라이브러리들도 이와 유사한 방식으로 이해하면 될것 같은 느낌이 든다.&lt;/p&gt;
+
+&lt;h2 id=&#34;에러-처리:1d83e155d6be62d461d335add2587317&#34;&gt;에러 처리&lt;/h2&gt;
+
+&lt;p&gt;os.Create 함수를 사용할때 보면 f_err 를 리턴받아 에러여부를 확인했다.
+go언어는 try-catch 매커니즘이 없는듯 하다.
+커스텀 에러처리를 할때는 어떻게 할지 궁금해서 찾아보니
+역시나 인터페이스이다&amp;hellip; &lt;a href=&#34;https://golang.org/pkg/builtin/#error&#34;&gt;error정의&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type error interface {
+        Error() string
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;그렇다면 내가 커스텀에러 타입을 정의한뒤에 Error() 를 구현하여
+error 를 리턴하게 하면 되는것이다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// simple error handling
+type errorString struct {
+    at string
+    msg string
+}
+func (e *errorString) Error() string {
+    return fmt.Sprintf(&amp;quot;at %s : %s Error&amp;quot;, e.at, e.msg)
+}
+
+func errTest () error {
+    return &amp;amp;errorString {&amp;quot;at&amp;quot;, &amp;quot;errTest&amp;quot;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위와같이 정의하면 내가 정의한 errorString 이라는 타입은 Error 함수를 구현하였다.
+그래서 errTest()함수의 리턴타입은 error 인터페이스를 구현하였으니
+리턴할때 해당타입을 사용할수 있다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;err := errTest()
+if err != nil {
+    fmt.Println(err)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;이미지초기화:1d83e155d6be62d461d335add2587317&#34;&gt;이미지초기화&lt;/h2&gt;
+
+&lt;p&gt;이미지를 생성할때 위와같이 하면 투명하게 되어
+검정색이든 하얀색이든 기본색으로 클리어해주는 방식을
+찾아볼 필요가 생겼다.&lt;/p&gt;
+
+&lt;p&gt;package를 뒤져보고 구글링을 해보니
+&lt;a href=&#34;https://golang.org/pkg/image/draw/&#34;&gt;image/draw 패키지&lt;/a&gt;
+Draw 함수와
+image.Uniform 타입을 활용하면 되는것 같다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{c}, image.ZP, draw.Src )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uniform의 c 값은 Color이다.&lt;/p&gt;
+
+&lt;h2 id=&#34;기본골격-정의:1d83e155d6be62d461d335add2587317&#34;&gt;기본골격 정의&lt;/h2&gt;
+
+&lt;p&gt;위와 같이 에러 처리및 파일 저장, 이미지 초기화와 같은 것들을 이용하여
+골격을 정의하여 이미지 파일을 생성하도록 한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// 파일저장함수
+func saveImg(img *image.RGBA, fname string) error {
+    f, fe := os.Create(fname)
+    if fe != nil {
+        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;file Create&amp;quot;}
+    }
+
+    pe := png.Encode(f, img)
+    if pe != nil {
+        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;png Encode&amp;quot;}    
+    }
+
+    f.Close()
+    return nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이미지와 파일이름을 받아 저장할수 있도록 함수를 정의하고
+아까 정의한 커스텀 에러 처리를 응용한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main(){
+
+    // 기본 이미지 사용 
+    img := image.NewRGBA(image.Rect(0,0,600,400))
+
+    // 초기화 (black)
+    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{&amp;amp;color.RGBA{0,0,0,255}}, image.ZP, draw.Src)
+
+    // 그리기
+
+
+    // 파일저장
+    save_err := saveImg(img, &amp;quot;out.png&amp;quot;)
+    if save_err != nil {
+        fmt.Println(save_err)
+        os.Exit(1)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;일단 위의 소스를 돌려보면 검정색의 그림파일이 생성된다.&lt;/p&gt;
+
+&lt;h2 id=&#34;첫번째-프랙탈:1d83e155d6be62d461d335add2587317&#34;&gt;첫번째 프랙탈&lt;/h2&gt;
+
+&lt;p&gt;이제 png 파일이 생성되며 중간에 픽셀값을 찍어서 그림파일을 생성할수
+있다.
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Mandelbrot_set&#34;&gt;Mandelbrot Fractal&lt;/a&gt;
+복소평면에서 Zn+1 = Zn^2 + c 에서 얼마나 빨리 발산하는지에 따른 c값의 집합이다.&lt;/p&gt;
+
+&lt;p&gt;흔히 프랙탈 이미지는 점화식을 반복에 의해 진행시켜나가면서
+대부분 256단계에 발산을 하는지 보고 256 이하 값을 선택하여 밝기
+및 색상을 선택한다.&lt;/p&gt;
+
+&lt;p&gt;프랙탈의 범위는 실수부 -2 ~ 1, 허수부 -1 ~ 1 사이값이다.
+이미지를 생성하기 위해서는 모든 각각의 픽셀위치의 좌표를 구한뒤
+얼마나 빨리 발산하는지 판별하여 그 값을 색상으로 지정하면 된다.&lt;/p&gt;
+
+&lt;p&gt;프랙탈은 나중에 줌인, 줌아웃의 기능을 위해 뷰 범위를 지정할 필요가 있다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type FractalRect struct {
+    X, Y ,W, H float64
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;발산단계를 구하기 위해 아래와 같은 함수를 선언한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func getLevel(rect *FractalRect, p *image.Point, w, h int) int {
+    var cX float64 = rect.X + float64(p.X) * (rect.W / float64(w))
+    var cY float64 = rect.Y + float64(p.Y) * (rect.H / float64(h))
+    X := cX
+    Y := cY
+
+    cnt := 256
+    for i:=0; i &amp;lt; 256; i++ {
+        X2 := X * X
+        Y2 := Y * Y
+        if X2 + Y2 &amp;gt; 4.0 {
+            cnt = i
+            break
+        }
+        nX := X2 - Y2 + cX
+        nY := 2 * X * Y + cY
+        X = nX
+        Y = nY
+    }
+    return cnt
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;보고자 하는 좌표를 지정한뒤
+이미지의 좌표 Point 및 이미지의 Width, Height 를 구한다.
+결국 이미지의 어떤 픽셀의 위치에 해당되는 실수 좌표를 구한뒤에
+이를 기반으로 256 단계 이내에 얼마나 빨리 발산하는지 확인하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;모든 픽셀에 대해서 위 함수를 적용하여 밝기를 지정하도록
+그리기 함수를 선언한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func drawFractal(rect *FractalRect, img *image.RGBA) {
+    width := img.Bounds().Max.X
+    height := img.Bounds().Max.Y
+
+    for i:=0; i &amp;lt; height; i++ {
+        for j:=0; j &amp;lt; width; j++{
+            level := uint8(getLevel(rect, &amp;amp;image.Point{j,i}, width, height))
+            img.Set(j, i, &amp;amp;color.RGBA{level,level,level,255})
+        }
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;그러면 아까 만들어 뒀던 골격에 적용하면&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main(){
+
+    fmt.Println(&amp;quot;step 1&amp;quot;)
+
+    // 기본 이미지 사용 
+    img := image.NewRGBA(image.Rect(0,0,600,400))
+
+    // 초기화 (black)
+    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{&amp;amp;color.RGBA{0,0,0,255}}, image.ZP, draw.Src)
+
+    // 그리기
+    drawFractal(&amp;amp;FractalRect{-2,-1,3,2}, img)
+
+    // 파일저장
+    save_err := saveImg(img, &amp;quot;out.png&amp;quot;)
+    if save_err != nil {
+        fmt.Println(save_err)
+        os.Exit(1)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;그러면 아래와 같은 첫번쨰 프랙탈 이미지가 나온다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/fractal_1.png&#34; alt=&#34;first fractal&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;색상입히기:1d83e155d6be62d461d335add2587317&#34;&gt;색상입히기&lt;/h2&gt;
+
+&lt;p&gt;프랙탈을 좀더 보기좋게 만들기 위해서 색상을 입히기로 한다.
+색상을 칠하는 방법은 여러가지가 있지만
+팔레트를 만들어서 레벨에 따라 선택하도록 만들것이다.&lt;/p&gt;
+
+&lt;p&gt;4가지의 색상을 지정한뒤 이를 256단계에 걸쳐서 변화하도록
+보간하는 color 함수를 정의한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func getColor(level int) color.RGBA {
+    var color1, color2 color.RGBA
+    // 256 -&amp;gt; 128
+    pos := math.Mod(float64(level), 128.0) / 128.0
+
+    if level &amp;gt;= 256 {
+        return color.RGBA{0,0,0,255}
+    }
+
+    switch {
+        case pos &amp;lt; 0.25:
+            color1 = color.RGBA{0,0,100,0}
+            color2 = color.RGBA{255,255,255,25}
+        case pos &amp;lt; 0.5:
+            color1 = color.RGBA{255,255,255,25}
+            color2 = color.RGBA{255,128,0,50}
+        case pos &amp;lt; 0.75:
+            color1 = color.RGBA{255,128,0,50}
+            color2 = color.RGBA{0,0,0,75}
+        case pos &amp;lt; 1.0:
+            color1 = color.RGBA{0,0,0,75}
+            color2 = color.RGBA{0,0,100,100}
+    }
+    // alpha 값을 t위치 산정을 위해 사용
+    t := 1.0 * (pos - float64(color1.A)/100.0) / (float64(color2.A)/100.0 - float64(color1.A)/100.0)
+
+    r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
+    g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
+    b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
+
+    return color.RGBA{r,g,b,255}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이를 사용하여 팔레트를 생성하고 픽셀을 찍을경우
+팔레트를 사용하도록 그리기 함수를 변경한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func drawFractal(rect *FractalRect, img *image.RGBA) {
+
+    // 팔레트 생성
+    palette := make([]color.RGBA, 257) // 256 단계 넘어가는 경우
+
+    for i:=0; i &amp;lt; len(palette); i++ {
+        palette[i] = getColor(i)
+    }
+
+    // 모든 픽셀 순회
+    width := img.Bounds().Max.X
+    height := img.Bounds().Max.Y
+
+    for i:=0; i &amp;lt; height; i++ {
+        for j:=0; j &amp;lt; width; j++{
+            level := getLevel(rect, &amp;amp;image.Point{j,i}, width, height)
+            img.Set(j, i, &amp;amp;palette[level])
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/fractal_2.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/fractal_2_600_400.png&#34; alt=&#34;color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;계산현상-없애기:1d83e155d6be62d461d335add2587317&#34;&gt;계산현상 없애기&lt;/h2&gt;
+
+&lt;p&gt;smooth coloring 과 관련한 부분이다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func getLevel(rect *FractalRect, p *image.Point, w, h int) (int, float64) {
+    var cX float64 = rect.X + float64(p.X) * (rect.W / float64(w))
+    var cY float64 = rect.Y + float64(p.Y) * (rect.H / float64(h))
+    X := cX
+    Y := cY
+
+    cnt := 256
+    for i:=0; i &amp;lt; 256; i++ {
+        X2 := X * X
+        Y2 := Y * Y
+        if X2 + Y2 &amp;gt; 4.0 {
+            cnt = i
+            break
+        }
+        nX := X2 - Y2 + cX
+        nY := 2 * X * Y + cY
+        X = nX
+        Y = nY
+    }
+    // t 값을 리턴하도록 수정함
+    zn := math.Sqrt(X*X + Y*Y)
+    nu := math.Log(math.Log(zn) / math.Log(2.0)) / math.Log(2.0)
+    t := 1.0 - nu
+    return cnt, t
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;해당 t값을 가지고 팔레트를 구할때처럼
+보간하여 색상을 지정한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func drawFractal(rect *FractalRect, img *image.RGBA) {
+
+    // 팔레트 생성
+    palette := make([]color.RGBA, 258) // 256 단계 넘어가는 경우
+
+    for i:=0; i &amp;lt; len(palette); i++ {
+        palette[i] = getColor(i)
+    }
+
+    // 모든 픽셀 순회
+    width := img.Bounds().Max.X
+    height := img.Bounds().Max.Y
+
+    for i:=0; i &amp;lt; height; i++ {
+        for j:=0; j &amp;lt; width; j++{
+            level,t := getLevel(rect, &amp;amp;image.Point{j,i}, width, height)
+            color1 := &amp;amp;palette[level]
+            color2 := &amp;amp;palette[level+1]
+            r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
+            g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
+            b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
+
+            img.Set(j, i, &amp;amp;color.RGBA{r,g,b,255})
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;level+1 처리를 위해 팔레트 크기를 하나 더 늘렸다.
+모든것을 적용한 최종 결과는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/fractal_3.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/fractal_3_600_400.png&#34; alt=&#34;smooth color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;후기:1d83e155d6be62d461d335add2587317&#34;&gt;후기&lt;/h2&gt;
+
+&lt;p&gt;프랙탈의 위력은 줌인에 있다. 지금은 좌표가 -2~1, -1~1 사이의
+모양을 그렸지만 실은 부분부분을 계속적으로 확대해 나갈때
+프랙탈의 다채로운 모양이 나온다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ippoeyeslhw.github.io/static/img/zoom_fractal.png&#34;&gt;&lt;img src=&#34;http://ippoeyeslhw.github.io/static/img/zoom_fractal_600_400.png&#34; alt=&#34;zoom fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;image패키지와 웹서버를 구현하여 확대할 좌표를 구하고
+이를 보여주는 식으로 계속 확대해 나가는 것을 구현해봐도 괜찮을 것이다.&lt;/p&gt;
+
+&lt;p&gt;go언어는 goroutine을 사용하여 thread 사용하기 쉽다고 한다.
+CPU 지정하고 이를 활용하여 병렬 처리를 해도 괜찮을 것이다.&lt;/p&gt;
+
+&lt;p&gt;이 프로그램을 짜보면서 go언어의 표준라이브러리들의
+인자를 넘기는 방법에 대한 힌트를 얻었다.
+인터페이스를 지정하면 이를 구현하는 타입은 어떤 타입이든지
+산관없이 넘길수 있어 커스텀 타입을 구현하여 넘길수 있는것을
+가능하게 해주는것 같다.&lt;/p&gt;
+
+&lt;p&gt;이 글을 쓰면서 작성한 프로그램 소스를 아래에 제시하며 마친다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import(
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;image&amp;quot;
+    &amp;quot;image/png&amp;quot;
+    &amp;quot;image/color&amp;quot;
+    &amp;quot;image/draw&amp;quot;
+    &amp;quot;math&amp;quot;
+    &amp;quot;os&amp;quot;
+)
+
+// simple error handling
+type errorString struct {
+    at string
+    msg string
+}
+func (e *errorString) Error() string {
+    return fmt.Sprintf(&amp;quot;at %s : %s Error&amp;quot;, e.at, e.msg)
+}
+
+type FractalRect struct {
+    X, Y ,W, H float64
+}
+
+func getLevel(rect *FractalRect, p *image.Point, w, h int) (int, float64) {
+    var cX float64 = rect.X + float64(p.X) * (rect.W / float64(w))
+    var cY float64 = rect.Y + float64(p.Y) * (rect.H / float64(h))
+    X := cX
+    Y := cY
+
+    cnt := 256
+    for i:=0; i &amp;lt; 256; i++ {
+        X2 := X * X
+        Y2 := Y * Y
+        if X2 + Y2 &amp;gt; 4.0 {
+            cnt = i
+            break
+        }
+        nX := X2 - Y2 + cX
+        nY := 2 * X * Y + cY
+        X = nX
+        Y = nY
+    }
+    zn := math.Sqrt(X*X + Y*Y)
+    nu := math.Log(math.Log(zn) / math.Log(2.0)) / math.Log(2.0)
+    t := 1.0 - nu
+    return cnt, t
+}
+
+
+// 파일저장함수
+func saveImg(img *image.RGBA, fname string) error {
+    f, fe := os.Create(fname)
+    if fe != nil {
+        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;file Create&amp;quot;}
+    }
+
+    pe := png.Encode(f, img)
+    if pe != nil {
+        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;png Encode&amp;quot;}    
+    }
+
+    f.Close()
+    return nil
+}
+func getColor(level int) color.RGBA {
+    var color1, color2 color.RGBA
+    // 256 -&amp;gt; 128
+    pos := math.Mod(float64(level), 128.0) / 128.0
+
+    if level &amp;gt;= 256 {
+        return color.RGBA{0,0,0,255}
+    }
+
+    switch {
+        case pos &amp;lt; 0.25:
+            color1 = color.RGBA{0,0,100,0}
+            color2 = color.RGBA{255,255,255,25}
+        case pos &amp;lt; 0.5:
+            color1 = color.RGBA{255,255,255,25}
+            color2 = color.RGBA{255,128,0,50}
+        case pos &amp;lt; 0.75:
+            color1 = color.RGBA{255,128,0,50}
+            color2 = color.RGBA{0,0,0,75}
+        case pos &amp;lt; 1.0:
+            color1 = color.RGBA{0,0,0,75}
+            color2 = color.RGBA{0,0,100,100}
+    }
+    // alpha 값을 t위치 산정을 위해 사용
+    t := 1.0 * (pos - float64(color1.A)/100.0) / (float64(color2.A)/100.0 - float64(color1.A)/100.0)
+
+    r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
+    g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
+    b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
+
+    return color.RGBA{r,g,b,255}
+}
+
+func drawFractal(rect *FractalRect, img *image.RGBA) {
+
+    // 팔레트 생성
+    palette := make([]color.RGBA, 258) // 256 단계 넘어가는 경우
+
+    for i:=0; i &amp;lt; len(palette); i++ {
+        palette[i] = getColor(i)
+    }
+
+    // 모든 픽셀 순회
+    width := img.Bounds().Max.X
+    height := img.Bounds().Max.Y
+
+    for i:=0; i &amp;lt; height; i++ {
+        for j:=0; j &amp;lt; width; j++{
+            level,t := getLevel(rect, &amp;amp;image.Point{j,i}, width, height)
+            color1 := &amp;amp;palette[level]
+            color2 := &amp;amp;palette[level+1]
+            r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
+            g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
+            b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
+
+            img.Set(j, i, &amp;amp;color.RGBA{r,g,b,255})
+        }
+    }
+}
+
+func main(){
+
+    fmt.Println(&amp;quot;step 1&amp;quot;)
+
+    // 기본 이미지 사용 
+    img := image.NewRGBA(image.Rect(0,0,3000,2000))
+
+    // 초기화 (black)
+    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{&amp;amp;color.RGBA{0,0,0,255}}, image.ZP, draw.Src)
+
+    // 그리기
+    drawFractal(&amp;amp;FractalRect{-2,-1,3,2}, img)
+    //drawFractal(&amp;amp;FractalRect{-1.4,-0.4,0.6,0.4}, img)
+
+    // 파일저장
+    save_err := saveImg(img, &amp;quot;out.png&amp;quot;)
+    if save_err != nil {
+        fmt.Println(save_err)
+        os.Exit(1)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

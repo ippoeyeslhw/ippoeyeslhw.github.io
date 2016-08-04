@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cybosplus on ItGae Blog</title>
+    <link>http://ippoeyeslhw.github.io/tags/cybosplus/</link>
+    <description>Recent content in Cybosplus on ItGae Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Wed, 03 Aug 2016 23:23:37 +0900</lastBuildDate>
+    <atom:link href="http://ippoeyeslhw.github.io/tags/cybosplus/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>cpgo lib</title>
+      <link>http://ippoeyeslhw.github.io/post/cpgo-lib/</link>
+      <pubDate>Wed, 03 Aug 2016 23:23:37 +0900</pubDate>
+      
+      <guid>http://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
+      <description>
+
+&lt;p&gt;저번에 올렸던 &lt;a href=&#34;http://ippoeyeslhw.github.io/blog/post/golang-with-cybosplus/&#34;&gt;포스트&lt;/a&gt;
+에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다.
+이를 사용하여 Wrapper 라이브러를 작성하여 Github에 &lt;a href=&#34;https://github.com/ippoeyeslhw/cpgo&#34;&gt;https://github.com/ippoeyeslhw/cpgo&lt;/a&gt;
+프로젝트를 올렸다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;파이썬과-비교:f56708c2cf74bb72567b1415e5febd47&#34;&gt;파이썬과 비교&lt;/h2&gt;
+
+&lt;p&gt;파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다.&lt;/p&gt;
+
+&lt;h4 id=&#34;객체생성:f56708c2cf74bb72567b1415e5febd47&#34;&gt;객체생성&lt;/h4&gt;
+
+&lt;p&gt;객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stkmst := &amp;amp;cpgo.CpClass{}
+stkmst.Create(&amp;quot;CpDib.StockMst&amp;quot;)
+defer stkmst.Release()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이에 대응되는 파이썬 코드는&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stkmst = win32com.client.Dispatch(&amp;quot;dscbo1.StockMst&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;파이썬과는 다르게 COM을 다루고 있다는 느낌을 줄이려고 했다.&lt;/p&gt;
+
+&lt;h4 id=&#34;이벤트:f56708c2cf74bb72567b1415e5febd47&#34;&gt;이벤트&lt;/h4&gt;
+
+&lt;p&gt;이벤트를 처리하기위해 이벤트 핸들러는 Receiver 인터페이스를 구현하도록 하였다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type Receiver interface {
+    Received(*CpClass)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이 인터페이스를 구현하는 구조체를 아래와 같이 생성한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type RqTestStruct struct {
+}
+
+func (t *RqTestStruct) Received(c *CpClass) {
+	// pass
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이에 대응되는 파이썬의 이벤트 핸들러는&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class CpSubPubEventHandler:
+    def __init__(self):
+        pass
+    def OnReceived(self):
+        pass
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위 핸들러를 객체에 연동하려면&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;evnt := &amp;amp;RqTestStruct{}
+cpobj.BindEvent(evnt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이에 대응되는 파이썬 코드는&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;win32com.client.WithEvents(cpobj, CpSubPubEventHandler)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;이벤트-수신대기:f56708c2cf74bb72567b1415e5febd47&#34;&gt;이벤트 수신대기&lt;/h4&gt;
+
+&lt;p&gt;go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다.
+따라서 이를 구현해준뒤에 pythoncom 에 있는
+PumpWaitingMessages 함수를 유사하게 구현하였다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for  {
+    cpgo.PumpWaitingMessages()
+    time.Sleep(1)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;파이썬과 매우 유사하다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;while True:
+    pythoncom.PumpWaitingMessages()
+    time.sleep(0.001)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>golang-with-cybosplus</title>
+      <link>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
+      <pubDate>Sat, 23 Jul 2016 23:11:34 +0900</pubDate>
+      
+      <guid>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
+      <description>
+
+&lt;p&gt;증권 API 중에 사이보스플러스가 사용하기 쉽다.
+하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야
+프로그래밍이 가능하다.&lt;/p&gt;
+
+&lt;p&gt;GO언어로 만든 Github의 프로젝트중에 &lt;a href=&#34;https://github.com/go-ole/go-ole&#34;&gt;go-ole&lt;/a&gt; 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것
+같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지
+그 과정을 적어보고자 한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;환경:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;환경&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;윈도우 운영체제&lt;/li&gt;
+&lt;li&gt;사이보스플러스 설치&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://golang.org/dl/&#34;&gt;Go언어 설치&lt;/a&gt; (주의!: 32비트 버젼이어야함)&lt;/li&gt;
+&lt;li&gt;개발에디터 (필자는 &lt;a href=&#34;https://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;를 사용)&lt;/li&gt;
+&lt;li&gt;빌드 및 실행 (주의!: 관리자권한으로 실행하여야함)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34;&gt;git 설치&lt;/a&gt; (go get 명령으로 github의 프로젝트를 받아오기 위해)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/go-ole/go-ole&#34;&gt;go-ole 패키지 설치&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Oleviewer 혹은 tih 파일 (Optional)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데
+64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.
+마찬가지 현상을 요번에 발견하여 32비트 버젼으로 재설치하였다.&lt;/p&gt;
+
+&lt;p&gt;만일 서브라임텍스트를 사용한다면 Package Control Install 에서 Go Build로
+검색하면 플러그인이 나올것이다. 이것을 추천한다.
+Ctrl+Shift+B 단축키로 현재 열려있는 go파일을 빌드 및 실행까지 한번에
+가능하다. 다만 GOPATH 환경변수를 요구할수도 있다. 에러메시지를 잘 읽어보고 적당한 위치를 지정해주면 될 것이다.&lt;/p&gt;
+
+&lt;p&gt;go get 명령을 사용해서 github의 프로젝트를 가져오려고 하면 git이 필요하다.&lt;/p&gt;
+
+&lt;p&gt;Oleviewer 는 CLSID, IID 를 보기위한 것이다. 구하기 힘들다면 사이보스플러스
+개발예제에서 VC 예제에 항시 .tih 파일이 있을것이다. 이를 활용해도 된다.&lt;/p&gt;
+
+&lt;h2 id=&#34;기본연동순서:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;기본연동순서&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;사용하고자하는 사이보스플러스 객체를 만들기 위해 CLSID를 알아낸다.&lt;/li&gt;
+&lt;li&gt;CLSID와 IID_IUnknown 정보를 이용하여 IUnknown 객체 생성한다.&lt;/li&gt;
+&lt;li&gt;IUnknown 객체에 QueryInterface로 IID_IDispatch 정보를 사용하여 객체를 얻어낸다.&lt;/li&gt;
+&lt;li&gt;IDispatch객체를 사용하여 원하는 메스드를 Call 하거나 속성을 사용한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;COM이란 것을 써본적이 없으면 무슨소리인가 할 것이다.
+일단 만만한 CpUtil쪽 을 연동하면서 소스로 확인해본다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    ole &amp;quot;github.com/go-ole/go-ole&amp;quot;
+    &amp;quot;github.com/go-ole/go-ole/oleutil&amp;quot;
+)
+
+func main() {
+    // ole inti
+    ole.CoInitialize(0)
+    defer ole.CoUninitialize()
+
+    // 1. clsid 구함
+    stkcod_clsid, err := ole.CLSIDFromString(&amp;quot;CPUTIL.CpStockCode&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(stkcod_clsid)
+
+    // 2. unknown 객체 생성
+    unknown, err := ole.CreateInstance(stkcod_clsid, ole.IID_IUnknown)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(unknown)
+
+    // 3. Get obj
+    cpstkcod, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(cpstkcod)
+
+    // 4. call method       
+    r, err := oleutil.CallMethod(cpstkcod, &amp;quot;CodeToName&amp;quot;, &amp;quot;A000270&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;실행결과는&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{2297F381-FFB1-45C6-AA80-4C6913F45E91}
+&amp;amp;{0x5f5734}
+&amp;amp;{{0x5f5734}}
+기아차
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Oleviewer 를 사용하여 CpStockCode  coclass 를 살펴보면 아래와 같이 나온다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[
+  uuid(2297F381-FFB1-45C6-AA80-4C6913F45E91),
+  helpstring(&amp;quot;CpStockCode Class&amp;quot;)
+]
+coclass CpStockCode {
+    [default] interface ICpStockCode;
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;여기서의 uuid를 보면 바로 첫번쨰로 출력된 그 값이다.
+결국 사이보스플러스 도움말에 나오는 클래스들.. 즉
+CpCybos, CpStockCode, StockMst, StockCur, &amp;hellip;.
+이런 놈들은 coclass라고 부르며 각각 16bytes 의 GUID를 가지고 있다.&lt;/p&gt;
+
+&lt;p&gt;요 CLSID를 일단 구한뒤에 일단 객체로 생성한다. 이떄 가장 기본적인 IID_IUnknown 인터페이스로 생성한다.
+그리고 QueryInterface 메서드와 IID_IDispatch 를 사용하여 실제로 사용할 객체를 얻어낸다.&lt;/p&gt;
+
+&lt;p&gt;이는 COM의 핵심이며 자세한 내용을 알아보려면
+아래 링크를 추천한다. C언어에 대한 지식이 있어야한다.
+&lt;a href=&#34;http://www.codeproject.com/Articles/13601/COM-in-plain-C&#34;&gt;COM in plain C&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;blockrequest:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;BlockRequest&lt;/h2&gt;
+
+&lt;p&gt;BlockRequest는 동기적으로 네트워크 요청을 하고 응답을 받는것이다.
+즉 요청을 하면 실행이 멈추었다가 응답을 받아야 그 다음으로 진행이 된다.
+이는 개념적으로 위 예제와 거의 유사한 방식으로 처리할수 있다.&lt;/p&gt;
+
+&lt;p&gt;다만 위 예제는 함수의 리턴값을 받아온 것이고
+block-request 는 네트워크 요청으로 응답을 받아온것이라는것이 큰 차이이다.
+네트워크로 요청하였으니 결과값은 GetHeaderValue, GetDataValue 와 같은 함수를 호출하여 얻어와야한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    ole &amp;quot;github.com/go-ole/go-ole&amp;quot;
+    &amp;quot;github.com/go-ole/go-ole/oleutil&amp;quot;
+)
+
+func main() {
+    // ole inti
+    ole.CoInitialize(0)
+    defer ole.CoUninitialize()
+
+    // clsid 구함
+    stkmst_clsid, err := ole.CLSIDFromString(&amp;quot;DSCBO1.StockMst&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(stkmst_clsid)
+
+    // unknown
+    unknown, err := ole.CreateInstance(stkmst_clsid, ole.IID_IUnknown)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(unknown)
+
+    // get obj
+    cpstkmst, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(cpstkmst)
+
+    // call method
+
+    r, err := oleutil.CallMethod(cpstkmst, &amp;quot;SetInputValue&amp;quot;,0, &amp;quot;A000270&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    r, err = oleutil.CallMethod(cpstkmst, &amp;quot;BlockRequest&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    r, err = oleutil.CallMethod(cpstkmst, &amp;quot;GetHeaderValue&amp;quot;, 1)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;실행결과는&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{9FF543E2-FB11-11D3-8224-00105A7C4F8C}
+&amp;amp;{0x324c1134}
+&amp;amp;{{0x324c1134}}
+&amp;amp;{VT_EMPTY 0 0 0 0}
+&amp;amp;{VT_I2 0 0 0 0}
+기아차
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;event-handler:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;Event Handler&lt;/h2&gt;
+
+&lt;p&gt;BlockRequest 는 네트워크 요청이후 실행흐름이 멈춘다고 설명했다.
+이는 컴퓨터자원을 엄청나게 낭비하는 것이다. 이를 방지하기 위해
+비동기적 실행흐름을 생각해볼수 있다.
+비동기적 처리흐름은 일단 요청을 하고 응답이 왔을때 처리할 함수를 알려준다(콜백) 실제 응답이 오면 콜백을 실행한다.&lt;/p&gt;
+
+&lt;p&gt;Request 함수로 요청을 날렸을때 이런 방식대로 수행이된다.
+그리고 실시간으로 데이터가 전달되는 Sub/Pub 방식의 통신도 이렇게 이벤트
+핸들링을 해야 처리가 가능하다.&lt;/p&gt;
+
+&lt;p&gt;그럼 COM에서는 이벤트를 어떻게 처리할까? 결론부터 말하자면 COM서버측의 IConnectionPoint와 이를 관리하는 IConnectionPointContainer 그리고 클라이언트의 sink 인터페이스 구현으로 처리한다.
+COM서버는 사이보스플러스이고 우리가 작성하는 프로그램이 클라이언트이다.&lt;/p&gt;
+
+&lt;p&gt;go-ole 프로젝트에 보면 &lt;a href=&#34;https://github.com/go-ole/go-ole/blob/master/example/winsock/winsock.go&#34;&gt;example 폴더에 winsock예제&lt;/a&gt;가 있다.
+이를 응용하여 사이보스플러스에 적용시켜보기로 한다.&lt;/p&gt;
+
+&lt;p&gt;Oleviewer로 DSCBO1Lib의 dispinterface _IDibEvents
+를 보면 아래와 같이 나온다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[
+  uuid(B8944520-09C3-11D4-8232-00105A7C4F8C),
+  helpstring(&amp;quot;_IDibEvents Interface&amp;quot;)
+]
+dispinterface _IDibEvents {
+    properties:
+    methods:
+        [id(0x00000001), helpstring(&amp;quot;method Received&amp;quot;)]
+        void Received();
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;요 IID를 사용하여 ConnectionPoint를 지정해줄것이다.&lt;/p&gt;
+
+&lt;p&gt;위 winsock예제와 같이 가상함수 테이블을 구현하는 구조체를 선언해준다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type CpReceiveEvent struct {
+    lpVtbl *CpReceivedEvntVtbl
+    ref    int32
+    host   *ole.IDispatch
+}
+type CpReceivedEvntVtbl struct {
+    // IUnknown
+    pQueryInterface   uintptr
+    pAddRef           uintptr
+    pRelease          uintptr
+    // IDispatch
+    pGetTypeInfoCount uintptr
+    pGetTypeInfo      uintptr
+    pGetIDsOfNames    uintptr
+    pInvoke           uintptr
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;void Received 함수는 포인터로 지정하지 않는다.
+host는 요 이벤트를 연결할 사이보스플러스 객체이다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func QueryInterface(this *ole.IUnknown, iid *ole.GUID, punk **ole.IUnknown) uint32 {
+    s, _ := ole.StringFromCLSID(iid)
+    *punk = nil
+    if ole.IsEqualGUID(iid, ole.IID_IUnknown) ||
+        ole.IsEqualGUID(iid, ole.IID_IDispatch) {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }       
+    if s == &amp;quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&amp;quot; {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }
+
+    return ole.E_NOINTERFACE
+}
+
+func AddRef(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref++
+    return pthis.ref
+}
+
+func Release(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref--
+    return pthis.ref
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;IUnknown 인테페이스를 구현한다. QueryInterface함수에서
+_IDibEvents의 IID를 받았을때 자기자신의 포인터를 아웃풋변수에
+넣도록 해준다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func GetIDsOfNames(this *ole.IUnknown, iid *ole.GUID, wnames []*uint16, namelen int, lcid int, pdisp []int32) uintptr {
+    for n := 0; n &amp;lt; namelen; n++ {
+        pdisp[n] = int32(n)
+    }
+    return uintptr(ole.S_OK)
+}
+func GetTypeInfoCount(this *ole.IUnknown,pcount *int) uint32 {
+    if pcount != nil {
+        *pcount = 0
+    }
+    return ole.S_OK
+}
+
+func GetTypeInfo(this *ole.IUnknown, namelen int, lcid int) uint32 {
+    return ole.E_NOTIMPL
+}
+func Invoke(this *ole.IDispatch, dispid int, riid *ole.GUID, lcid int, flags int16, dispparams *ole.DISPPARAMS, result *ole.VARIANT, pexcepinfo *ole.EXCEPINFO, nerr *uint) uintptr {
+    if dispid == 1 {
+        // call Received
+    }
+    return ole.E_NOTIMPL
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;IDispatch 인터페이스를 구현한다.
+COM서버와 클라이언트간 약속된 인터페이스는 여기까지이다.
+여기서 dispinterface 였던 _IDibEvents 인터페이스는 Received 함수만 존재했었지만 실제로 구현하지 않고
+Invoke 함수가 dispid 로 함수의 ID 값을 넘겨받아 호출된다.
+이는 GetIDsOfNames가 구현됨으로서 가능하다.
+_IDibEvents는 간단하게도 Received 함수 하나뿐이라 ID값이 1로 전달될 것이다.
+이런 구조는 실제로 여러 언어나 개발환경에서는 자동화되어 생성이 되지만
+GO언어에서는 딱히 지원되는것이 아니므로 이렇게 일일히 구현이 되어야 한다.&lt;/p&gt;
+
+&lt;p&gt;여기서 GetIDsOfNames 함수를 선언할때 문제점이 있다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dest:= (new (CpReceiveEvent))
+dest.lpVtbl = (new (CpReceivedEvntVtbl))
+dest.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+dest.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+dest.lpVtbl.pRelease = syscall.NewCallback(Release)
+dest.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+dest.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+dest.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이렇게 syscall.NewCallback 을 사용하여 콜백함수를 지정을 하면&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;panic: compileCallback: input parameter size is wrong
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;라는 에러가 나올것이다. 이는 GetIDsOfNames 함수를 NewCallback 인자로 넘겨주었을때 발생하는데 해당 소스는 다음과 같다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func compileCallback(fn eface, cleanstack bool) (code uintptr) {
+if fn._type == nil || (fn._type.kind&amp;amp;kindMask) != kindFunc {
+    panic(&amp;quot;compileCallback: not a function&amp;quot;)
+}
+ft := (*functype)(unsafe.Pointer(fn._type))
+if len(ft.out) != 1 {
+    panic(&amp;quot;compileCallback: function must have one output parameter&amp;quot;)
+}
+uintptrSize := unsafe.Sizeof(uintptr(0))
+if ft.out[0].size != uintptrSize {
+    panic(&amp;quot;compileCallback: output parameter size is wrong&amp;quot;)
+}
+argsize := uintptr(0)
+for _, t := range ft.in {
+    if t.size &amp;gt; uintptrSize {
+        panic(&amp;quot;compileCallback: input parameter size is wrong&amp;quot;)
+    }
+    argsize += uintptrSize
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이상하다. 정확히는 모르겠지만 uintptrSize와 각각의 인풋파라미터의 타입을 비교하는 것처럼 보인다. 하지만 괴상하게도 되지 않는다.
+이것때문에 한동안 막혀 진행이 되지 않다가 다음과 같은 소스를 찾고나서
+해결하였다.
+&lt;a href=&#34;https://gist.github.com/mattn/794587&#34;&gt;https://gist.github.com/mattn/794587&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;결국 GetIDsOfNames 함수는 아래와같이 만들어준다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func GetIDsOfNames(args *uintptr) uint32 {
+    p := (*[6]int32)(unsafe.Pointer(args))
+    //this := (*ole.IDispatch)(unsafe.Pointer(uintptr(p[0])))
+    //iid := (*ole.GUID)(unsafe.Pointer(uintptr(p[1])))
+    wnames := *(*[]*uint16)(unsafe.Pointer(uintptr(p[2])))
+    namelen := int(uintptr(p[3]))
+    //lcid := int(uintptr(p[4]))
+    pdisp := *(*[]int32)(unsafe.Pointer(uintptr(p[5])))
+    for n := 0; n &amp;lt; namelen; n++ {
+        s := ole.UTF16PtrToString(wnames[n])
+        println(s)
+        pdisp[n] = int32(n)
+    }
+    return ole.S_OK
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;oleutil에 있는 ConnectObject 함수도 결국은 GetIDsOfNames 함수를 가지고
+NewCallback을 호출하는데
+&lt;a href=&#34;https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go&#34;&gt;https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go&lt;/a&gt;
+를 보면 이것도 마찬가지로 같은 에러가 난다. 따라서 oleutil을 활용할수가 없다.&lt;/p&gt;
+
+&lt;p&gt;결국 IConnectionPoint를 직접 만들어줘야하는 번거로움이 생기게 된다.
+이걸 사용하는 순서는 아래와 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;사이보스플러스 객체에서 QueryInterface로 IID_IConnectionPointContainer 인터페이스를 요청하여 생성&lt;/li&gt;
+&lt;li&gt;FindConnectionPoint 함수에 _IDibEvents의 iid 를 이용하여
+point 를 알아낸다.&lt;/li&gt;
+&lt;li&gt;해당 point의 Advise 함수 호출&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;아래와 같이 구현해보면 된다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    // get event iid
+    dibevnt_iid, err := ole.CLSIDFromString(&amp;quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&amp;quot;)
+    if  err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(dibevnt_iid)
+
+    // 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
+    evnt:= (new (CpReceiveEvent))
+    evnt.lpVtbl = (new (CpReceivedEvntVtbl))
+    evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+    evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+    evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
+    evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+    evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+    evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+    evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
+    evnt.host = cpstkmst
+
+    // connectionpoint container
+    unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+
+    fmt.Println(unknown_con)
+
+    // get point
+    container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
+    var point *ole.IConnectionPoint
+    err = container.FindConnectionPoint(dibevnt_iid, &amp;amp;point)
+    if err != nil {
+        return
+    }
+    fmt.Println(point)
+
+    // Advise
+    cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
+    container.Release()
+    if err != nil {
+        point.Release()
+        fmt.Println(err)
+        return
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Request 요청을 날리게 되면 응답을 받을때까지 대기를 하여야 한다.
+이는 어느시점에 발생할지 모르기 떄문에 무한루프로 대기를 하도록 한다.
+아래는 적당한 시점에 종료되도록 만든것이다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    // wating infinite  
+    cnt := 0
+    var m ole.Msg
+    for evnt.ref != 0 {
+        time.Sleep(10)
+        ole.GetMessage(&amp;amp;m,0,0,0)
+        ole.DispatchMessage(&amp;amp;m)
+        if cnt &amp;gt; 1000 {
+            break
+        }
+        cnt++
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;실제 콜백이 수행되는것은 Invoke 가 수행이 되며
+여기에 메서드의 ID값을 넘겨주게 된다.
+_IDibEvents는 어차피 메서드가 Received 한개이므로
+무조건 1일 것이다.&lt;/p&gt;
+
+&lt;p&gt;적당히 Received를 꾸민뒤에 Invoke에서 호출된다고 가정하고
+Received를 작성해보았다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func Received(this *ole.IDispatch) {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    r, err := oleutil.CallMethod(pthis.host, &amp;quot;GetHeaderValue&amp;quot;, 1)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;실행결과는&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;call Received
+기아차
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;전체소스:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;전체소스&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    ole &amp;quot;github.com/go-ole/go-ole&amp;quot;
+    &amp;quot;github.com/go-ole/go-ole/oleutil&amp;quot;
+    &amp;quot;unsafe&amp;quot;
+    &amp;quot;syscall&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+type CpReceiveEvent struct {
+    lpVtbl *CpReceivedEvntVtbl
+    ref    int32
+    host   *ole.IDispatch
+}
+type CpReceivedEvntVtbl struct {
+    // IUnknown
+    pQueryInterface   uintptr
+    pAddRef           uintptr
+    pRelease          uintptr
+    // IDispatch
+    pGetTypeInfoCount uintptr
+    pGetTypeInfo      uintptr
+    pGetIDsOfNames    uintptr
+    pInvoke           uintptr
+}
+
+func QueryInterface(this *ole.IUnknown, iid *ole.GUID, punk **ole.IUnknown) uint32 {
+    s, _ := ole.StringFromCLSID(iid)
+    *punk = nil
+    if ole.IsEqualGUID(iid, ole.IID_IUnknown) ||
+        ole.IsEqualGUID(iid, ole.IID_IDispatch) {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }       
+    if s == &amp;quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&amp;quot; {
+        AddRef(this)
+        *punk = this
+        return ole.S_OK
+    }
+
+    return ole.E_NOINTERFACE
+}
+
+func AddRef(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref++
+    return pthis.ref
+}
+
+func Release(this *ole.IUnknown) int32 {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    pthis.ref--
+    return pthis.ref
+}
+func GetIDsOfNames(args *uintptr) uint32 {
+    fmt.Println(&amp;quot;gettypeinfo?&amp;quot;)
+    p := (*[6]int32)(unsafe.Pointer(args))
+    //this := (*ole.IDispatch)(unsafe.Pointer(uintptr(p[0])))
+    //iid := (*ole.GUID)(unsafe.Pointer(uintptr(p[1])))
+    wnames := *(*[]*uint16)(unsafe.Pointer(uintptr(p[2])))
+    namelen := int(uintptr(p[3]))
+    //lcid := int(uintptr(p[4]))
+    pdisp := *(*[]int32)(unsafe.Pointer(uintptr(p[5])))
+    for n := 0; n &amp;lt; namelen; n++ {
+        s := ole.UTF16PtrToString(wnames[n])
+        println(s)
+        pdisp[n] = int32(n)
+    }
+    return ole.S_OK
+}
+func GetTypeInfoCount(this *ole.IUnknown,pcount *int) uint32 {
+    if pcount != nil {
+        *pcount = 0
+    }
+    return ole.S_OK
+}
+
+func GetTypeInfo(this *ole.IUnknown, namelen int, lcid int) uint32 {
+    return ole.E_NOTIMPL
+}
+func Invoke(this *ole.IDispatch, dispid int, riid *ole.GUID, lcid int, flags int16, dispparams *ole.DISPPARAMS, result *ole.VARIANT, pexcepinfo *ole.EXCEPINFO, nerr *uint) uintptr {
+    if dispid == 1 {
+        // call Received
+        fmt.Println(&amp;quot;call Received&amp;quot;)
+        Received(this)
+    }
+    return ole.E_NOTIMPL
+}
+
+func Received(this *ole.IDispatch) {
+    pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
+    r, err := oleutil.CallMethod(pthis.host, &amp;quot;GetHeaderValue&amp;quot;, 1)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r.Value())
+}
+
+func main() {
+    // ole inti
+    ole.CoInitialize(0)
+    defer ole.CoUninitialize()
+
+    // clsid 구함
+    stkmst_clsid, err := ole.CLSIDFromString(&amp;quot;DSCBO1.StockMst&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(stkmst_clsid)
+
+    // unknown
+    unknown, err := ole.CreateInstance(stkmst_clsid, ole.IID_IUnknown)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(unknown)
+
+    // get obj
+    cpstkmst, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(cpstkmst)
+
+    // get event iid
+    dibevnt_iid, err := ole.CLSIDFromString(&amp;quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&amp;quot;)
+    if  err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(dibevnt_iid)
+
+    // 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
+    evnt:= (new (CpReceiveEvent))
+    evnt.lpVtbl = (new (CpReceivedEvntVtbl))
+    evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+    evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+    evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
+    evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+    evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+    evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+    evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
+    evnt.host = cpstkmst
+
+    // connectionpoint container
+    unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+
+    fmt.Println(unknown_con)
+
+    // get point
+    container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
+    var point *ole.IConnectionPoint
+    err = container.FindConnectionPoint(dibevnt_iid, &amp;amp;point)
+    if err != nil {
+        return
+    }
+    fmt.Println(point)
+
+    // Advise
+    cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
+    container.Release()
+    if err != nil {
+        point.Release()
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(&amp;quot;cookies&amp;quot;)
+    fmt.Println(cookie)     
+
+    // call method
+
+    r, err := oleutil.CallMethod(cpstkmst, &amp;quot;SetInputValue&amp;quot;,0, &amp;quot;A000270&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    r, err = oleutil.CallMethod(cpstkmst, &amp;quot;Request&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        return 
+    }
+    fmt.Println(r)
+
+    fmt.Println(&amp;quot;request after&amp;quot;)
+
+    // wating infinite  
+    cnt := 0
+    var m ole.Msg
+    for evnt.ref != 0 {
+        time.Sleep(10)
+        ole.GetMessage(&amp;amp;m,0,0,0)
+        ole.DispatchMessage(&amp;amp;m)
+        if cnt &amp;gt; 1000 {
+            break
+        }
+        cnt++
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;여기까지는 단지 연동만 해본것일 뿐이다.
+이를 사용하기 쉽도록 묶고 라이브러리 처럼 만들려면
+이를 응용하여 만들면 될 것이다.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

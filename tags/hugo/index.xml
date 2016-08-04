@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on ItGae Blog</title>
+    <link>http://ippoeyeslhw.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on ItGae Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 26 May 2016 23:08:11 +0900</lastBuildDate>
+    <atom:link href="http://ippoeyeslhw.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>hello hugo</title>
+      <link>http://ippoeyeslhw.github.io/post/hello-hugo/</link>
+      <pubDate>Thu, 26 May 2016 23:08:11 +0900</pubDate>
+      
+      <guid>http://ippoeyeslhw.github.io/post/hello-hugo/</guid>
+      <description>
+
+&lt;p&gt;정적블로그를 하고 싶다는 생각이 들었다.
+최근 &lt;a href=&#34;https://golang.org/&#34;&gt;Go언어&lt;/a&gt;를 하다보니 자연스럽게
+&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;를 알게 되었고
+정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다.
+그래서 이제 블로그를 정적블로그로 만들기로 했다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;설치:559804b0a39dd16d2d1d1238c597145a&#34;&gt;설치&lt;/h2&gt;
+
+&lt;p&gt;설치는 &lt;a href=&#34;https://gohugo.io/overview/installing/&#34;&gt;Hugo installing&lt;/a&gt;을 참조하면 된다.
+바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.&lt;/p&gt;
+
+&lt;p&gt;나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\hugo\bin\hugo.exe
+C:\hugo\sites\
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록
+하려고 구성하였다.&lt;/p&gt;
+
+&lt;h2 id=&#34;블로그구성하기:559804b0a39dd16d2d1d1238c597145a&#34;&gt;블로그구성하기&lt;/h2&gt;
+
+&lt;p&gt;Hugo의 &lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt; 문서를 보게되면
+만들고자하는 사이트를 만드는 명령어가 나온다.
+일단 sites 폴더로 이동한뒤에 아래 명령을 수행한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo new site blog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;여러개의 폴더와 문서가 생성된것을 볼수 있다.&lt;/p&gt;
+
+&lt;h2 id=&#34;테마추가하기:559804b0a39dd16d2d1d1238c597145a&#34;&gt;테마추가하기&lt;/h2&gt;
+
+&lt;p&gt;Hugo 사이트에서 &lt;a href=&#34;http://themes.gohugo.io/&#34;&gt;Theme Showcase&lt;/a&gt;를 눌러보면 여러 테마가 나온다.
+맘에드는 테마를 골라서 설치하면 된다. 나는 윈도우 기준으로 설치하고 있으므로
+테마 파일을 받은뒤에&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\hugo\sites\blog\themes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위 폴더를 생상한뒤에 테마명으로 폴더를 생성하여 받은 파일을 풀어놓았다.
+그뒤에 중요한 작업이 있는데&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\hugo\sites\blog\config.toml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위 파일에&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;theme = &amp;quot;theme-name&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이 내용이 추가가 되어야 한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 테마를 고르면 사용방법이 나오는데 위 config 파일에 테마 설정을 작성해 넣는식으로
+사용한다. 이는 테마마다 사용법이 다르다.&lt;/p&gt;
+
+&lt;h2 id=&#34;post-쓰기:559804b0a39dd16d2d1d1238c597145a&#34;&gt;Post 쓰기&lt;/h2&gt;
+
+&lt;p&gt;hugo에서는 Post를 쓸때 Markdown 파일을 작성하도록 한다. 이글도 Markdown으로 쓰고 있다.
+&lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt; 문서를 보면 Step3에
+포스트를 작성하는 법이 나온다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$hugo new post/first-post.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이 명령을 수행하고 나면 post라는 폴더와 위 이름의 .md 파일이 생성되어 있음을 확인할수 있다.&lt;/p&gt;
+
+&lt;h2 id=&#34;정적페이지-생성:559804b0a39dd16d2d1d1238c597145a&#34;&gt;정적페이지 생성&lt;/h2&gt;
+
+&lt;p&gt;md파일을 작성할때 Draft는 초고를 의미하므로 기본적으로 true로 되어있다.
+이를 False로 바꾼뒤에 blog 폴더하에서&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;단순하게 위 명령만 치면 자동으로 페이지를 생성하여&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\hugo\sites\blog\public 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;위 폴더에 각종파일들이 생성된다. 이것들이 정적페이지들이다.
+이를 호스팅하는 곳에 올리면 된다.
+개인적으로는 github의 gh-pages 브랜치를 사용하고 있다.&lt;/p&gt;
+
+&lt;h2 id=&#34;로컬에서-확인:559804b0a39dd16d2d1d1238c597145a&#34;&gt;로컬에서 확인&lt;/h2&gt;
+
+&lt;p&gt;로컬에서 잠시 웹서버를 올려서 어떻게 보이는지 확인할수 있다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;blog 폴더 안에서 위 명령을 실행하면 웹서버가 뜬다. localhost:1313/blog
+이런식으로 접근하면 된다.&lt;/p&gt;
+
+&lt;p&gt;Draft 버젼 또한 보고싶은 경우가 있다. 이때는 -D 옵션을 준다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo -D server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;어찌보면 이렇게 블로그를 생성하는것은 불편하기도 한다.
+명령어를 쳐서 파일을 만들고
+폴더를 만든뒤에 집어넣어야 되고
+생성을 시킨뒤에 그걸 또 호스팅 서버에 올려야 하기도 한다.
+하지만 이렇게 만들어 놓으면 뭔가 명확하고 확실한 느낌이 난다.
+DB와도 상관이 없고
+서버에 부담없이 깔끔하다.
+다양한 기능이 필요가 없기에 이런 정적페이지 생성기가 유용해보인다.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

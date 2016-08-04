@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Go언어로 작성한 사이보스플러스 Lib">
+  <meta name="generator" content="Hugo 0.15" />
+
+  <title>cpgo lib &middot; ItGae Blog</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://ippoeyeslhw.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="http://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="http://ippoeyeslhw.github.io/">ItGae</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>cpgo lib</h1>
+  <h2>Go언어로 작성한 사이보스플러스 Lib</h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>03 Aug 2016, 23:23</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="http://ippoeyeslhw.github.io/topics/golang">golang</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/cybosplus">cybosplus</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://ippoeyeslhw.github.io/tags/%EC%A6%9D%EA%B6%8Capi">증권API</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<p>저번에 올렸던 <a href="http://ippoeyeslhw.github.io/blog/post/golang-with-cybosplus/">포스트</a>
+에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다.
+이를 사용하여 Wrapper 라이브러를 작성하여 Github에 <a href="https://github.com/ippoeyeslhw/cpgo">https://github.com/ippoeyeslhw/cpgo</a>
+프로젝트를 올렸다.</p>
+
+<hr />
+
+<h2 id="파이썬과-비교:f56708c2cf74bb72567b1415e5febd47">파이썬과 비교</h2>
+
+<p>파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다.</p>
+
+<h4 id="객체생성:f56708c2cf74bb72567b1415e5febd47">객체생성</h4>
+
+<p>객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.</p>
+
+<pre><code>stkmst := &amp;cpgo.CpClass{}
+stkmst.Create(&quot;CpDib.StockMst&quot;)
+defer stkmst.Release()
+</code></pre>
+
+<p>이에 대응되는 파이썬 코드는</p>
+
+<pre><code>stkmst = win32com.client.Dispatch(&quot;dscbo1.StockMst&quot;)
+</code></pre>
+
+<p>파이썬과는 다르게 COM을 다루고 있다는 느낌을 줄이려고 했다.</p>
+
+<h4 id="이벤트:f56708c2cf74bb72567b1415e5febd47">이벤트</h4>
+
+<p>이벤트를 처리하기위해 이벤트 핸들러는 Receiver 인터페이스를 구현하도록 하였다.</p>
+
+<pre><code>type Receiver interface {
+    Received(*CpClass)
+}
+</code></pre>
+
+<p>이 인터페이스를 구현하는 구조체를 아래와 같이 생성한다.</p>
+
+<pre><code>type RqTestStruct struct {
+}
+
+func (t *RqTestStruct) Received(c *CpClass) {
+	// pass
+}
+</code></pre>
+
+<p>이에 대응되는 파이썬의 이벤트 핸들러는</p>
+
+<pre><code>class CpSubPubEventHandler:
+    def __init__(self):
+        pass
+    def OnReceived(self):
+        pass
+</code></pre>
+
+<p>위 핸들러를 객체에 연동하려면</p>
+
+<pre><code>evnt := &amp;RqTestStruct{}
+cpobj.BindEvent(evnt)
+</code></pre>
+
+<p>이에 대응되는 파이썬 코드는</p>
+
+<pre><code>win32com.client.WithEvents(cpobj, CpSubPubEventHandler)
+</code></pre>
+
+<h4 id="이벤트-수신대기:f56708c2cf74bb72567b1415e5febd47">이벤트 수신대기</h4>
+
+<p>go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다.
+따라서 이를 구현해준뒤에 pythoncom 에 있는
+PumpWaitingMessages 함수를 유사하게 구현하였다.</p>
+
+<pre><code>for  {
+    cpgo.PumpWaitingMessages()
+    time.Sleep(1)
+}
+</code></pre>
+
+<p>파이썬과 매우 유사하다.</p>
+
+<pre><code>while True:
+    pythoncom.PumpWaitingMessages()
+    time.sleep(0.001)
+</code></pre>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="http://ippoeyeslhw.github.io/post/golang-with-cybosplus/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="http://ippoeyeslhw.github.io/post/golang-with-cybosplus/">golang-with-cybosplus</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'httpippoeyeslhwgithubioblog';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="http://ippoeyeslhw.github.io/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+

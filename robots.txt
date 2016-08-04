@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://ippoeyeslhw.github.io/blog/sitemap.xml
