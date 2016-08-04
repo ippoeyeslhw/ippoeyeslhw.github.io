@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cybosplus on ItGae Blog</title>
-    <link>https://ippoeyeslhw.github.io/tags/cybosplus/</link>
+    <link>http://ippoeyeslhw.github.io/tags/cybosplus/</link>
     <description>Recent content in Cybosplus on ItGae Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Wed, 03 Aug 2016 23:23:37 +0900</lastBuildDate>
-    <atom:link href="https://ippoeyeslhw.github.io/tags/cybosplus/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ippoeyeslhw.github.io/tags/cybosplus/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>cpgo lib</title>
-      <link>https://ippoeyeslhw.github.io/post/cpgo-lib/</link>
+      <link>http://ippoeyeslhw.github.io/post/cpgo-lib/</link>
       <pubDate>Wed, 03 Aug 2016 23:23:37 +0900</pubDate>
       
-      <guid>https://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
+      <guid>http://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
       <description>
 
 &lt;p&gt;저번에 올렸던 &lt;a href=&#34;http://ippoeyeslhw.github.io/blog/post/golang-with-cybosplus/&#34;&gt;포스트&lt;/a&gt;
@@ -107,10 +107,10 @@ PumpWaitingMessages 함수를 유사하게 구현하였다.&lt;/p&gt;
     
     <item>
       <title>golang-with-cybosplus</title>
-      <link>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
+      <link>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
       <pubDate>Sat, 23 Jul 2016 23:11:34 +0900</pubDate>
       
-      <guid>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
+      <guid>http://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
       <description>
 
 &lt;p&gt;증권 API 중에 사이보스플러스가 사용하기 쉽다.

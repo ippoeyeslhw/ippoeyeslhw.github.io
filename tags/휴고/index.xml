@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>휴고 on ItGae Blog</title>
-    <link>https://ippoeyeslhw.github.io/tags/%ED%9C%B4%EA%B3%A0/</link>
+    <link>http://ippoeyeslhw.github.io/tags/%ED%9C%B4%EA%B3%A0/</link>
     <description>Recent content in 휴고 on ItGae Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Thu, 26 May 2016 23:08:11 +0900</lastBuildDate>
-    <atom:link href="https://ippoeyeslhw.github.io/tags/%ED%9C%B4%EA%B3%A0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ippoeyeslhw.github.io/tags/%ED%9C%B4%EA%B3%A0/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>hello hugo</title>
-      <link>https://ippoeyeslhw.github.io/post/hello-hugo/</link>
+      <link>http://ippoeyeslhw.github.io/post/hello-hugo/</link>
       <pubDate>Thu, 26 May 2016 23:08:11 +0900</pubDate>
       
-      <guid>https://ippoeyeslhw.github.io/post/hello-hugo/</guid>
+      <guid>http://ippoeyeslhw.github.io/post/hello-hugo/</guid>
       <description>
 
 &lt;p&gt;정적블로그를 하고 싶다는 생각이 들었다.
