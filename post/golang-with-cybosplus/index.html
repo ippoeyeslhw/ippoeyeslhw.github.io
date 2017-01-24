@@ -1,261 +1,443 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-kr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <base href="https://ippoeyeslhw.github.io">
+    
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GO언어와 사이보스플러스 연동하기">
-  <meta name="generator" content="Hugo 0.15" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com/">
 
-  <title>golang-with-cybosplus &middot; ItGae Blog</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400' rel='stylesheet' type='text/css'>
 
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-  
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <link rel="shortcut icon" href="https://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://ippoeyeslhw.github.io/">ItGae</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
+    <title>
       
       
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+         golang with cybosplus 
       
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
-      
-        </li>
-      
-    </ul>
+    </title>
+    <link rel="canonical" href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 5px 0 10px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">lhw_itguy</a></h1>
+      <ul>
+        
+          <li><a href="https://github.com/ippoeyeslhw">Github</a></li>
+        
+          <li><a href="https://www.instagram.com/lhw_itguy/">Instagram</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> golang with cybosplus </h1>
+
+  <div id=sub-header>
+    January 2017 · 10 minute read
   </div>
 
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
+  <div class="entry-content">
     
 
-    
+<p>증권 API 중에 사이보스플러스가 사용하기 쉽다. 하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야 프로그래밍이 가능하다.</p>
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&copy; 2016. All rights reserved.</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>golang-with-cybosplus</h1>
-  <h2>GO언어와 사이보스플러스 연동하기</h2>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Jul 2016, 23:11</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://ippoeyeslhw.github.io/topics/golang">golang</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/cybosplus">cybosplus</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/%EC%A6%9D%EA%B6%8Capi">증권API</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  
-
-<p>증권 API 중에 사이보스플러스가 사용하기 쉽다.
-하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야
-프로그래밍이 가능하다.</p>
-
-<p>GO언어로 만든 Github의 프로젝트중에 <a href="https://github.com/go-ole/go-ole">go-ole</a> 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것
-같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지
-그 과정을 적어보고자 한다.</p>
+<p>GO언어로 만든 Github의 프로젝트중에 go-ole 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것 같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지 그 과정을 적어보고자 한다.</p>
 
 <hr />
 
-<h2 id="환경:2284214a0333b1f3f4b041ec3c1d6e0e">환경</h2>
+<h2 id="환경">환경</h2>
 
 <ul>
-<li>윈도우 운영체제</li>
-<li>사이보스플러스 설치</li>
-<li><a href="https://golang.org/dl/">Go언어 설치</a> (주의!: 32비트 버젼이어야함)</li>
-<li>개발에디터 (필자는 <a href="https://www.sublimetext.com/">Sublime Text</a>를 사용)</li>
-<li>빌드 및 실행 (주의!: 관리자권한으로 실행하여야함)</li>
-<li><a href="https://git-scm.com/downloads">git 설치</a> (go get 명령으로 github의 프로젝트를 받아오기 위해)</li>
-<li><a href="https://github.com/go-ole/go-ole">go-ole 패키지 설치</a></li>
-<li>Oleviewer 혹은 tih 파일 (Optional)</li>
+<li><strong>윈도우 운영체제</strong></li>
+<li><strong>사이보스플러스 설치</strong></li>
+<li><strong>Go언어 설치 (주의!: 32비트 버젼이어야함)</strong></li>
+<li><strong>빌드 및 실행 (주의!: 관리자권한으로 실행하여야함)</strong></li>
+<li><strong>git 설치 (go get 명령으로 github의 프로젝트를 받아오기 위해)</strong></li>
+<li><strong>go-ole 패키지 설치</strong></li>
+<li><strong>Oleviewer 혹은 tih 파일 (Optional)</strong></li>
 </ul>
 
-<p>아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데
-64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.
-마찬가지 현상을 요번에 발견하여 32비트 버젼으로 재설치하였다.</p>
-
-<p>만일 서브라임텍스트를 사용한다면 Package Control Install 에서 Go Build로
-검색하면 플러그인이 나올것이다. 이것을 추천한다.
-Ctrl+Shift+B 단축키로 현재 열려있는 go파일을 빌드 및 실행까지 한번에
-가능하다. 다만 GOPATH 환경변수를 요구할수도 있다. 에러메시지를 잘 읽어보고 적당한 위치를 지정해주면 될 것이다.</p>
+<p>아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데 64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다. 마찬가지 현상을 요번에 발견하여 32비트 버젼으로 재설치하였다.</p>
 
 <p>go get 명령을 사용해서 github의 프로젝트를 가져오려고 하면 git이 필요하다.</p>
 
-<p>Oleviewer 는 CLSID, IID 를 보기위한 것이다. 구하기 힘들다면 사이보스플러스
-개발예제에서 VC 예제에 항시 .tih 파일이 있을것이다. 이를 활용해도 된다.</p>
+<p>Oleviewer 는 CLSID, IID 를 보기위한 것이다. 구하기 힘들다면 사이보스플러스 개발예제에서 VC 예제에 항시 .tih 파일이 있을것이다. 이를 활용해도 된다.</p>
 
-<h2 id="기본연동순서:2284214a0333b1f3f4b041ec3c1d6e0e">기본연동순서</h2>
+<h2 id="기본연동순서">기본연동순서</h2>
 
 <ol>
-<li>사용하고자하는 사이보스플러스 객체를 만들기 위해 CLSID를 알아낸다.</li>
-<li>CLSID와 IID_IUnknown 정보를 이용하여 IUnknown 객체 생성한다.</li>
-<li>IUnknown 객체에 QueryInterface로 IID_IDispatch 정보를 사용하여 객체를 얻어낸다.</li>
-<li>IDispatch객체를 사용하여 원하는 메스드를 Call 하거나 속성을 사용한다.</li>
+<li><strong>사용하고자하는 사이보스플러스 객체를 만들기 위해 CLSID를 알아낸다.</strong></li>
+<li><strong>CLSID와 IID_IUnknown 정보를 이용하여 IUnknown 객체 생성한다.</strong></li>
+<li><strong>IUnknown 객체에 QueryInterface로 IID_IDispatch 정보를 사용하여 객체를 얻어낸다.</strong></li>
+<li><strong>IDispatch객체를 사용하여 원하는 메스드를 Call 하거나 속성을 사용한다.</strong></li>
 </ol>
 
-<p>COM이란 것을 써본적이 없으면 무슨소리인가 할 것이다.
-일단 만만한 CpUtil쪽 을 연동하면서 소스로 확인해본다.</p>
+<p>COM이란 것을 써본적이 없으면 무슨소리인가 할 것이다. 일단 만만한 CpUtil쪽 을 연동하면서 소스로 확인해본다.</p>
 
 <pre><code>package main
 
@@ -312,7 +494,7 @@ func main() {
 기아차
 </code></pre>
 
-<p>Oleviewer 를 사용하여 CpStockCode  coclass 를 살펴보면 아래와 같이 나온다.</p>
+<p>Oleviewer 를 사용하여 CpStockCode coclass 를 살펴보면 아래와 같이 나온다.</p>
 
 <pre><code>[
   uuid(2297F381-FFB1-45C6-AA80-4C6913F45E91),
@@ -323,27 +505,17 @@ coclass CpStockCode {
 };
 </code></pre>
 
-<p>여기서의 uuid를 보면 바로 첫번쨰로 출력된 그 값이다.
-결국 사이보스플러스 도움말에 나오는 클래스들.. 즉
-CpCybos, CpStockCode, StockMst, StockCur, &hellip;.
-이런 놈들은 coclass라고 부르며 각각 16bytes 의 GUID를 가지고 있다.</p>
+<p>여기서의 uuid를 보면 바로 첫번쨰로 출력된 그 값이다. 결국 사이보스플러스 도움말에 나오는 클래스들.. 즉 CpCybos, CpStockCode, StockMst, StockCur, …. 이런 놈들은 coclass라고 부르며 각각 16bytes 의 GUID를 가지고 있다.</p>
 
-<p>요 CLSID를 일단 구한뒤에 일단 객체로 생성한다. 이떄 가장 기본적인 IID_IUnknown 인터페이스로 생성한다.
-그리고 QueryInterface 메서드와 IID_IDispatch 를 사용하여 실제로 사용할 객체를 얻어낸다.</p>
+<p>요 CLSID를 일단 구한뒤에 일단 객체로 생성한다. 이떄 가장 기본적인 IID_IUnknown 인터페이스로 생성한다. 그리고 QueryInterface 메서드와 IID_IDispatch 를 사용하여 실제로 사용할 객체를 얻어낸다.</p>
 
-<p>이는 COM의 핵심이며 자세한 내용을 알아보려면
-아래 링크를 추천한다. C언어에 대한 지식이 있어야한다.
-<a href="http://www.codeproject.com/Articles/13601/COM-in-plain-C">COM in plain C</a></p>
+<p>이는 COM의 핵심이며 자세한 내용을 알아보려면 아래 링크를 추천한다. C언어에 대한 지식이 있어야한다. COM in plain C</p>
 
-<h2 id="blockrequest:2284214a0333b1f3f4b041ec3c1d6e0e">BlockRequest</h2>
+<h2 id="blockrequest">BlockRequest</h2>
 
-<p>BlockRequest는 동기적으로 네트워크 요청을 하고 응답을 받는것이다.
-즉 요청을 하면 실행이 멈추었다가 응답을 받아야 그 다음으로 진행이 된다.
-이는 개념적으로 위 예제와 거의 유사한 방식으로 처리할수 있다.</p>
+<p>BlockRequest는 동기적으로 네트워크 요청을 하고 응답을 받는것이다. 즉 요청을 하면 실행이 멈추었다가 응답을 받아야 그 다음으로 진행이 된다. 이는 개념적으로 위 예제와 거의 유사한 방식으로 처리할수 있다.</p>
 
-<p>다만 위 예제는 함수의 리턴값을 받아온 것이고
-block-request 는 네트워크 요청으로 응답을 받아온것이라는것이 큰 차이이다.
-네트워크로 요청하였으니 결과값은 GetHeaderValue, GetDataValue 와 같은 함수를 호출하여 얻어와야한다.</p>
+<p>다만 위 예제는 함수의 리턴값을 받아온 것이고 block-request 는 네트워크 요청으로 응답을 받아온것이라는것이 큰 차이이다. 네트워크로 요청하였으니 결과값은 GetHeaderValue, GetDataValue 와 같은 함수를 호출하여 얻어와야한다.</p>
 
 <pre><code>package main
 
@@ -417,25 +589,17 @@ func main() {
 기아차
 </code></pre>
 
-<h2 id="event-handler:2284214a0333b1f3f4b041ec3c1d6e0e">Event Handler</h2>
+<h2 id="event-handler">Event Handler</h2>
 
-<p>BlockRequest 는 네트워크 요청이후 실행흐름이 멈춘다고 설명했다.
-이는 컴퓨터자원을 엄청나게 낭비하는 것이다. 이를 방지하기 위해
-비동기적 실행흐름을 생각해볼수 있다.
-비동기적 처리흐름은 일단 요청을 하고 응답이 왔을때 처리할 함수를 알려준다(콜백) 실제 응답이 오면 콜백을 실행한다.</p>
+<p>BlockRequest 는 네트워크 요청이후 실행흐름이 멈춘다고 설명했다. 이는 컴퓨터자원을 엄청나게 낭비하는 것이다. 이를 방지하기 위해 비동기적 실행흐름을 생각해볼수 있다. 비동기적 처리흐름은 일단 요청을 하고 응답이 왔을때 처리할 함수를 알려준다(콜백) 실제 응답이 오면 콜백을 실행한다.</p>
 
-<p>Request 함수로 요청을 날렸을때 이런 방식대로 수행이된다.
-그리고 실시간으로 데이터가 전달되는 Sub/Pub 방식의 통신도 이렇게 이벤트
-핸들링을 해야 처리가 가능하다.</p>
+<p>Request 함수로 요청을 날렸을때 이런 방식대로 수행이된다. 그리고 실시간으로 데이터가 전달되는 Sub/Pub 방식의 통신도 이렇게 이벤트 핸들링을 해야 처리가 가능하다.</p>
 
-<p>그럼 COM에서는 이벤트를 어떻게 처리할까? 결론부터 말하자면 COM서버측의 IConnectionPoint와 이를 관리하는 IConnectionPointContainer 그리고 클라이언트의 sink 인터페이스 구현으로 처리한다.
-COM서버는 사이보스플러스이고 우리가 작성하는 프로그램이 클라이언트이다.</p>
+<p>그럼 COM에서는 이벤트를 어떻게 처리할까? 결론부터 말하자면 COM서버측의 IConnectionPoint와 이를 관리하는 IConnectionPointContainer 그리고 클라이언트의 sink 인터페이스 구현으로 처리한다. COM서버는 사이보스플러스이고 우리가 작성하는 프로그램이 클라이언트이다.</p>
 
-<p>go-ole 프로젝트에 보면 <a href="https://github.com/go-ole/go-ole/blob/master/example/winsock/winsock.go">example 폴더에 winsock예제</a>가 있다.
-이를 응용하여 사이보스플러스에 적용시켜보기로 한다.</p>
+<p>go-ole 프로젝트에 보면 example 폴더에 winsock예제가 있다. 이를 응용하여 사이보스플러스에 적용시켜보기로 한다.</p>
 
-<p>Oleviewer로 DSCBO1Lib의 dispinterface _IDibEvents
-를 보면 아래와 같이 나온다.</p>
+<p>Oleviewer로 DSCBO1Lib의 dispinterface _IDibEvents 를 보면 아래와 같이 나온다.</p>
 
 <pre><code>[
   uuid(B8944520-09C3-11D4-8232-00105A7C4F8C),
@@ -471,8 +635,7 @@ type CpReceivedEvntVtbl struct {
 }
 </code></pre>
 
-<p>void Received 함수는 포인터로 지정하지 않는다.
-host는 요 이벤트를 연결할 사이보스플러스 객체이다.</p>
+<p>void Received 함수는 포인터로 지정하지 않는다. host는 요 이벤트를 연결할 사이보스플러스 객체이다.</p>
 
 <pre><code>func QueryInterface(this *ole.IUnknown, iid *ole.GUID, punk **ole.IUnknown) uint32 {
     s, _ := ole.StringFromCLSID(iid)
@@ -505,9 +668,7 @@ func Release(this *ole.IUnknown) int32 {
 }
 </code></pre>
 
-<p>IUnknown 인테페이스를 구현한다. QueryInterface함수에서
-_IDibEvents의 IID를 받았을때 자기자신의 포인터를 아웃풋변수에
-넣도록 해준다.</p>
+<p>IUnknown 인테페이스를 구현한다. QueryInterface함수에서 _IDibEvents의 IID를 받았을때 자기자신의 포인터를 아웃풋변수에 넣도록 해준다.</p>
 
 <pre><code>func GetIDsOfNames(this *ole.IUnknown, iid *ole.GUID, wnames []*uint16, namelen int, lcid int, pdisp []int32) uintptr {
     for n := 0; n &lt; namelen; n++ {
@@ -533,14 +694,7 @@ func Invoke(this *ole.IDispatch, dispid int, riid *ole.GUID, lcid int, flags int
 }
 </code></pre>
 
-<p>IDispatch 인터페이스를 구현한다.
-COM서버와 클라이언트간 약속된 인터페이스는 여기까지이다.
-여기서 dispinterface 였던 _IDibEvents 인터페이스는 Received 함수만 존재했었지만 실제로 구현하지 않고
-Invoke 함수가 dispid 로 함수의 ID 값을 넘겨받아 호출된다.
-이는 GetIDsOfNames가 구현됨으로서 가능하다.
-_IDibEvents는 간단하게도 Received 함수 하나뿐이라 ID값이 1로 전달될 것이다.
-이런 구조는 실제로 여러 언어나 개발환경에서는 자동화되어 생성이 되지만
-GO언어에서는 딱히 지원되는것이 아니므로 이렇게 일일히 구현이 되어야 한다.</p>
+<p>IDispatch 인터페이스를 구현한다. COM서버와 클라이언트간 약속된 인터페이스는 여기까지이다. 여기서 dispinterface 였던 _IDibEvents 인터페이스는 Received 함수만 존재했었지만 실제로 구현하지 않고 Invoke 함수가 dispid 로 함수의 ID 값을 넘겨받아 호출된다. 이는 GetIDsOfNames가 구현됨으로서 가능하다. _IDibEvents는 간단하게도 Received 함수 하나뿐이라 ID값이 1로 전달될 것이다. 이런 구조는 실제로 여러 언어나 개발환경에서는 자동화되어 생성이 되지만 GO언어에서는 딱히 지원되는것이 아니므로 이렇게 일일히 구현이 되어야 한다.</p>
 
 <p>여기서 GetIDsOfNames 함수를 선언할때 문제점이 있다.</p>
 
@@ -582,10 +736,7 @@ for _, t := range ft.in {
 }
 </code></pre>
 
-<p>이상하다. 정확히는 모르겠지만 uintptrSize와 각각의 인풋파라미터의 타입을 비교하는 것처럼 보인다. 하지만 괴상하게도 되지 않는다.
-이것때문에 한동안 막혀 진행이 되지 않다가 다음과 같은 소스를 찾고나서
-해결하였다.
-<a href="https://gist.github.com/mattn/794587">https://gist.github.com/mattn/794587</a></p>
+<p>이상하다. 정확히는 모르겠지만 uintptrSize와 각각의 인풋파라미터의 타입을 비교하는 것처럼 보인다. 하지만 괴상하게도 되지 않는다. 이것때문에 한동안 막혀 진행이 되지 않다가 다음과 같은 소스를 찾고나서 해결하였다. <a href="https://gist.github.com/mattn/794587">https://gist.github.com/mattn/794587</a></p>
 
 <p>결국 GetIDsOfNames 함수는 아래와같이 만들어준다.</p>
 
@@ -606,96 +757,82 @@ for _, t := range ft.in {
 }
 </code></pre>
 
-<p>oleutil에 있는 ConnectObject 함수도 결국은 GetIDsOfNames 함수를 가지고
-NewCallback을 호출하는데
-<a href="https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go">https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go</a>
-를 보면 이것도 마찬가지로 같은 에러가 난다. 따라서 oleutil을 활용할수가 없다.</p>
+<p>oleutil에 있는 ConnectObject 함수도 결국은 GetIDsOfNames 함수를 가지고 NewCallback을 호출하는데 <a href="https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go">https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go</a> 를 보면 이것도 마찬가지로 같은 에러가 난다. 따라서 oleutil을 활용할수가 없다.</p>
 
-<p>결국 IConnectionPoint를 직접 만들어줘야하는 번거로움이 생기게 된다.
-이걸 사용하는 순서는 아래와 같다.</p>
+<p>결국 IConnectionPoint를 직접 만들어줘야하는 번거로움이 생기게 된다. 이걸 사용하는 순서는 아래와 같다.</p>
 
-<ol>
-<li>사이보스플러스 객체에서 QueryInterface로 IID_IConnectionPointContainer 인터페이스를 요청하여 생성</li>
-<li>FindConnectionPoint 함수에 _IDibEvents의 iid 를 이용하여
-point 를 알아낸다.</li>
-<li>해당 point의 Advise 함수 호출</li>
-</ol>
+<p>사이보스플러스 객체에서 QueryInterface로 IID_IConnectionPointContainer 인터페이스를 요청하여 생성
+FindConnectionPoint 함수에 _IDibEvents의 iid 를 이용하여 point 를 알아낸다.
+해당 point의 Advise 함수 호출
+아래와 같이 구현해보면 된다.</p>
 
-<p>아래와 같이 구현해보면 된다.</p>
+<pre><code>// get event iid
+dibevnt_iid, err := ole.CLSIDFromString(&quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&quot;)
+if  err != nil {
+    fmt.Println(err)
+    return 
+}
+fmt.Println(dibevnt_iid)
 
-<pre><code>    // get event iid
-    dibevnt_iid, err := ole.CLSIDFromString(&quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&quot;)
-    if  err != nil {
-        fmt.Println(err)
-        return 
-    }
-    fmt.Println(dibevnt_iid)
+// 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
+evnt:= (new (CpReceiveEvent))
+evnt.lpVtbl = (new (CpReceivedEvntVtbl))
+evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
+evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
+evnt.host = cpstkmst
 
-    // 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
-    evnt:= (new (CpReceiveEvent))
-    evnt.lpVtbl = (new (CpReceivedEvntVtbl))
-    evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
-    evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
-    evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
-    evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
-    evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
-    evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
-    evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
-    evnt.host = cpstkmst
+// connectionpoint container
+unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
+if err != nil {
+    fmt.Println(err)
+    return 
+}
 
-    // connectionpoint container
-    unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
-    if err != nil {
-        fmt.Println(err)
-        return 
-    }
+fmt.Println(unknown_con)
 
-    fmt.Println(unknown_con)
+// get point
+container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
+var point *ole.IConnectionPoint
+err = container.FindConnectionPoint(dibevnt_iid, &amp;point)
+if err != nil {
+    return
+}
+fmt.Println(point)
 
-    // get point
-    container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
-    var point *ole.IConnectionPoint
-    err = container.FindConnectionPoint(dibevnt_iid, &amp;point)
-    if err != nil {
-        return
-    }
-    fmt.Println(point)
-
-    // Advise
-    cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
-    container.Release()
-    if err != nil {
-        point.Release()
-        fmt.Println(err)
-        return
-    }
+// Advise
+cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
+container.Release()
+if err != nil {
+    point.Release()
+    fmt.Println(err)
+    return
+}
 </code></pre>
 
-<p>Request 요청을 날리게 되면 응답을 받을때까지 대기를 하여야 한다.
-이는 어느시점에 발생할지 모르기 떄문에 무한루프로 대기를 하도록 한다.
-아래는 적당한 시점에 종료되도록 만든것이다.</p>
+<p>Request 요청을 날리게 되면 응답을 받을때까지 대기를 하여야 한다. 이는 어느시점에 발생할지 모르기 떄문에 무한루프로 대기를 하도록 한다. 아래는 적당한 시점에 종료되도록 만든것이다.</p>
 
-<pre><code>    // wating infinite  
-    cnt := 0
-    var m ole.Msg
-    for evnt.ref != 0 {
-        time.Sleep(10)
-        ole.GetMessage(&amp;m,0,0,0)
-        ole.DispatchMessage(&amp;m)
-        if cnt &gt; 1000 {
-            break
-        }
-        cnt++
+<pre><code>// wating infinite  
+cnt := 0
+var m ole.Msg
+for evnt.ref != 0 {
+    time.Sleep(10)
+    ole.GetMessage(&amp;m,0,0,0)
+    ole.DispatchMessage(&amp;m)
+    if cnt &gt; 1000 {
+        break
     }
+    cnt++
+}
 </code></pre>
 
-<p>실제 콜백이 수행되는것은 Invoke 가 수행이 되며
-여기에 메서드의 ID값을 넘겨주게 된다.
-_IDibEvents는 어차피 메서드가 Received 한개이므로
-무조건 1일 것이다.</p>
+<p>실제 콜백이 수행되는것은 Invoke 가 수행이 되며 여기에 메서드의 ID값을 넘겨주게 된다. _IDibEvents는 어차피 메서드가 Received 한개이므로 무조건 1일 것이다.</p>
 
-<p>적당히 Received를 꾸민뒤에 Invoke에서 호출된다고 가정하고
-Received를 작성해보았다.</p>
+<p>적당히 Received를 꾸민뒤에 Invoke에서 호출된다고 가정하고 Received를 작성해보았다.</p>
 
 <pre><code>func Received(this *ole.IDispatch) {
     pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
@@ -714,7 +851,7 @@ Received를 작성해보았다.</p>
 기아차
 </code></pre>
 
-<h2 id="전체소스:2284214a0333b1f3f4b041ec3c1d6e0e">전체소스</h2>
+<h2 id="전체소스">전체소스</h2>
 
 <pre><code>package main
 
@@ -929,55 +1066,24 @@ func main() {
 }
 </code></pre>
 
-<p>여기까지는 단지 연동만 해본것일 뿐이다.
-이를 사용하기 쉽도록 묶고 라이브러리 처럼 만들려면
-이를 응용하여 만들면 될 것이다.</p>
+<p>여기까지는 단지 연동만 해본것일 뿐이다. 이를 사용하기 쉽도록 묶고 라이브러리 처럼 만들려면 이를 응용하여 만들면 될 것이다.</p>
 
+  </div>
 
+  <div id=links>
+    
+      <a class="basic-alignment left" href="https://ippoeyeslhw.github.io/post/rename-file/">&laquo; rename file</a>
+    
+    
+      <a class="basic-alignment left" href="https://ippoeyeslhw.github.io/post/cpgo-lib/">cpgo lib &raquo;</a>
+    
+  </div>
+</section>
+
+  </div>
   
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://ippoeyeslhw.github.io/post/rename-file/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://ippoeyeslhw.github.io/post/rename-file/">rename file</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://ippoeyeslhw.github.io/post/cpgo-lib/">cpgo lib</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://ippoeyeslhw.github.io/post/cpgo-lib/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-  
-
-</div>
-
-</div>
-</div>
-<script src="https://ippoeyeslhw.github.io/js/ui.js"></script>
-
-
-
-
 </body>
 </html>
+
+
 

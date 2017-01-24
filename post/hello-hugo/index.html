@@ -1,216 +1,416 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-kr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <base href="https://ippoeyeslhw.github.io">
+    
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.15" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com/">
 
-  <title>hello hugo &middot; ItGae Blog</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400' rel='stylesheet' type='text/css'>
 
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-  
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <link rel="shortcut icon" href="https://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://ippoeyeslhw.github.io/">ItGae</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
+    <title>
       
       
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+         hello hugo 
       
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
-      
-        </li>
-      
-    </ul>
+    </title>
+    <link rel="canonical" href="https://ippoeyeslhw.github.io/post/hello-hugo/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 5px 0 10px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">lhw_itguy</a></h1>
+      <ul>
+        
+          <li><a href="https://github.com/ippoeyeslhw">Github</a></li>
+        
+          <li><a href="https://www.instagram.com/lhw_itguy/">Instagram</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> hello hugo </h1>
+
+  <div id=sub-header>
+    January 2017 · 2 minute read
   </div>
 
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
+  <div class="entry-content">
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&copy; 2016. All rights reserved.</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>hello hugo</h1>
-  <h2></h2>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>26 May 2016, 23:08</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/hugo">hugo</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/%ED%9C%B4%EA%B3%A0">휴고</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  
-
-<p>정적블로그를 하고 싶다는 생각이 들었다.
-최근 <a href="https://golang.org/">Go언어</a>를 하다보니 자연스럽게
-<a href="https://gohugo.io/">Hugo</a>를 알게 되었고
-정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다.
-그래서 이제 블로그를 정적블로그로 만들기로 했다.</p>
+<p>정적블로그를 하고 싶다는 생각이 들었다. 최근 Go언어를 하다보니 자연스럽게 <a href="https://gohugo.io/">Hugo</a>를 알게 되었고 정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다. 그래서 이제 블로그를 정적블로그로 만들기로 했다.</p>
 
 <hr />
 
-<h2 id="설치:559804b0a39dd16d2d1d1238c597145a">설치</h2>
+<h2 id="설치">설치</h2>
 
-<p>설치는 <a href="https://gohugo.io/overview/installing/">Hugo installing</a>을 참조하면 된다.
-바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.</p>
+<p>설치는 <a href="https://gohugo.io/overview/installing/">Hugo installing</a>을 참조하면 된다. 바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.</p>
 
 <p>나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다.</p>
 
@@ -218,31 +418,25 @@
 C:\hugo\sites\
 </code></pre>
 
-<p>실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록
-하려고 구성하였다.</p>
+<p>실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록 하려고 구성하였다.</p>
 
-<h2 id="블로그구성하기:559804b0a39dd16d2d1d1238c597145a">블로그구성하기</h2>
+<h2 id="블로그구성하기">블로그구성하기</h2>
 
-<p>Hugo의 <a href="https://gohugo.io/overview/quickstart/">quickstart</a> 문서를 보게되면
-만들고자하는 사이트를 만드는 명령어가 나온다.
-일단 sites 폴더로 이동한뒤에 아래 명령을 수행한다.</p>
+<p>Hugo의 <a href="https://gohugo.io/overview/quickstart/">quickstart</a> 문서를 보게되면 만들고자하는 사이트를 만드는 명령어가 나온다. 일단 sites 폴더로 이동한뒤에 아래 명령을 수행한다.</p>
 
 <pre><code>$ hugo new site blog
 </code></pre>
 
 <p>여러개의 폴더와 문서가 생성된것을 볼수 있다.</p>
 
-<h2 id="테마추가하기:559804b0a39dd16d2d1d1238c597145a">테마추가하기</h2>
+<h2 id="테마추가하기">테마추가하기</h2>
 
-<p>Hugo 사이트에서 <a href="http://themes.gohugo.io/">Theme Showcase</a>를 눌러보면 여러 테마가 나온다.
-맘에드는 테마를 골라서 설치하면 된다. 나는 윈도우 기준으로 설치하고 있으므로
-테마 파일을 받은뒤에</p>
+<p>Hugo 사이트에서 <a href="http://themes.gohugo.io/">Theme Showcase</a>를 눌러보면 여러 테마가 나온다. 맘에드는 테마를 골라서 설치하면 된다. 나는 윈도우 기준으로 설치하고 있으므로 테마 파일을 받은뒤에</p>
 
 <pre><code>C:\hugo\sites\blog\themes
 </code></pre>
 
-<p>위 폴더를 생상한뒤에 테마명으로 폴더를 생성하여 받은 파일을 풀어놓았다.
-그뒤에 중요한 작업이 있는데</p>
+<p>위 폴더를 생상한뒤에 테마명으로 폴더를 생성하여 받은 파일을 풀어놓았다. 그뒤에 중요한 작업이 있는데</p>
 
 <pre><code>C:\hugo\sites\blog\config.toml
 </code></pre>
@@ -254,24 +448,20 @@ C:\hugo\sites\
 
 <p>이 내용이 추가가 되어야 한다.</p>
 
-<p>그리고 테마를 고르면 사용방법이 나오는데 위 config 파일에 테마 설정을 작성해 넣는식으로
-사용한다. 이는 테마마다 사용법이 다르다.</p>
+<p>그리고 테마를 고르면 사용방법이 나오는데 위 config 파일에 테마 설정을 작성해 넣는식으로 사용한다. 이는 테마마다 사용법이 다르다.</p>
 
-<h2 id="post-쓰기:559804b0a39dd16d2d1d1238c597145a">Post 쓰기</h2>
+<h2 id="post-쓰기">Post 쓰기</h2>
 
-<p>hugo에서는 Post를 쓸때 Markdown 파일을 작성하도록 한다. 이글도 Markdown으로 쓰고 있다.
-<a href="https://gohugo.io/overview/quickstart/">quickstart</a> 문서를 보면 Step3에
-포스트를 작성하는 법이 나온다.</p>
+<p>hugo에서는 Post를 쓸때 Markdown 파일을 작성하도록 한다. 이글도 Markdown으로 쓰고 있다. <a href="https://gohugo.io/overview/quickstart/">quickstart</a> 문서를 보면 Step3에 포스트를 작성하는 법이 나온다.</p>
 
 <pre><code>$hugo new post/first-post.md
 </code></pre>
 
 <p>이 명령을 수행하고 나면 post라는 폴더와 위 이름의 .md 파일이 생성되어 있음을 확인할수 있다.</p>
 
-<h2 id="정적페이지-생성:559804b0a39dd16d2d1d1238c597145a">정적페이지 생성</h2>
+<h2 id="정적페이지-생성">정적페이지 생성</h2>
 
-<p>md파일을 작성할때 Draft는 초고를 의미하므로 기본적으로 true로 되어있다.
-이를 False로 바꾼뒤에 blog 폴더하에서</p>
+<p>md파일을 작성할때 Draft는 초고를 의미하므로 기본적으로 true로 되어있다. 이를 False로 바꾼뒤에 blog 폴더하에서</p>
 
 <pre><code>$ hugo
 </code></pre>
@@ -281,19 +471,16 @@ C:\hugo\sites\
 <pre><code>C:\hugo\sites\blog\public 
 </code></pre>
 
-<p>위 폴더에 각종파일들이 생성된다. 이것들이 정적페이지들이다.
-이를 호스팅하는 곳에 올리면 된다.
-개인적으로는 github의 gh-pages 브랜치를 사용하고 있다.</p>
+<p>위 폴더에 각종파일들이 생성된다. 이것들이 정적페이지들이다. 이를 호스팅하는 곳에 올리면 된다. 개인적으로는 github의 gh-pages 브랜치를 사용하고 있다.</p>
 
-<h2 id="로컬에서-확인:559804b0a39dd16d2d1d1238c597145a">로컬에서 확인</h2>
+<h2 id="로컬에서-확인">로컬에서 확인</h2>
 
 <p>로컬에서 잠시 웹서버를 올려서 어떻게 보이는지 확인할수 있다.</p>
 
 <pre><code>$ hugo server
 </code></pre>
 
-<p>blog 폴더 안에서 위 명령을 실행하면 웹서버가 뜬다. localhost:1313/blog
-이런식으로 접근하면 된다.</p>
+<p>blog 폴더 안에서 위 명령을 실행하면 웹서버가 뜬다. localhost:1313/blog 이런식으로 접근하면 된다.</p>
 
 <p>Draft 버젼 또한 보고싶은 경우가 있다. 이때는 -D 옵션을 준다.</p>
 
@@ -302,54 +489,22 @@ C:\hugo\sites\
 
 <hr />
 
-<p>어찌보면 이렇게 블로그를 생성하는것은 불편하기도 한다.
-명령어를 쳐서 파일을 만들고
-폴더를 만든뒤에 집어넣어야 되고
-생성을 시킨뒤에 그걸 또 호스팅 서버에 올려야 하기도 한다.
-하지만 이렇게 만들어 놓으면 뭔가 명확하고 확실한 느낌이 난다.
-DB와도 상관이 없고
-서버에 부담없이 깔끔하다.
-다양한 기능이 필요가 없기에 이런 정적페이지 생성기가 유용해보인다.</p>
+<p>어찌보면 이렇게 블로그를 생성하는것은 불편하기도 한다. 명령어를 쳐서 파일을 만들고 폴더를 만든뒤에 집어넣어야 되고 생성을 시킨뒤에 그걸 또 호스팅 서버에 올려야 하기도 한다. 하지만 이렇게 만들어 놓으면 뭔가 명확하고 확실한 느낌이 난다. DB와도 상관이 없고 서버에 부담없이 깔끔하다. 다양한 기능이 필요가 없기에 이런 정적페이지 생성기가 유용해보인다.</p>
 
+  </div>
 
+  <div id=links>
+    
+    
+      <a class="basic-alignment left" href="https://ippoeyeslhw.github.io/post/rename-file/">rename file &raquo;</a>
+    
+  </div>
+</section>
+
+  </div>
   
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/">mandelbrot fractal golang</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-  
-
-</div>
-
-</div>
-</div>
-<script src="https://ippoeyeslhw.github.io/js/ui.js"></script>
-
-
-
-
 </body>
 </html>
+
+
 

@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ItGae Blog</title>
-    <link>https://ippoeyeslhw.github.io/</link>
-    <description>Recent content on ItGae Blog</description>
+    <title>lhw_itguy</title>
+    <link>https://ippoeyeslhw.github.io/index.xml</link>
+    <description>Recent content on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ko-KR</language>
-    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 03 Aug 2016 23:23:37 +0900</lastBuildDate>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 24 Jan 2017 22:20:08 +0900</lastBuildDate>
     <atom:link href="https://ippoeyeslhw.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>cpgo lib</title>
       <link>https://ippoeyeslhw.github.io/post/cpgo-lib/</link>
-      <pubDate>Wed, 03 Aug 2016 23:23:37 +0900</pubDate>
+      <pubDate>Tue, 24 Jan 2017 22:20:08 +0900</pubDate>
       
       <guid>https://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
       <description>
 
-&lt;p&gt;저번에 올렸던 &lt;a href=&#34;http://ippoeyeslhw.github.io/blog/post/golang-with-cybosplus/&#34;&gt;포스트&lt;/a&gt;
-에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다.
-이를 사용하여 Wrapper 라이브러를 작성하여 Github에 &lt;a href=&#34;https://github.com/ippoeyeslhw/cpgo&#34;&gt;https://github.com/ippoeyeslhw/cpgo&lt;/a&gt;
-프로젝트를 올렸다.&lt;/p&gt;
+&lt;p&gt;저번에 올렸던 &lt;a href=&#34;https://ippoeyeslhw.github.io/post/golang-with-cybosplus&#34;&gt;포스트golang-with-cybosplus&lt;/a&gt; 에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다. 이를 사용하여 Wrapper 라이브러를 작성하여 Github에 &lt;a href=&#34;https://github.com/ippoeyeslhw/cpgo&#34;&gt;https://github.com/ippoeyeslhw/cpgo&lt;/a&gt; 프로젝트를 올렸다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;파이썬과-비교:f56708c2cf74bb72567b1415e5febd47&#34;&gt;파이썬과 비교&lt;/h2&gt;
+&lt;h2 id=&#34;파이썬과-비교&#34;&gt;파이썬과 비교&lt;/h2&gt;
 
 &lt;p&gt;파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다.&lt;/p&gt;
 
-&lt;h4 id=&#34;객체생성:f56708c2cf74bb72567b1415e5febd47&#34;&gt;객체생성&lt;/h4&gt;
+&lt;h2 id=&#34;객체생성&#34;&gt;객체생성&lt;/h2&gt;
 
 &lt;p&gt;객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.&lt;/p&gt;
 
@@ -45,7 +41,7 @@ defer stkmst.Release()
 
 &lt;p&gt;파이썬과는 다르게 COM을 다루고 있다는 느낌을 줄이려고 했다.&lt;/p&gt;
 
-&lt;h4 id=&#34;이벤트:f56708c2cf74bb72567b1415e5febd47&#34;&gt;이벤트&lt;/h4&gt;
+&lt;h2 id=&#34;이벤트&#34;&gt;이벤트&lt;/h2&gt;
 
 &lt;p&gt;이벤트를 처리하기위해 이벤트 핸들러는 Receiver 인터페이스를 구현하도록 하였다.&lt;/p&gt;
 
@@ -60,7 +56,7 @@ defer stkmst.Release()
 }
 
 func (t *RqTestStruct) Received(c *CpClass) {
-	// pass
+    // pass
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -84,11 +80,11 @@ cpobj.BindEvent(evnt)
 &lt;pre&gt;&lt;code&gt;win32com.client.WithEvents(cpobj, CpSubPubEventHandler)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;이벤트-수신대기:f56708c2cf74bb72567b1415e5febd47&#34;&gt;이벤트 수신대기&lt;/h4&gt;
+&lt;p&gt;cpgo는 객체를 만들어서 바인딩하는 것이고 파이썬은 클래스를 등록하는 것이다.&lt;/p&gt;
 
-&lt;p&gt;go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다.
-따라서 이를 구현해준뒤에 pythoncom 에 있는
-PumpWaitingMessages 함수를 유사하게 구현하였다.&lt;/p&gt;
+&lt;h2 id=&#34;이벤트-수신대기&#34;&gt;이벤트 수신대기&lt;/h2&gt;
+
+&lt;p&gt;go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다. 따라서 이를 구현해준뒤에 pythoncom 에 있는 PumpWaitingMessages 함수를 유사하게 구현하였다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;for  {
     cpgo.PumpWaitingMessages()
@@ -102,65 +98,88 @@ PumpWaitingMessages 함수를 유사하게 구현하였다.&lt;/p&gt;
     pythoncom.PumpWaitingMessages()
     time.sleep(0.001)
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;이벤트-수신의-문제&#34;&gt;이벤트 수신의 문제&lt;/h2&gt;
+
+&lt;p&gt;주식 실시간 호가를 받아오기 위해 CpDib.StockJpBid를 사용하여 실시간으로 호가를 받아오고 있었는데 특이한 현상을 발견했다.&lt;/p&gt;
+
+&lt;p&gt;개발했던 PC에서는 잘 되었지만 다른PC에서 실시간 이벤트가 잘 수신되지 않았다.&lt;/p&gt;
+
+&lt;p&gt;실시간으로 잘 받아오고 있다가 어느순간에 이벤트 수신을 하지 못하는 현상이였다. 그러다가 갑자기 또 수신을 쏟아지듯 받다가 못받다가 반복을 하였다. COM 서버 디버깅이 힘든 상황이라 원인 찾기가 힘들었다.&lt;/p&gt;
+
+&lt;h2 id=&#34;go-scheduler&#34;&gt;Go-Scheduler&lt;/h2&gt;
+
+&lt;p&gt;원인으로 OS thread가 중간에 교체가 되는것이 아닌가 하여 검색을 해보니
+golang 에서는 go scheduler 가 있어서 M개의 OS-threads 와 N개의 goroutines
+을 적당하게 관리해준다고 한다.&lt;/p&gt;
+
+&lt;p&gt;COM 에서는 이벤트를 맺은 윈도우 스레드에만 메시지를 전달하는데 만일
+go scheduler 가 중간에 os-thread 를 바꿔버린다면 이벤트 수신이 중간에 끊기게
+되는 것이다.&lt;/p&gt;
+
+&lt;p&gt;따라서 이를 해결하기 위해 CreateThread 메서드를 추가했다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type Background func(uintptr) uintptr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Background 인터페이스는 uintptr 을 인자로 받아 uintptr을 리턴한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func CreateThread(fnc Background, arg1 uintptr) (ret int32, err error)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;go-scheduler 를 통하지 않고 이렇게 직접 스레드를 생성하여 중간에 교체가
+되지 않도록 하여 이벤트를 끊김없이 받을수 있도록 한다.&lt;/p&gt;
+
+&lt;p&gt;다만 스레드함수는 이상하게 dll 로드하여 메서드를 따와도 수행이 되지 않았다.&lt;/p&gt;
+
+&lt;p&gt;구글링 결과..  &lt;code&gt;import &amp;quot;C&amp;quot;&lt;/code&gt; 를 해야만 동작한다고 한다. 좀 황당하지만
+어떠한 C코드도 없이 단지 import 만 하면 된다.  이렇게 되면 순수 go언어
+컴파일러로 바이나리를 만드는것이 아니고 gcc가 필요하게 된다.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>golang-with-cybosplus</title>
+      <title>golang with cybosplus</title>
       <link>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
-      <pubDate>Sat, 23 Jul 2016 23:11:34 +0900</pubDate>
+      <pubDate>Tue, 24 Jan 2017 22:03:21 +0900</pubDate>
       
       <guid>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
       <description>
 
-&lt;p&gt;증권 API 중에 사이보스플러스가 사용하기 쉽다.
-하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야
-프로그래밍이 가능하다.&lt;/p&gt;
+&lt;p&gt;증권 API 중에 사이보스플러스가 사용하기 쉽다. 하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야 프로그래밍이 가능하다.&lt;/p&gt;
 
-&lt;p&gt;GO언어로 만든 Github의 프로젝트중에 &lt;a href=&#34;https://github.com/go-ole/go-ole&#34;&gt;go-ole&lt;/a&gt; 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것
-같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지
-그 과정을 적어보고자 한다.&lt;/p&gt;
+&lt;p&gt;GO언어로 만든 Github의 프로젝트중에 go-ole 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것 같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지 그 과정을 적어보고자 한다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;환경:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;환경&lt;/h2&gt;
+&lt;h2 id=&#34;환경&#34;&gt;환경&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;윈도우 운영체제&lt;/li&gt;
-&lt;li&gt;사이보스플러스 설치&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://golang.org/dl/&#34;&gt;Go언어 설치&lt;/a&gt; (주의!: 32비트 버젼이어야함)&lt;/li&gt;
-&lt;li&gt;개발에디터 (필자는 &lt;a href=&#34;https://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;를 사용)&lt;/li&gt;
-&lt;li&gt;빌드 및 실행 (주의!: 관리자권한으로 실행하여야함)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34;&gt;git 설치&lt;/a&gt; (go get 명령으로 github의 프로젝트를 받아오기 위해)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/go-ole/go-ole&#34;&gt;go-ole 패키지 설치&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Oleviewer 혹은 tih 파일 (Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;윈도우 운영체제&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;사이보스플러스 설치&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Go언어 설치 (주의!: 32비트 버젼이어야함)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;빌드 및 실행 (주의!: 관리자권한으로 실행하여야함)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;git 설치 (go get 명령으로 github의 프로젝트를 받아오기 위해)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;go-ole 패키지 설치&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Oleviewer 혹은 tih 파일 (Optional)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데
-64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.
-마찬가지 현상을 요번에 발견하여 32비트 버젼으로 재설치하였다.&lt;/p&gt;
-
-&lt;p&gt;만일 서브라임텍스트를 사용한다면 Package Control Install 에서 Go Build로
-검색하면 플러그인이 나올것이다. 이것을 추천한다.
-Ctrl+Shift+B 단축키로 현재 열려있는 go파일을 빌드 및 실행까지 한번에
-가능하다. 다만 GOPATH 환경변수를 요구할수도 있다. 에러메시지를 잘 읽어보고 적당한 위치를 지정해주면 될 것이다.&lt;/p&gt;
+&lt;p&gt;아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데 64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다. 마찬가지 현상을 요번에 발견하여 32비트 버젼으로 재설치하였다.&lt;/p&gt;
 
 &lt;p&gt;go get 명령을 사용해서 github의 프로젝트를 가져오려고 하면 git이 필요하다.&lt;/p&gt;
 
-&lt;p&gt;Oleviewer 는 CLSID, IID 를 보기위한 것이다. 구하기 힘들다면 사이보스플러스
-개발예제에서 VC 예제에 항시 .tih 파일이 있을것이다. 이를 활용해도 된다.&lt;/p&gt;
+&lt;p&gt;Oleviewer 는 CLSID, IID 를 보기위한 것이다. 구하기 힘들다면 사이보스플러스 개발예제에서 VC 예제에 항시 .tih 파일이 있을것이다. 이를 활용해도 된다.&lt;/p&gt;
 
-&lt;h2 id=&#34;기본연동순서:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;기본연동순서&lt;/h2&gt;
+&lt;h2 id=&#34;기본연동순서&#34;&gt;기본연동순서&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;사용하고자하는 사이보스플러스 객체를 만들기 위해 CLSID를 알아낸다.&lt;/li&gt;
-&lt;li&gt;CLSID와 IID_IUnknown 정보를 이용하여 IUnknown 객체 생성한다.&lt;/li&gt;
-&lt;li&gt;IUnknown 객체에 QueryInterface로 IID_IDispatch 정보를 사용하여 객체를 얻어낸다.&lt;/li&gt;
-&lt;li&gt;IDispatch객체를 사용하여 원하는 메스드를 Call 하거나 속성을 사용한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;사용하고자하는 사이보스플러스 객체를 만들기 위해 CLSID를 알아낸다.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLSID와 IID_IUnknown 정보를 이용하여 IUnknown 객체 생성한다.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IUnknown 객체에 QueryInterface로 IID_IDispatch 정보를 사용하여 객체를 얻어낸다.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IDispatch객체를 사용하여 원하는 메스드를 Call 하거나 속성을 사용한다.&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;COM이란 것을 써본적이 없으면 무슨소리인가 할 것이다.
-일단 만만한 CpUtil쪽 을 연동하면서 소스로 확인해본다.&lt;/p&gt;
+&lt;p&gt;COM이란 것을 써본적이 없으면 무슨소리인가 할 것이다. 일단 만만한 CpUtil쪽 을 연동하면서 소스로 확인해본다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;package main
 
@@ -217,7 +236,7 @@ func main() {
 기아차
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Oleviewer 를 사용하여 CpStockCode  coclass 를 살펴보면 아래와 같이 나온다.&lt;/p&gt;
+&lt;p&gt;Oleviewer 를 사용하여 CpStockCode coclass 를 살펴보면 아래와 같이 나온다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[
   uuid(2297F381-FFB1-45C6-AA80-4C6913F45E91),
@@ -228,27 +247,17 @@ coclass CpStockCode {
 };
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;여기서의 uuid를 보면 바로 첫번쨰로 출력된 그 값이다.
-결국 사이보스플러스 도움말에 나오는 클래스들.. 즉
-CpCybos, CpStockCode, StockMst, StockCur, &amp;hellip;.
-이런 놈들은 coclass라고 부르며 각각 16bytes 의 GUID를 가지고 있다.&lt;/p&gt;
+&lt;p&gt;여기서의 uuid를 보면 바로 첫번쨰로 출력된 그 값이다. 결국 사이보스플러스 도움말에 나오는 클래스들.. 즉 CpCybos, CpStockCode, StockMst, StockCur, …. 이런 놈들은 coclass라고 부르며 각각 16bytes 의 GUID를 가지고 있다.&lt;/p&gt;
 
-&lt;p&gt;요 CLSID를 일단 구한뒤에 일단 객체로 생성한다. 이떄 가장 기본적인 IID_IUnknown 인터페이스로 생성한다.
-그리고 QueryInterface 메서드와 IID_IDispatch 를 사용하여 실제로 사용할 객체를 얻어낸다.&lt;/p&gt;
+&lt;p&gt;요 CLSID를 일단 구한뒤에 일단 객체로 생성한다. 이떄 가장 기본적인 IID_IUnknown 인터페이스로 생성한다. 그리고 QueryInterface 메서드와 IID_IDispatch 를 사용하여 실제로 사용할 객체를 얻어낸다.&lt;/p&gt;
 
-&lt;p&gt;이는 COM의 핵심이며 자세한 내용을 알아보려면
-아래 링크를 추천한다. C언어에 대한 지식이 있어야한다.
-&lt;a href=&#34;http://www.codeproject.com/Articles/13601/COM-in-plain-C&#34;&gt;COM in plain C&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이는 COM의 핵심이며 자세한 내용을 알아보려면 아래 링크를 추천한다. C언어에 대한 지식이 있어야한다. COM in plain C&lt;/p&gt;
 
-&lt;h2 id=&#34;blockrequest:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;BlockRequest&lt;/h2&gt;
+&lt;h2 id=&#34;blockrequest&#34;&gt;BlockRequest&lt;/h2&gt;
 
-&lt;p&gt;BlockRequest는 동기적으로 네트워크 요청을 하고 응답을 받는것이다.
-즉 요청을 하면 실행이 멈추었다가 응답을 받아야 그 다음으로 진행이 된다.
-이는 개념적으로 위 예제와 거의 유사한 방식으로 처리할수 있다.&lt;/p&gt;
+&lt;p&gt;BlockRequest는 동기적으로 네트워크 요청을 하고 응답을 받는것이다. 즉 요청을 하면 실행이 멈추었다가 응답을 받아야 그 다음으로 진행이 된다. 이는 개념적으로 위 예제와 거의 유사한 방식으로 처리할수 있다.&lt;/p&gt;
 
-&lt;p&gt;다만 위 예제는 함수의 리턴값을 받아온 것이고
-block-request 는 네트워크 요청으로 응답을 받아온것이라는것이 큰 차이이다.
-네트워크로 요청하였으니 결과값은 GetHeaderValue, GetDataValue 와 같은 함수를 호출하여 얻어와야한다.&lt;/p&gt;
+&lt;p&gt;다만 위 예제는 함수의 리턴값을 받아온 것이고 block-request 는 네트워크 요청으로 응답을 받아온것이라는것이 큰 차이이다. 네트워크로 요청하였으니 결과값은 GetHeaderValue, GetDataValue 와 같은 함수를 호출하여 얻어와야한다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;package main
 
@@ -322,25 +331,17 @@ func main() {
 기아차
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;event-handler:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;Event Handler&lt;/h2&gt;
+&lt;h2 id=&#34;event-handler&#34;&gt;Event Handler&lt;/h2&gt;
 
-&lt;p&gt;BlockRequest 는 네트워크 요청이후 실행흐름이 멈춘다고 설명했다.
-이는 컴퓨터자원을 엄청나게 낭비하는 것이다. 이를 방지하기 위해
-비동기적 실행흐름을 생각해볼수 있다.
-비동기적 처리흐름은 일단 요청을 하고 응답이 왔을때 처리할 함수를 알려준다(콜백) 실제 응답이 오면 콜백을 실행한다.&lt;/p&gt;
+&lt;p&gt;BlockRequest 는 네트워크 요청이후 실행흐름이 멈춘다고 설명했다. 이는 컴퓨터자원을 엄청나게 낭비하는 것이다. 이를 방지하기 위해 비동기적 실행흐름을 생각해볼수 있다. 비동기적 처리흐름은 일단 요청을 하고 응답이 왔을때 처리할 함수를 알려준다(콜백) 실제 응답이 오면 콜백을 실행한다.&lt;/p&gt;
 
-&lt;p&gt;Request 함수로 요청을 날렸을때 이런 방식대로 수행이된다.
-그리고 실시간으로 데이터가 전달되는 Sub/Pub 방식의 통신도 이렇게 이벤트
-핸들링을 해야 처리가 가능하다.&lt;/p&gt;
+&lt;p&gt;Request 함수로 요청을 날렸을때 이런 방식대로 수행이된다. 그리고 실시간으로 데이터가 전달되는 Sub/Pub 방식의 통신도 이렇게 이벤트 핸들링을 해야 처리가 가능하다.&lt;/p&gt;
 
-&lt;p&gt;그럼 COM에서는 이벤트를 어떻게 처리할까? 결론부터 말하자면 COM서버측의 IConnectionPoint와 이를 관리하는 IConnectionPointContainer 그리고 클라이언트의 sink 인터페이스 구현으로 처리한다.
-COM서버는 사이보스플러스이고 우리가 작성하는 프로그램이 클라이언트이다.&lt;/p&gt;
+&lt;p&gt;그럼 COM에서는 이벤트를 어떻게 처리할까? 결론부터 말하자면 COM서버측의 IConnectionPoint와 이를 관리하는 IConnectionPointContainer 그리고 클라이언트의 sink 인터페이스 구현으로 처리한다. COM서버는 사이보스플러스이고 우리가 작성하는 프로그램이 클라이언트이다.&lt;/p&gt;
 
-&lt;p&gt;go-ole 프로젝트에 보면 &lt;a href=&#34;https://github.com/go-ole/go-ole/blob/master/example/winsock/winsock.go&#34;&gt;example 폴더에 winsock예제&lt;/a&gt;가 있다.
-이를 응용하여 사이보스플러스에 적용시켜보기로 한다.&lt;/p&gt;
+&lt;p&gt;go-ole 프로젝트에 보면 example 폴더에 winsock예제가 있다. 이를 응용하여 사이보스플러스에 적용시켜보기로 한다.&lt;/p&gt;
 
-&lt;p&gt;Oleviewer로 DSCBO1Lib의 dispinterface _IDibEvents
-를 보면 아래와 같이 나온다.&lt;/p&gt;
+&lt;p&gt;Oleviewer로 DSCBO1Lib의 dispinterface _IDibEvents 를 보면 아래와 같이 나온다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[
   uuid(B8944520-09C3-11D4-8232-00105A7C4F8C),
@@ -376,8 +377,7 @@ type CpReceivedEvntVtbl struct {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;void Received 함수는 포인터로 지정하지 않는다.
-host는 요 이벤트를 연결할 사이보스플러스 객체이다.&lt;/p&gt;
+&lt;p&gt;void Received 함수는 포인터로 지정하지 않는다. host는 요 이벤트를 연결할 사이보스플러스 객체이다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;func QueryInterface(this *ole.IUnknown, iid *ole.GUID, punk **ole.IUnknown) uint32 {
     s, _ := ole.StringFromCLSID(iid)
@@ -410,9 +410,7 @@ func Release(this *ole.IUnknown) int32 {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;IUnknown 인테페이스를 구현한다. QueryInterface함수에서
-_IDibEvents의 IID를 받았을때 자기자신의 포인터를 아웃풋변수에
-넣도록 해준다.&lt;/p&gt;
+&lt;p&gt;IUnknown 인테페이스를 구현한다. QueryInterface함수에서 _IDibEvents의 IID를 받았을때 자기자신의 포인터를 아웃풋변수에 넣도록 해준다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;func GetIDsOfNames(this *ole.IUnknown, iid *ole.GUID, wnames []*uint16, namelen int, lcid int, pdisp []int32) uintptr {
     for n := 0; n &amp;lt; namelen; n++ {
@@ -438,14 +436,7 @@ func Invoke(this *ole.IDispatch, dispid int, riid *ole.GUID, lcid int, flags int
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;IDispatch 인터페이스를 구현한다.
-COM서버와 클라이언트간 약속된 인터페이스는 여기까지이다.
-여기서 dispinterface 였던 _IDibEvents 인터페이스는 Received 함수만 존재했었지만 실제로 구현하지 않고
-Invoke 함수가 dispid 로 함수의 ID 값을 넘겨받아 호출된다.
-이는 GetIDsOfNames가 구현됨으로서 가능하다.
-_IDibEvents는 간단하게도 Received 함수 하나뿐이라 ID값이 1로 전달될 것이다.
-이런 구조는 실제로 여러 언어나 개발환경에서는 자동화되어 생성이 되지만
-GO언어에서는 딱히 지원되는것이 아니므로 이렇게 일일히 구현이 되어야 한다.&lt;/p&gt;
+&lt;p&gt;IDispatch 인터페이스를 구현한다. COM서버와 클라이언트간 약속된 인터페이스는 여기까지이다. 여기서 dispinterface 였던 _IDibEvents 인터페이스는 Received 함수만 존재했었지만 실제로 구현하지 않고 Invoke 함수가 dispid 로 함수의 ID 값을 넘겨받아 호출된다. 이는 GetIDsOfNames가 구현됨으로서 가능하다. _IDibEvents는 간단하게도 Received 함수 하나뿐이라 ID값이 1로 전달될 것이다. 이런 구조는 실제로 여러 언어나 개발환경에서는 자동화되어 생성이 되지만 GO언어에서는 딱히 지원되는것이 아니므로 이렇게 일일히 구현이 되어야 한다.&lt;/p&gt;
 
 &lt;p&gt;여기서 GetIDsOfNames 함수를 선언할때 문제점이 있다.&lt;/p&gt;
 
@@ -487,10 +478,7 @@ for _, t := range ft.in {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;이상하다. 정확히는 모르겠지만 uintptrSize와 각각의 인풋파라미터의 타입을 비교하는 것처럼 보인다. 하지만 괴상하게도 되지 않는다.
-이것때문에 한동안 막혀 진행이 되지 않다가 다음과 같은 소스를 찾고나서
-해결하였다.
-&lt;a href=&#34;https://gist.github.com/mattn/794587&#34;&gt;https://gist.github.com/mattn/794587&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이상하다. 정확히는 모르겠지만 uintptrSize와 각각의 인풋파라미터의 타입을 비교하는 것처럼 보인다. 하지만 괴상하게도 되지 않는다. 이것때문에 한동안 막혀 진행이 되지 않다가 다음과 같은 소스를 찾고나서 해결하였다. &lt;a href=&#34;https://gist.github.com/mattn/794587&#34;&gt;https://gist.github.com/mattn/794587&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;결국 GetIDsOfNames 함수는 아래와같이 만들어준다.&lt;/p&gt;
 
@@ -511,96 +499,82 @@ for _, t := range ft.in {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;oleutil에 있는 ConnectObject 함수도 결국은 GetIDsOfNames 함수를 가지고
-NewCallback을 호출하는데
-&lt;a href=&#34;https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go&#34;&gt;https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go&lt;/a&gt;
-를 보면 이것도 마찬가지로 같은 에러가 난다. 따라서 oleutil을 활용할수가 없다.&lt;/p&gt;
+&lt;p&gt;oleutil에 있는 ConnectObject 함수도 결국은 GetIDsOfNames 함수를 가지고 NewCallback을 호출하는데 &lt;a href=&#34;https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go&#34;&gt;https://github.com/go-ole/go-ole/blob/master/oleutil/connection.go&lt;/a&gt; 를 보면 이것도 마찬가지로 같은 에러가 난다. 따라서 oleutil을 활용할수가 없다.&lt;/p&gt;
 
-&lt;p&gt;결국 IConnectionPoint를 직접 만들어줘야하는 번거로움이 생기게 된다.
-이걸 사용하는 순서는 아래와 같다.&lt;/p&gt;
+&lt;p&gt;결국 IConnectionPoint를 직접 만들어줘야하는 번거로움이 생기게 된다. 이걸 사용하는 순서는 아래와 같다.&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;사이보스플러스 객체에서 QueryInterface로 IID_IConnectionPointContainer 인터페이스를 요청하여 생성&lt;/li&gt;
-&lt;li&gt;FindConnectionPoint 함수에 _IDibEvents의 iid 를 이용하여
-point 를 알아낸다.&lt;/li&gt;
-&lt;li&gt;해당 point의 Advise 함수 호출&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;사이보스플러스 객체에서 QueryInterface로 IID_IConnectionPointContainer 인터페이스를 요청하여 생성
+FindConnectionPoint 함수에 _IDibEvents의 iid 를 이용하여 point 를 알아낸다.
+해당 point의 Advise 함수 호출
+아래와 같이 구현해보면 된다.&lt;/p&gt;
 
-&lt;p&gt;아래와 같이 구현해보면 된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// get event iid
+dibevnt_iid, err := ole.CLSIDFromString(&amp;quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&amp;quot;)
+if  err != nil {
+    fmt.Println(err)
+    return 
+}
+fmt.Println(dibevnt_iid)
 
-&lt;pre&gt;&lt;code&gt;    // get event iid
-    dibevnt_iid, err := ole.CLSIDFromString(&amp;quot;{B8944520-09C3-11D4-8232-00105A7C4F8C}&amp;quot;)
-    if  err != nil {
-        fmt.Println(err)
-        return 
-    }
-    fmt.Println(dibevnt_iid)
+// 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
+evnt:= (new (CpReceiveEvent))
+evnt.lpVtbl = (new (CpReceivedEvntVtbl))
+evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
+evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
+evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
+evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
+evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
+evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
+evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
+evnt.host = cpstkmst
 
-    // 이벤트 객체 생성 및 IUnkown, IDispatch 구현  콜백등록
-    evnt:= (new (CpReceiveEvent))
-    evnt.lpVtbl = (new (CpReceivedEvntVtbl))
-    evnt.lpVtbl.pQueryInterface = syscall.NewCallback(QueryInterface)
-    evnt.lpVtbl.pAddRef = syscall.NewCallback(AddRef)
-    evnt.lpVtbl.pRelease = syscall.NewCallback(Release)
-    evnt.lpVtbl.pGetTypeInfoCount = syscall.NewCallback(GetTypeInfoCount)
-    evnt.lpVtbl.pGetTypeInfo = syscall.NewCallback(GetTypeInfo)
-    evnt.lpVtbl.pGetIDsOfNames = syscall.NewCallback(GetIDsOfNames)
-    evnt.lpVtbl.pInvoke = syscall.NewCallback(Invoke)
-    evnt.host = cpstkmst
+// connectionpoint container
+unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
+if err != nil {
+    fmt.Println(err)
+    return 
+}
 
-    // connectionpoint container
-    unknown_con, err := cpstkmst.QueryInterface(ole.IID_IConnectionPointContainer)
-    if err != nil {
-        fmt.Println(err)
-        return 
-    }
+fmt.Println(unknown_con)
 
-    fmt.Println(unknown_con)
+// get point
+container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
+var point *ole.IConnectionPoint
+err = container.FindConnectionPoint(dibevnt_iid, &amp;amp;point)
+if err != nil {
+    return
+}
+fmt.Println(point)
 
-    // get point
-    container := (*ole.IConnectionPointContainer)(unsafe.Pointer(unknown_con))
-    var point *ole.IConnectionPoint
-    err = container.FindConnectionPoint(dibevnt_iid, &amp;amp;point)
-    if err != nil {
-        return
-    }
-    fmt.Println(point)
-
-    // Advise
-    cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
-    container.Release()
-    if err != nil {
-        point.Release()
-        fmt.Println(err)
-        return
-    }
+// Advise
+cookie, err := point.Advise((*ole.IUnknown)(unsafe.Pointer(evnt)))
+container.Release()
+if err != nil {
+    point.Release()
+    fmt.Println(err)
+    return
+}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Request 요청을 날리게 되면 응답을 받을때까지 대기를 하여야 한다.
-이는 어느시점에 발생할지 모르기 떄문에 무한루프로 대기를 하도록 한다.
-아래는 적당한 시점에 종료되도록 만든것이다.&lt;/p&gt;
+&lt;p&gt;Request 요청을 날리게 되면 응답을 받을때까지 대기를 하여야 한다. 이는 어느시점에 발생할지 모르기 떄문에 무한루프로 대기를 하도록 한다. 아래는 적당한 시점에 종료되도록 만든것이다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;    // wating infinite  
-    cnt := 0
-    var m ole.Msg
-    for evnt.ref != 0 {
-        time.Sleep(10)
-        ole.GetMessage(&amp;amp;m,0,0,0)
-        ole.DispatchMessage(&amp;amp;m)
-        if cnt &amp;gt; 1000 {
-            break
-        }
-        cnt++
+&lt;pre&gt;&lt;code&gt;// wating infinite  
+cnt := 0
+var m ole.Msg
+for evnt.ref != 0 {
+    time.Sleep(10)
+    ole.GetMessage(&amp;amp;m,0,0,0)
+    ole.DispatchMessage(&amp;amp;m)
+    if cnt &amp;gt; 1000 {
+        break
     }
+    cnt++
+}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;실제 콜백이 수행되는것은 Invoke 가 수행이 되며
-여기에 메서드의 ID값을 넘겨주게 된다.
-_IDibEvents는 어차피 메서드가 Received 한개이므로
-무조건 1일 것이다.&lt;/p&gt;
+&lt;p&gt;실제 콜백이 수행되는것은 Invoke 가 수행이 되며 여기에 메서드의 ID값을 넘겨주게 된다. _IDibEvents는 어차피 메서드가 Received 한개이므로 무조건 1일 것이다.&lt;/p&gt;
 
-&lt;p&gt;적당히 Received를 꾸민뒤에 Invoke에서 호출된다고 가정하고
-Received를 작성해보았다.&lt;/p&gt;
+&lt;p&gt;적당히 Received를 꾸민뒤에 Invoke에서 호출된다고 가정하고 Received를 작성해보았다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;func Received(this *ole.IDispatch) {
     pthis := (*CpReceiveEvent)(unsafe.Pointer(this))
@@ -619,7 +593,7 @@ Received를 작성해보았다.&lt;/p&gt;
 기아차
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;전체소스:2284214a0333b1f3f4b041ec3c1d6e0e&#34;&gt;전체소스&lt;/h2&gt;
+&lt;h2 id=&#34;전체소스&#34;&gt;전체소스&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;package main
 
@@ -834,23 +808,21 @@ func main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;여기까지는 단지 연동만 해본것일 뿐이다.
-이를 사용하기 쉽도록 묶고 라이브러리 처럼 만들려면
-이를 응용하여 만들면 될 것이다.&lt;/p&gt;
+&lt;p&gt;여기까지는 단지 연동만 해본것일 뿐이다. 이를 사용하기 쉽도록 묶고 라이브러리 처럼 만들려면 이를 응용하여 만들면 될 것이다.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>rename file</title>
       <link>https://ippoeyeslhw.github.io/post/rename-file/</link>
-      <pubDate>Thu, 23 Jun 2016 20:13:36 +0900</pubDate>
+      <pubDate>Tue, 24 Jan 2017 21:59:34 +0900</pubDate>
       
       <guid>https://ippoeyeslhw.github.io/post/rename-file/</guid>
       <description>
 
-&lt;p&gt;8년전 보았던 미드가 생각나서 구했는데
-워낙 예전것이라 자막과 영상의 소스가 달라
-일괄 변경할 필요가 생겼다. 그래서 go언어로 짜보았다.&lt;/p&gt;
+&lt;p&gt;8년전 보았던 미드가 생각나서 구했는데 워낙 예전것이라 자막과 영상의 소스가 달라 일괄 변경할 필요가 생겼다. 그래서 go언어로 짜보았다.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;pre&gt;&lt;code&gt;package main
 
@@ -908,699 +880,41 @@ func main(){
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;flag:4a2955fb02c481cb9d3c315b615b797c&#34;&gt;flag&lt;/h2&gt;
+&lt;h2 id=&#34;flag&#34;&gt;flag&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://golang.org/pkg/flag/&#34;&gt;flag&lt;/a&gt; 패키지는 커맨드라인에서
-flag를 달아줄때 해당 값을 읽어올때 사용한다.
-만일 -h 옵션을 주면 도움말을 알아서 만들어준다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://golang.org/pkg/flag/&#34;&gt;flag&lt;/a&gt; 패키지는 커맨드라인에서 flag를 달아줄때 해당 값을 읽어올때 사용한다. 만일 -h 옵션을 주면 도움말을 알아서 만들어준다.&lt;/p&gt;
 
-&lt;h2 id=&#34;path-filepath:4a2955fb02c481cb9d3c315b615b797c&#34;&gt;path/filepath&lt;/h2&gt;
+&lt;h2 id=&#34;path-filepath&#34;&gt;path/filepath&lt;/h2&gt;
 
-&lt;p&gt;filepath를 파일 확장자를 발라내는데 사용했다.
-다만 확장자를 뺸 나머지 이름을 가져오는 방법이 없어
-slice 를 활용하여 아래처럼 사용했다.&lt;/p&gt;
+&lt;p&gt;filepath를 파일 확장자를 발라내는데 사용했다. 다만 확장자를 뺸 나머지 이름을 가져오는 방법이 없어 slice 를 활용하여 아래처럼 사용했다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;return p[0:len(p)-len(filepath.Ext(p))]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;slice:4a2955fb02c481cb9d3c315b615b797c&#34;&gt;slice&lt;/h2&gt;
+&lt;h2 id=&#34;slice&#34;&gt;slice&lt;/h2&gt;
 
 &lt;p&gt;목적확장자를 가진 파일과 대상 확장자를 가진 파일을 각각 slice에 담도록 했다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;    src_list := make([]string, 0)
-    dst_list := make([]string, 0)
+&lt;pre&gt;&lt;code&gt;src_list := make([]string, 0)
+dst_list := make([]string, 0)
 
-    for _, file := range files {
-        if filepath.Ext(file.Name()) == *src_ext {
-            src_list = append(src_list, file.Name())
-        }
-        if filepath.Ext(file.Name()) == *dst_ext {
-            dst_list = append(dst_list, file.Name())
-        }
+for _, file := range files {
+    if filepath.Ext(file.Name()) == *src_ext {
+        src_list = append(src_list, file.Name())
     }
+    if filepath.Ext(file.Name()) == *dst_ext {
+        dst_list = append(dst_list, file.Name())
+    }
+}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;rename:4a2955fb02c481cb9d3c315b615b797c&#34;&gt;rename&lt;/h2&gt;
+&lt;h2 id=&#34;rename&#34;&gt;rename&lt;/h2&gt;
 
 &lt;p&gt;os.Rename을 사용하면 파일명을 바꿀수 있다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;    for i, nm := range src_list {
-        fmt.Println(i, dst_list[i], &amp;quot;-&amp;gt;&amp;quot;, getFileName(nm) + filepath.Ext(dst_list[i]) )
-        os.Rename(dst_list[i], getFileName(nm) + filepath.Ext(dst_list[i]))
-    }
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>mandelbrot fractal golang</title>
-      <link>https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</link>
-      <pubDate>Sat, 28 May 2016 16:56:02 +0900</pubDate>
-      
-      <guid>https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/</guid>
-      <description>
-
-&lt;p&gt;go언어의 &lt;a href=&#34;https://golang.org/pkg/&#34;&gt;package&lt;/a&gt;문서를 보다보니
-&lt;a href=&#34;https://golang.org/pkg/image/&#34;&gt;image&lt;/a&gt;패키지를 보게 되었다.
-go언어 익숙해질겸 기존에 몇번 작성해보았던 Mandelbrot Fractal
-을 만들어 보기로 마음 먹었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/mandelbrot_fractal_1_600_400.png&#34; alt=&#34;mandelbrot fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;픽셀-콘트롤:1d83e155d6be62d461d335add2587317&#34;&gt;픽셀 콘트롤&lt;/h2&gt;
-
-&lt;p&gt;표준라이브러리의 &lt;a href=&#34;https://golang.org/pkg/image/&#34;&gt;image&lt;/a&gt;패키지를
-찾아보다보니 픽셀을 Set하는 것처럼 보이는 부분이 있었다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func (p *RGBA) Set(x, y int, c color.Color)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;RGBA 구조체에 특정 x,y좌표의 픽셀에 Color를 지정하는것으로 보인다.&lt;/p&gt;
-
-&lt;p&gt;그렇다면 몇가지 의문이 생긴다.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Jpeg, Png 같은 이미지로 저장을 할수 있는지&lt;/li&gt;
-&lt;li&gt;Color는 무엇인지&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;이미지-생성-및-저장:1d83e155d6be62d461d335add2587317&#34;&gt;이미지 생성 및 저장&lt;/h2&gt;
-
-&lt;p&gt;간단하게 이미지를 생성 및 저장해보기로 한다.
-png 포맷으로 저장하는 방법을 찾아보다가 보니
-image 패키지의 서브디렉토리에 Png가 있었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://golang.org/pkg/image/png/&#34;&gt;png패키지&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 Encode함수 정의를 보면&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func Encode(w io.Writer, m image.Image) error
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;첫번쨰 인자가 io.Writer 인것을 볼수 있다.
-이를 파일로 지정하면 얼추 되지 않을까?&lt;/p&gt;
-
-&lt;p&gt;저 Writer 를 클릭해보면&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type Writer interface {
-        Write(p []byte) (n int, err error)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Write 인터페이스가 구현되는 구조체? 이면 저 Encode 함수 인자로 넘길수
-있는것 같아보인다.
-그리고 &lt;a href=&#34;https://golang.org/pkg/os#File.Write&#34;&gt;os패키지&lt;/a&gt;
-에  File구조체의 Write 함수를 보자&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func (f *File) Write(b []byte) (n int, err error)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;그냥 저렇게 함수를 구현하면 위 인터페이스가 구현이 되는것인지
-의문이 든다. Java 같은 언어처럼 인터페이스를 상속하도록 지정할 필요가 없는것인지
-이는 실제로 코드를 짜서 확인해보도록 한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;package main
-
-import(
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;image&amp;quot;
-    &amp;quot;image/png&amp;quot;
-    &amp;quot;os&amp;quot;
-)
-
-func main(){
-
-    fmt.Println(&amp;quot;step 1&amp;quot;)
-
-    // 이미지생성
-    img := image.NewRGBA(image.Rect(0,0,300,200))
-
-    // 파일생성 및 open
-    f, f_err := os.Create(&amp;quot;test.png&amp;quot;)
-    if f_err != nil {
-        os.Exit(1)
-    }
-
-    png_err := png.Encode(f, img)
-    if png_err != nil {
-        os.Exit(1)
-    }
-
-    // 파일 닫기
-    f.Close()
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;테스트용으로 짠코드이다. 이를 수행하면 뭔가 파일이 생성됨을 알수 있다.
-결국 File 구조체는 Write 함수를 Writer 인터페이스 형식에 맞게 구현했기 때문에 인터페이스가 구현되었고 png.Encode의 첫번쨰 인자로 집어넣을수 있다.&lt;/p&gt;
-
-&lt;p&gt;생성된 png파일은 열어보면 아무것도 보이지 않는다.
-실제로 맞게 생성이 된것인지 확인 및
-img.Set 함수가 제대로 동작을 하는건지 확인하기 위해
-직선을 그어서 확인해보도록 한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// 이미지생성
-img := image.NewRGBA(image.Rect(0,0,300,200))
-
-// test draw
-for i := 0; i &amp;lt; 100; i++ {
-    img.Set(50 + i, 100, color.RGBA{255,0,0,255})
-}
-//... 코드생략
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/test_line.png&#34; alt=&#34;test line&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;빨간선이 그어졌다!&lt;/p&gt;
-
-&lt;p&gt;RGBA 임을 생각해보면 A = Alpha 값임을 생각해보면 된다.
-즉 그냥 이미지를 생성하면 투명한상태의 이미지파일이 생성되는 것이다.&lt;/p&gt;
-
-&lt;p&gt;여기서 color는 &lt;a href=&#34;https://golang.org/pkg/image/color/&#34;&gt;image/color 패키지&lt;/a&gt;
-의 인터페이스이다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type Color interface {
-        // RGBA returns the alpha-premultiplied red, green, blue and alpha values
-        // for the color. Each value ranges within [0, 0xffff], but is represented
-        // by a uint32 so that multiplying by a blend factor up to 0xffff will not
-        // overflow.
-        //
-        // An alpha-premultiplied color component c has been scaled by alpha (a),
-        // so has valid values 0 &amp;lt;= c &amp;lt;= a.
-        RGBA() (r, g, b, a uint32)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;위의 Writer와 비슷하게 RGBA 함수가 구현된 type이면 인자로 넘길수 있는것이다.&lt;/p&gt;
-
-&lt;p&gt;다른 표준라이브러리들도 이와 유사한 방식으로 이해하면 될것 같은 느낌이 든다.&lt;/p&gt;
-
-&lt;h2 id=&#34;에러-처리:1d83e155d6be62d461d335add2587317&#34;&gt;에러 처리&lt;/h2&gt;
-
-&lt;p&gt;os.Create 함수를 사용할때 보면 f_err 를 리턴받아 에러여부를 확인했다.
-go언어는 try-catch 매커니즘이 없는듯 하다.
-커스텀 에러처리를 할때는 어떻게 할지 궁금해서 찾아보니
-역시나 인터페이스이다&amp;hellip; &lt;a href=&#34;https://golang.org/pkg/builtin/#error&#34;&gt;error정의&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type error interface {
-        Error() string
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;그렇다면 내가 커스텀에러 타입을 정의한뒤에 Error() 를 구현하여
-error 를 리턴하게 하면 되는것이다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// simple error handling
-type errorString struct {
-    at string
-    msg string
-}
-func (e *errorString) Error() string {
-    return fmt.Sprintf(&amp;quot;at %s : %s Error&amp;quot;, e.at, e.msg)
-}
-
-func errTest () error {
-    return &amp;amp;errorString {&amp;quot;at&amp;quot;, &amp;quot;errTest&amp;quot;}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;위와같이 정의하면 내가 정의한 errorString 이라는 타입은 Error 함수를 구현하였다.
-그래서 errTest()함수의 리턴타입은 error 인터페이스를 구현하였으니
-리턴할때 해당타입을 사용할수 있다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;err := errTest()
-if err != nil {
-    fmt.Println(err)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;이미지초기화:1d83e155d6be62d461d335add2587317&#34;&gt;이미지초기화&lt;/h2&gt;
-
-&lt;p&gt;이미지를 생성할때 위와같이 하면 투명하게 되어
-검정색이든 하얀색이든 기본색으로 클리어해주는 방식을
-찾아볼 필요가 생겼다.&lt;/p&gt;
-
-&lt;p&gt;package를 뒤져보고 구글링을 해보니
-&lt;a href=&#34;https://golang.org/pkg/image/draw/&#34;&gt;image/draw 패키지&lt;/a&gt;
-Draw 함수와
-image.Uniform 타입을 활용하면 되는것 같다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{c}, image.ZP, draw.Src )
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Uniform의 c 값은 Color이다.&lt;/p&gt;
-
-&lt;h2 id=&#34;기본골격-정의:1d83e155d6be62d461d335add2587317&#34;&gt;기본골격 정의&lt;/h2&gt;
-
-&lt;p&gt;위와 같이 에러 처리및 파일 저장, 이미지 초기화와 같은 것들을 이용하여
-골격을 정의하여 이미지 파일을 생성하도록 한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// 파일저장함수
-func saveImg(img *image.RGBA, fname string) error {
-    f, fe := os.Create(fname)
-    if fe != nil {
-        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;file Create&amp;quot;}
-    }
-
-    pe := png.Encode(f, img)
-    if pe != nil {
-        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;png Encode&amp;quot;}    
-    }
-
-    f.Close()
-    return nil
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;이미지와 파일이름을 받아 저장할수 있도록 함수를 정의하고
-아까 정의한 커스텀 에러 처리를 응용한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func main(){
-
-    // 기본 이미지 사용 
-    img := image.NewRGBA(image.Rect(0,0,600,400))
-
-    // 초기화 (black)
-    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{&amp;amp;color.RGBA{0,0,0,255}}, image.ZP, draw.Src)
-
-    // 그리기
-
-
-    // 파일저장
-    save_err := saveImg(img, &amp;quot;out.png&amp;quot;)
-    if save_err != nil {
-        fmt.Println(save_err)
-        os.Exit(1)
-    }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;일단 위의 소스를 돌려보면 검정색의 그림파일이 생성된다.&lt;/p&gt;
-
-&lt;h2 id=&#34;첫번째-프랙탈:1d83e155d6be62d461d335add2587317&#34;&gt;첫번째 프랙탈&lt;/h2&gt;
-
-&lt;p&gt;이제 png 파일이 생성되며 중간에 픽셀값을 찍어서 그림파일을 생성할수
-있다.
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Mandelbrot_set&#34;&gt;Mandelbrot Fractal&lt;/a&gt;
-복소평면에서 Zn+1 = Zn^2 + c 에서 얼마나 빨리 발산하는지에 따른 c값의 집합이다.&lt;/p&gt;
-
-&lt;p&gt;흔히 프랙탈 이미지는 점화식을 반복에 의해 진행시켜나가면서
-대부분 256단계에 발산을 하는지 보고 256 이하 값을 선택하여 밝기
-및 색상을 선택한다.&lt;/p&gt;
-
-&lt;p&gt;프랙탈의 범위는 실수부 -2 ~ 1, 허수부 -1 ~ 1 사이값이다.
-이미지를 생성하기 위해서는 모든 각각의 픽셀위치의 좌표를 구한뒤
-얼마나 빨리 발산하는지 판별하여 그 값을 색상으로 지정하면 된다.&lt;/p&gt;
-
-&lt;p&gt;프랙탈은 나중에 줌인, 줌아웃의 기능을 위해 뷰 범위를 지정할 필요가 있다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type FractalRect struct {
-    X, Y ,W, H float64
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;발산단계를 구하기 위해 아래와 같은 함수를 선언한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func getLevel(rect *FractalRect, p *image.Point, w, h int) int {
-    var cX float64 = rect.X + float64(p.X) * (rect.W / float64(w))
-    var cY float64 = rect.Y + float64(p.Y) * (rect.H / float64(h))
-    X := cX
-    Y := cY
-
-    cnt := 256
-    for i:=0; i &amp;lt; 256; i++ {
-        X2 := X * X
-        Y2 := Y * Y
-        if X2 + Y2 &amp;gt; 4.0 {
-            cnt = i
-            break
-        }
-        nX := X2 - Y2 + cX
-        nY := 2 * X * Y + cY
-        X = nX
-        Y = nY
-    }
-    return cnt
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;보고자 하는 좌표를 지정한뒤
-이미지의 좌표 Point 및 이미지의 Width, Height 를 구한다.
-결국 이미지의 어떤 픽셀의 위치에 해당되는 실수 좌표를 구한뒤에
-이를 기반으로 256 단계 이내에 얼마나 빨리 발산하는지 확인하는 것이다.&lt;/p&gt;
-
-&lt;p&gt;모든 픽셀에 대해서 위 함수를 적용하여 밝기를 지정하도록
-그리기 함수를 선언한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func drawFractal(rect *FractalRect, img *image.RGBA) {
-    width := img.Bounds().Max.X
-    height := img.Bounds().Max.Y
-
-    for i:=0; i &amp;lt; height; i++ {
-        for j:=0; j &amp;lt; width; j++{
-            level := uint8(getLevel(rect, &amp;amp;image.Point{j,i}, width, height))
-            img.Set(j, i, &amp;amp;color.RGBA{level,level,level,255})
-        }
-    }
-} 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;그러면 아까 만들어 뒀던 골격에 적용하면&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func main(){
-
-    fmt.Println(&amp;quot;step 1&amp;quot;)
-
-    // 기본 이미지 사용 
-    img := image.NewRGBA(image.Rect(0,0,600,400))
-
-    // 초기화 (black)
-    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{&amp;amp;color.RGBA{0,0,0,255}}, image.ZP, draw.Src)
-
-    // 그리기
-    drawFractal(&amp;amp;FractalRect{-2,-1,3,2}, img)
-
-    // 파일저장
-    save_err := saveImg(img, &amp;quot;out.png&amp;quot;)
-    if save_err != nil {
-        fmt.Println(save_err)
-        os.Exit(1)
-    }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;그러면 아래와 같은 첫번쨰 프랙탈 이미지가 나온다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/fractal_1.png&#34; alt=&#34;first fractal&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;색상입히기:1d83e155d6be62d461d335add2587317&#34;&gt;색상입히기&lt;/h2&gt;
-
-&lt;p&gt;프랙탈을 좀더 보기좋게 만들기 위해서 색상을 입히기로 한다.
-색상을 칠하는 방법은 여러가지가 있지만
-팔레트를 만들어서 레벨에 따라 선택하도록 만들것이다.&lt;/p&gt;
-
-&lt;p&gt;4가지의 색상을 지정한뒤 이를 256단계에 걸쳐서 변화하도록
-보간하는 color 함수를 정의한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func getColor(level int) color.RGBA {
-    var color1, color2 color.RGBA
-    // 256 -&amp;gt; 128
-    pos := math.Mod(float64(level), 128.0) / 128.0
-
-    if level &amp;gt;= 256 {
-        return color.RGBA{0,0,0,255}
-    }
-
-    switch {
-        case pos &amp;lt; 0.25:
-            color1 = color.RGBA{0,0,100,0}
-            color2 = color.RGBA{255,255,255,25}
-        case pos &amp;lt; 0.5:
-            color1 = color.RGBA{255,255,255,25}
-            color2 = color.RGBA{255,128,0,50}
-        case pos &amp;lt; 0.75:
-            color1 = color.RGBA{255,128,0,50}
-            color2 = color.RGBA{0,0,0,75}
-        case pos &amp;lt; 1.0:
-            color1 = color.RGBA{0,0,0,75}
-            color2 = color.RGBA{0,0,100,100}
-    }
-    // alpha 값을 t위치 산정을 위해 사용
-    t := 1.0 * (pos - float64(color1.A)/100.0) / (float64(color2.A)/100.0 - float64(color1.A)/100.0)
-
-    r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
-    g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
-    b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
-
-    return color.RGBA{r,g,b,255}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;이를 사용하여 팔레트를 생성하고 픽셀을 찍을경우
-팔레트를 사용하도록 그리기 함수를 변경한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func drawFractal(rect *FractalRect, img *image.RGBA) {
-
-    // 팔레트 생성
-    palette := make([]color.RGBA, 257) // 256 단계 넘어가는 경우
-
-    for i:=0; i &amp;lt; len(palette); i++ {
-        palette[i] = getColor(i)
-    }
-
-    // 모든 픽셀 순회
-    width := img.Bounds().Max.X
-    height := img.Bounds().Max.Y
-
-    for i:=0; i &amp;lt; height; i++ {
-        for j:=0; j &amp;lt; width; j++{
-            level := getLevel(rect, &amp;amp;image.Point{j,i}, width, height)
-            img.Set(j, i, &amp;amp;palette[level])
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/fractal_2.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/fractal_2_600_400.png&#34; alt=&#34;color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;계산현상-없애기:1d83e155d6be62d461d335add2587317&#34;&gt;계산현상 없애기&lt;/h2&gt;
-
-&lt;p&gt;smooth coloring 과 관련한 부분이다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func getLevel(rect *FractalRect, p *image.Point, w, h int) (int, float64) {
-    var cX float64 = rect.X + float64(p.X) * (rect.W / float64(w))
-    var cY float64 = rect.Y + float64(p.Y) * (rect.H / float64(h))
-    X := cX
-    Y := cY
-
-    cnt := 256
-    for i:=0; i &amp;lt; 256; i++ {
-        X2 := X * X
-        Y2 := Y * Y
-        if X2 + Y2 &amp;gt; 4.0 {
-            cnt = i
-            break
-        }
-        nX := X2 - Y2 + cX
-        nY := 2 * X * Y + cY
-        X = nX
-        Y = nY
-    }
-    // t 값을 리턴하도록 수정함
-    zn := math.Sqrt(X*X + Y*Y)
-    nu := math.Log(math.Log(zn) / math.Log(2.0)) / math.Log(2.0)
-    t := 1.0 - nu
-    return cnt, t
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;해당 t값을 가지고 팔레트를 구할때처럼
-보간하여 색상을 지정한다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func drawFractal(rect *FractalRect, img *image.RGBA) {
-
-    // 팔레트 생성
-    palette := make([]color.RGBA, 258) // 256 단계 넘어가는 경우
-
-    for i:=0; i &amp;lt; len(palette); i++ {
-        palette[i] = getColor(i)
-    }
-
-    // 모든 픽셀 순회
-    width := img.Bounds().Max.X
-    height := img.Bounds().Max.Y
-
-    for i:=0; i &amp;lt; height; i++ {
-        for j:=0; j &amp;lt; width; j++{
-            level,t := getLevel(rect, &amp;amp;image.Point{j,i}, width, height)
-            color1 := &amp;amp;palette[level]
-            color2 := &amp;amp;palette[level+1]
-            r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
-            g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
-            b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
-
-            img.Set(j, i, &amp;amp;color.RGBA{r,g,b,255})
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;level+1 처리를 위해 팔레트 크기를 하나 더 늘렸다.
-모든것을 적용한 최종 결과는 다음과 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/fractal_3.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/fractal_3_600_400.png&#34; alt=&#34;smooth color fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;후기:1d83e155d6be62d461d335add2587317&#34;&gt;후기&lt;/h2&gt;
-
-&lt;p&gt;프랙탈의 위력은 줌인에 있다. 지금은 좌표가 -2~1, -1~1 사이의
-모양을 그렸지만 실은 부분부분을 계속적으로 확대해 나갈때
-프랙탈의 다채로운 모양이 나온다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://ippoeyeslhw.github.io/static/img/zoom_fractal.png&#34;&gt;&lt;img src=&#34;https://ippoeyeslhw.github.io/static/img/zoom_fractal_600_400.png&#34; alt=&#34;zoom fractal&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;image패키지와 웹서버를 구현하여 확대할 좌표를 구하고
-이를 보여주는 식으로 계속 확대해 나가는 것을 구현해봐도 괜찮을 것이다.&lt;/p&gt;
-
-&lt;p&gt;go언어는 goroutine을 사용하여 thread 사용하기 쉽다고 한다.
-CPU 지정하고 이를 활용하여 병렬 처리를 해도 괜찮을 것이다.&lt;/p&gt;
-
-&lt;p&gt;이 프로그램을 짜보면서 go언어의 표준라이브러리들의
-인자를 넘기는 방법에 대한 힌트를 얻었다.
-인터페이스를 지정하면 이를 구현하는 타입은 어떤 타입이든지
-산관없이 넘길수 있어 커스텀 타입을 구현하여 넘길수 있는것을
-가능하게 해주는것 같다.&lt;/p&gt;
-
-&lt;p&gt;이 글을 쓰면서 작성한 프로그램 소스를 아래에 제시하며 마친다.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;package main
-
-import(
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;image&amp;quot;
-    &amp;quot;image/png&amp;quot;
-    &amp;quot;image/color&amp;quot;
-    &amp;quot;image/draw&amp;quot;
-    &amp;quot;math&amp;quot;
-    &amp;quot;os&amp;quot;
-)
-
-// simple error handling
-type errorString struct {
-    at string
-    msg string
-}
-func (e *errorString) Error() string {
-    return fmt.Sprintf(&amp;quot;at %s : %s Error&amp;quot;, e.at, e.msg)
-}
-
-type FractalRect struct {
-    X, Y ,W, H float64
-}
-
-func getLevel(rect *FractalRect, p *image.Point, w, h int) (int, float64) {
-    var cX float64 = rect.X + float64(p.X) * (rect.W / float64(w))
-    var cY float64 = rect.Y + float64(p.Y) * (rect.H / float64(h))
-    X := cX
-    Y := cY
-
-    cnt := 256
-    for i:=0; i &amp;lt; 256; i++ {
-        X2 := X * X
-        Y2 := Y * Y
-        if X2 + Y2 &amp;gt; 4.0 {
-            cnt = i
-            break
-        }
-        nX := X2 - Y2 + cX
-        nY := 2 * X * Y + cY
-        X = nX
-        Y = nY
-    }
-    zn := math.Sqrt(X*X + Y*Y)
-    nu := math.Log(math.Log(zn) / math.Log(2.0)) / math.Log(2.0)
-    t := 1.0 - nu
-    return cnt, t
-}
-
-
-// 파일저장함수
-func saveImg(img *image.RGBA, fname string) error {
-    f, fe := os.Create(fname)
-    if fe != nil {
-        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;file Create&amp;quot;}
-    }
-
-    pe := png.Encode(f, img)
-    if pe != nil {
-        return &amp;amp;errorString{&amp;quot;saveImg&amp;quot;, &amp;quot;png Encode&amp;quot;}    
-    }
-
-    f.Close()
-    return nil
-}
-func getColor(level int) color.RGBA {
-    var color1, color2 color.RGBA
-    // 256 -&amp;gt; 128
-    pos := math.Mod(float64(level), 128.0) / 128.0
-
-    if level &amp;gt;= 256 {
-        return color.RGBA{0,0,0,255}
-    }
-
-    switch {
-        case pos &amp;lt; 0.25:
-            color1 = color.RGBA{0,0,100,0}
-            color2 = color.RGBA{255,255,255,25}
-        case pos &amp;lt; 0.5:
-            color1 = color.RGBA{255,255,255,25}
-            color2 = color.RGBA{255,128,0,50}
-        case pos &amp;lt; 0.75:
-            color1 = color.RGBA{255,128,0,50}
-            color2 = color.RGBA{0,0,0,75}
-        case pos &amp;lt; 1.0:
-            color1 = color.RGBA{0,0,0,75}
-            color2 = color.RGBA{0,0,100,100}
-    }
-    // alpha 값을 t위치 산정을 위해 사용
-    t := 1.0 * (pos - float64(color1.A)/100.0) / (float64(color2.A)/100.0 - float64(color1.A)/100.0)
-
-    r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
-    g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
-    b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
-
-    return color.RGBA{r,g,b,255}
-}
-
-func drawFractal(rect *FractalRect, img *image.RGBA) {
-
-    // 팔레트 생성
-    palette := make([]color.RGBA, 258) // 256 단계 넘어가는 경우
-
-    for i:=0; i &amp;lt; len(palette); i++ {
-        palette[i] = getColor(i)
-    }
-
-    // 모든 픽셀 순회
-    width := img.Bounds().Max.X
-    height := img.Bounds().Max.Y
-
-    for i:=0; i &amp;lt; height; i++ {
-        for j:=0; j &amp;lt; width; j++{
-            level,t := getLevel(rect, &amp;amp;image.Point{j,i}, width, height)
-            color1 := &amp;amp;palette[level]
-            color2 := &amp;amp;palette[level+1]
-            r := uint8((1.0 - t) * float64(color1.R) + t * float64(color2.R))
-            g := uint8((1.0 - t) * float64(color1.G) + t * float64(color2.G))
-            b := uint8((1.0 - t) * float64(color1.B) + t * float64(color2.B))
-
-            img.Set(j, i, &amp;amp;color.RGBA{r,g,b,255})
-        }
-    }
-}
-
-func main(){
-
-    fmt.Println(&amp;quot;step 1&amp;quot;)
-
-    // 기본 이미지 사용 
-    img := image.NewRGBA(image.Rect(0,0,3000,2000))
-
-    // 초기화 (black)
-    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{&amp;amp;color.RGBA{0,0,0,255}}, image.ZP, draw.Src)
-
-    // 그리기
-    drawFractal(&amp;amp;FractalRect{-2,-1,3,2}, img)
-    //drawFractal(&amp;amp;FractalRect{-1.4,-0.4,0.6,0.4}, img)
-
-    // 파일저장
-    save_err := saveImg(img, &amp;quot;out.png&amp;quot;)
-    if save_err != nil {
-        fmt.Println(save_err)
-        os.Exit(1)
-    }
-
+&lt;pre&gt;&lt;code&gt;for i, nm := range src_list {
+    fmt.Println(i, dst_list[i], &amp;quot;-&amp;gt;&amp;quot;, getFileName(nm) + filepath.Ext(dst_list[i]) )
+    os.Rename(dst_list[i], getFileName(nm) + filepath.Ext(dst_list[i]))
 }
 &lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -1609,23 +923,18 @@ func main(){
     <item>
       <title>hello hugo</title>
       <link>https://ippoeyeslhw.github.io/post/hello-hugo/</link>
-      <pubDate>Thu, 26 May 2016 23:08:11 +0900</pubDate>
+      <pubDate>Tue, 24 Jan 2017 21:27:13 +0900</pubDate>
       
       <guid>https://ippoeyeslhw.github.io/post/hello-hugo/</guid>
       <description>
 
-&lt;p&gt;정적블로그를 하고 싶다는 생각이 들었다.
-최근 &lt;a href=&#34;https://golang.org/&#34;&gt;Go언어&lt;/a&gt;를 하다보니 자연스럽게
-&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;를 알게 되었고
-정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다.
-그래서 이제 블로그를 정적블로그로 만들기로 했다.&lt;/p&gt;
+&lt;p&gt;정적블로그를 하고 싶다는 생각이 들었다. 최근 Go언어를 하다보니 자연스럽게 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;를 알게 되었고 정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다. 그래서 이제 블로그를 정적블로그로 만들기로 했다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;설치:559804b0a39dd16d2d1d1238c597145a&#34;&gt;설치&lt;/h2&gt;
+&lt;h2 id=&#34;설치&#34;&gt;설치&lt;/h2&gt;
 
-&lt;p&gt;설치는 &lt;a href=&#34;https://gohugo.io/overview/installing/&#34;&gt;Hugo installing&lt;/a&gt;을 참조하면 된다.
-바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.&lt;/p&gt;
+&lt;p&gt;설치는 &lt;a href=&#34;https://gohugo.io/overview/installing/&#34;&gt;Hugo installing&lt;/a&gt;을 참조하면 된다. 바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.&lt;/p&gt;
 
 &lt;p&gt;나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다.&lt;/p&gt;
 
@@ -1633,31 +942,25 @@ func main(){
 C:\hugo\sites\
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록
-하려고 구성하였다.&lt;/p&gt;
+&lt;p&gt;실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록 하려고 구성하였다.&lt;/p&gt;
 
-&lt;h2 id=&#34;블로그구성하기:559804b0a39dd16d2d1d1238c597145a&#34;&gt;블로그구성하기&lt;/h2&gt;
+&lt;h2 id=&#34;블로그구성하기&#34;&gt;블로그구성하기&lt;/h2&gt;
 
-&lt;p&gt;Hugo의 &lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt; 문서를 보게되면
-만들고자하는 사이트를 만드는 명령어가 나온다.
-일단 sites 폴더로 이동한뒤에 아래 명령을 수행한다.&lt;/p&gt;
+&lt;p&gt;Hugo의 &lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt; 문서를 보게되면 만들고자하는 사이트를 만드는 명령어가 나온다. 일단 sites 폴더로 이동한뒤에 아래 명령을 수행한다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ hugo new site blog
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;여러개의 폴더와 문서가 생성된것을 볼수 있다.&lt;/p&gt;
 
-&lt;h2 id=&#34;테마추가하기:559804b0a39dd16d2d1d1238c597145a&#34;&gt;테마추가하기&lt;/h2&gt;
+&lt;h2 id=&#34;테마추가하기&#34;&gt;테마추가하기&lt;/h2&gt;
 
-&lt;p&gt;Hugo 사이트에서 &lt;a href=&#34;http://themes.gohugo.io/&#34;&gt;Theme Showcase&lt;/a&gt;를 눌러보면 여러 테마가 나온다.
-맘에드는 테마를 골라서 설치하면 된다. 나는 윈도우 기준으로 설치하고 있으므로
-테마 파일을 받은뒤에&lt;/p&gt;
+&lt;p&gt;Hugo 사이트에서 &lt;a href=&#34;http://themes.gohugo.io/&#34;&gt;Theme Showcase&lt;/a&gt;를 눌러보면 여러 테마가 나온다. 맘에드는 테마를 골라서 설치하면 된다. 나는 윈도우 기준으로 설치하고 있으므로 테마 파일을 받은뒤에&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;C:\hugo\sites\blog\themes
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;위 폴더를 생상한뒤에 테마명으로 폴더를 생성하여 받은 파일을 풀어놓았다.
-그뒤에 중요한 작업이 있는데&lt;/p&gt;
+&lt;p&gt;위 폴더를 생상한뒤에 테마명으로 폴더를 생성하여 받은 파일을 풀어놓았다. 그뒤에 중요한 작업이 있는데&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;C:\hugo\sites\blog\config.toml
 &lt;/code&gt;&lt;/pre&gt;
@@ -1669,24 +972,20 @@ C:\hugo\sites\
 
 &lt;p&gt;이 내용이 추가가 되어야 한다.&lt;/p&gt;
 
-&lt;p&gt;그리고 테마를 고르면 사용방법이 나오는데 위 config 파일에 테마 설정을 작성해 넣는식으로
-사용한다. 이는 테마마다 사용법이 다르다.&lt;/p&gt;
+&lt;p&gt;그리고 테마를 고르면 사용방법이 나오는데 위 config 파일에 테마 설정을 작성해 넣는식으로 사용한다. 이는 테마마다 사용법이 다르다.&lt;/p&gt;
 
-&lt;h2 id=&#34;post-쓰기:559804b0a39dd16d2d1d1238c597145a&#34;&gt;Post 쓰기&lt;/h2&gt;
+&lt;h2 id=&#34;post-쓰기&#34;&gt;Post 쓰기&lt;/h2&gt;
 
-&lt;p&gt;hugo에서는 Post를 쓸때 Markdown 파일을 작성하도록 한다. 이글도 Markdown으로 쓰고 있다.
-&lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt; 문서를 보면 Step3에
-포스트를 작성하는 법이 나온다.&lt;/p&gt;
+&lt;p&gt;hugo에서는 Post를 쓸때 Markdown 파일을 작성하도록 한다. 이글도 Markdown으로 쓰고 있다. &lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt; 문서를 보면 Step3에 포스트를 작성하는 법이 나온다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$hugo new post/first-post.md
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;이 명령을 수행하고 나면 post라는 폴더와 위 이름의 .md 파일이 생성되어 있음을 확인할수 있다.&lt;/p&gt;
 
-&lt;h2 id=&#34;정적페이지-생성:559804b0a39dd16d2d1d1238c597145a&#34;&gt;정적페이지 생성&lt;/h2&gt;
+&lt;h2 id=&#34;정적페이지-생성&#34;&gt;정적페이지 생성&lt;/h2&gt;
 
-&lt;p&gt;md파일을 작성할때 Draft는 초고를 의미하므로 기본적으로 true로 되어있다.
-이를 False로 바꾼뒤에 blog 폴더하에서&lt;/p&gt;
+&lt;p&gt;md파일을 작성할때 Draft는 초고를 의미하므로 기본적으로 true로 되어있다. 이를 False로 바꾼뒤에 blog 폴더하에서&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ hugo
 &lt;/code&gt;&lt;/pre&gt;
@@ -1696,19 +995,16 @@ C:\hugo\sites\
 &lt;pre&gt;&lt;code&gt;C:\hugo\sites\blog\public 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;위 폴더에 각종파일들이 생성된다. 이것들이 정적페이지들이다.
-이를 호스팅하는 곳에 올리면 된다.
-개인적으로는 github의 gh-pages 브랜치를 사용하고 있다.&lt;/p&gt;
+&lt;p&gt;위 폴더에 각종파일들이 생성된다. 이것들이 정적페이지들이다. 이를 호스팅하는 곳에 올리면 된다. 개인적으로는 github의 gh-pages 브랜치를 사용하고 있다.&lt;/p&gt;
 
-&lt;h2 id=&#34;로컬에서-확인:559804b0a39dd16d2d1d1238c597145a&#34;&gt;로컬에서 확인&lt;/h2&gt;
+&lt;h2 id=&#34;로컬에서-확인&#34;&gt;로컬에서 확인&lt;/h2&gt;
 
 &lt;p&gt;로컬에서 잠시 웹서버를 올려서 어떻게 보이는지 확인할수 있다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ hugo server
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;blog 폴더 안에서 위 명령을 실행하면 웹서버가 뜬다. localhost:1313/blog
-이런식으로 접근하면 된다.&lt;/p&gt;
+&lt;p&gt;blog 폴더 안에서 위 명령을 실행하면 웹서버가 뜬다. localhost:1313/blog 이런식으로 접근하면 된다.&lt;/p&gt;
 
 &lt;p&gt;Draft 버젼 또한 보고싶은 경우가 있다. 이때는 -D 옵션을 준다.&lt;/p&gt;
 
@@ -1717,14 +1013,7 @@ C:\hugo\sites\
 
 &lt;hr /&gt;
 
-&lt;p&gt;어찌보면 이렇게 블로그를 생성하는것은 불편하기도 한다.
-명령어를 쳐서 파일을 만들고
-폴더를 만든뒤에 집어넣어야 되고
-생성을 시킨뒤에 그걸 또 호스팅 서버에 올려야 하기도 한다.
-하지만 이렇게 만들어 놓으면 뭔가 명확하고 확실한 느낌이 난다.
-DB와도 상관이 없고
-서버에 부담없이 깔끔하다.
-다양한 기능이 필요가 없기에 이런 정적페이지 생성기가 유용해보인다.&lt;/p&gt;
+&lt;p&gt;어찌보면 이렇게 블로그를 생성하는것은 불편하기도 한다. 명령어를 쳐서 파일을 만들고 폴더를 만든뒤에 집어넣어야 되고 생성을 시킨뒤에 그걸 또 호스팅 서버에 올려야 하기도 한다. 하지만 이렇게 만들어 놓으면 뭔가 명확하고 확실한 느낌이 난다. DB와도 상관이 없고 서버에 부담없이 깔끔하다. 다양한 기능이 필요가 없기에 이런 정적페이지 생성기가 유용해보인다.&lt;/p&gt;
 </description>
     </item>
     
