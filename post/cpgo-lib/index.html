@@ -1,225 +1,418 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-kr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <base href="https://ippoeyeslhw.github.io">
+    
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Go언어로 작성한 사이보스플러스 Lib">
-  <meta name="generator" content="Hugo 0.15" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com/">
 
-  <title>cpgo lib &middot; ItGae Blog</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400' rel='stylesheet' type='text/css'>
 
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-  
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <link rel="shortcut icon" href="https://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://ippoeyeslhw.github.io/">ItGae</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
+    <title>
       
       
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+         cpgo lib 
       
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
-      
-        </li>
-      
-    </ul>
+    </title>
+    <link rel="canonical" href="https://ippoeyeslhw.github.io/post/cpgo-lib/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 5px 0 10px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">lhw_itguy</a></h1>
+      <ul>
+        
+          <li><a href="https://github.com/ippoeyeslhw">Github</a></li>
+        
+          <li><a href="https://www.instagram.com/lhw_itguy/">Instagram</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> cpgo lib </h1>
+
+  <div id=sub-header>
+    January 2017 · 2 minute read
   </div>
 
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
+  <div class="entry-content">
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&copy; 2016. All rights reserved.</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>cpgo lib</h1>
-  <h2>Go언어로 작성한 사이보스플러스 Lib</h2>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>03 Aug 2016, 23:23</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://ippoeyeslhw.github.io/topics/golang">golang</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/cybosplus">cybosplus</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/%EC%A6%9D%EA%B6%8Capi">증권API</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  
-
-<p>저번에 올렸던 <a href="http://ippoeyeslhw.github.io/blog/post/golang-with-cybosplus/">포스트</a>
-에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다.
-이를 사용하여 Wrapper 라이브러를 작성하여 Github에 <a href="https://github.com/ippoeyeslhw/cpgo">https://github.com/ippoeyeslhw/cpgo</a>
-프로젝트를 올렸다.</p>
+<p>저번에 올렸던 <a href="/post/golang-with-cybosplus">포스트golang-with-cybosplus</a> 에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다. 이를 사용하여 Wrapper 라이브러를 작성하여 Github에 <a href="https://github.com/ippoeyeslhw/cpgo">https://github.com/ippoeyeslhw/cpgo</a> 프로젝트를 올렸다.</p>
 
 <hr />
 
-<h2 id="파이썬과-비교:f56708c2cf74bb72567b1415e5febd47">파이썬과 비교</h2>
+<h2 id="파이썬과-비교">파이썬과 비교</h2>
 
 <p>파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다.</p>
 
-<h4 id="객체생성:f56708c2cf74bb72567b1415e5febd47">객체생성</h4>
+<h2 id="객체생성">객체생성</h2>
 
 <p>객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.</p>
 
@@ -235,7 +428,7 @@ defer stkmst.Release()
 
 <p>파이썬과는 다르게 COM을 다루고 있다는 느낌을 줄이려고 했다.</p>
 
-<h4 id="이벤트:f56708c2cf74bb72567b1415e5febd47">이벤트</h4>
+<h2 id="이벤트">이벤트</h2>
 
 <p>이벤트를 처리하기위해 이벤트 핸들러는 Receiver 인터페이스를 구현하도록 하였다.</p>
 
@@ -250,7 +443,7 @@ defer stkmst.Release()
 }
 
 func (t *RqTestStruct) Received(c *CpClass) {
-	// pass
+    // pass
 }
 </code></pre>
 
@@ -274,11 +467,11 @@ cpobj.BindEvent(evnt)
 <pre><code>win32com.client.WithEvents(cpobj, CpSubPubEventHandler)
 </code></pre>
 
-<h4 id="이벤트-수신대기:f56708c2cf74bb72567b1415e5febd47">이벤트 수신대기</h4>
+<p>cpgo는 객체를 만들어서 바인딩하는 것이고 파이썬은 클래스를 등록하는 것이다.</p>
 
-<p>go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다.
-따라서 이를 구현해준뒤에 pythoncom 에 있는
-PumpWaitingMessages 함수를 유사하게 구현하였다.</p>
+<h2 id="이벤트-수신대기">이벤트 수신대기</h2>
+
+<p>go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다. 따라서 이를 구현해준뒤에 pythoncom 에 있는 PumpWaitingMessages 함수를 유사하게 구현하였다.</p>
 
 <pre><code>for  {
     cpgo.PumpWaitingMessages()
@@ -293,45 +486,57 @@ PumpWaitingMessages 함수를 유사하게 구현하였다.</p>
     time.sleep(0.001)
 </code></pre>
 
+<h2 id="이벤트-수신의-문제">이벤트 수신의 문제</h2>
 
+<p>주식 실시간 호가를 받아오기 위해 CpDib.StockJpBid를 사용하여 실시간으로 호가를 받아오고 있었는데 특이한 현상을 발견했다.</p>
+
+<p>개발했던 PC에서는 잘 되었지만 다른PC에서 실시간 이벤트가 잘 수신되지 않았다.</p>
+
+<p>실시간으로 잘 받아오고 있다가 어느순간에 이벤트 수신을 하지 못하는 현상이였다. 그러다가 갑자기 또 수신을 쏟아지듯 받다가 못받다가 반복을 하였다. COM 서버 디버깅이 힘든 상황이라 원인 찾기가 힘들었다.</p>
+
+<h2 id="go-scheduler">Go-Scheduler</h2>
+
+<p>원인으로 OS thread가 중간에 교체가 되는것이 아닌가 하여 검색을 해보니
+golang 에서는 go scheduler 가 있어서 M개의 OS-threads 와 N개의 goroutines
+을 적당하게 관리해준다고 한다.</p>
+
+<p>COM 에서는 이벤트를 맺은 윈도우 스레드에만 메시지를 전달하는데 만일
+go scheduler 가 중간에 os-thread 를 바꿔버린다면 이벤트 수신이 중간에 끊기게
+되는 것이다.</p>
+
+<p>따라서 이를 해결하기 위해 CreateThread 메서드를 추가했다.</p>
+
+<pre><code>type Background func(uintptr) uintptr
+</code></pre>
+
+<p>Background 인터페이스는 uintptr 을 인자로 받아 uintptr을 리턴한다.</p>
+
+<pre><code>func CreateThread(fnc Background, arg1 uintptr) (ret int32, err error)
+</code></pre>
+
+<p>go-scheduler 를 통하지 않고 이렇게 직접 스레드를 생성하여 중간에 교체가
+되지 않도록 하여 이벤트를 끊김없이 받을수 있도록 한다.</p>
+
+<p>다만 스레드함수는 이상하게 dll 로드하여 메서드를 따와도 수행이 되지 않았다.</p>
+
+<p>구글링 결과..  <code>import &quot;C&quot;</code> 를 해야만 동작한다고 한다. 좀 황당하지만
+어떠한 C코드도 없이 단지 import 만 하면 된다.  이렇게 되면 순수 go언어
+컴파일러로 바이나리를 만드는것이 아니고 gcc가 필요하게 된다.</p>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">&laquo; golang with cybosplus</a>
+    
+    
+  </div>
+</section>
+
+  </div>
   
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">golang-with-cybosplus</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-  </div>
-</div>
-
-
-
-  
-
-</div>
-
-</div>
-</div>
-<script src="https://ippoeyeslhw.github.io/js/ui.js"></script>
-
-
-
-
 </body>
 </html>
+
+
 

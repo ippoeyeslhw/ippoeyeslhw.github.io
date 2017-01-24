@@ -1,466 +1,439 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-kr">
+  <head>
+	<meta name="generator" content="Hugo 0.18.1" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <base href="https://ippoeyeslhw.github.io">
+    
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.15" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com/">
 
-  <title>ItGae Blog</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400' rel='stylesheet' type='text/css'>
 
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="https://ippoeyeslhw.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-  
-  
-  <link rel="alternate" type="application/rss+xml" title="ItGae Blog" href="https://ippoeyeslhw.github.io/index.xml" />
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <link rel="shortcut icon" href="https://ippoeyeslhw.github.io/img/favicon.ico" type="image/x-icon" />
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://ippoeyeslhw.github.io/">ItGae</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
+    <title>
       
       
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+        lhw_itguy
       
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
-      
-        </li>
-      
-    </ul>
-  </div>
+    </title>
+    <link rel="canonical" href="https://ippoeyeslhw.github.io/">
 
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 5px 0 10px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
 
     
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://ippoeyeslhw.github.io/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
-    </li>
+      <link href="https://ippoeyeslhw.github.io/index.xml" rel="alternate" type="application/rss+xml" title="lhw_itguy" />
     
+  </head>
 
-    
+  <body>
+    <section id=nav>
+      <h1><a href="/">lhw_itguy</a></h1>
+      <ul>
+        
+          <li><a href="https://github.com/ippoeyeslhw">Github</a></li>
+        
+          <li><a href="https://www.instagram.com/lhw_itguy/">Instagram</a></li>
+        
+      </ul>
+    </section>
 
-    
 
+<section id=content>
+  <ul class=posts_listing>
     
-
+      <li>
+        <h2><a href="https://ippoeyeslhw.github.io/post/cpgo-lib/">cpgo lib</a></h2>
+        <div id=date>
+          <time>January 2017</time>
+        </div>
+      </li>
     
-
+      <li>
+        <h2><a href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">golang with cybosplus</a></h2>
+        <div id=date>
+          <time>January 2017</time>
+        </div>
+      </li>
     
-
+      <li>
+        <h2><a href="https://ippoeyeslhw.github.io/post/rename-file/">rename file</a></h2>
+        <div id=date>
+          <time>January 2017</time>
+        </div>
+      </li>
     
-
+      <li>
+        <h2><a href="https://ippoeyeslhw.github.io/post/hello-hugo/">hello hugo</a></h2>
+        <div id=date>
+          <time>January 2017</time>
+        </div>
+      </li>
     
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://instagram.com/leehyunwoo_itguy" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/ippoeyeslhw" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
   </ul>
-</div>
+</section>
 
-
-  <div>
-  <div class="small-print">
-    <small>&copy; 2016. All rights reserved.</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>ItGae Blog</h1>
-  <h2>programmer, software developer, Soo-Ahn&#39;s Daddy</h2>
-</div>
-
-<div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://ippoeyeslhw.github.io/post/cpgo-lib/">cpgo lib</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>03 Aug 2016, 23:23</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://ippoeyeslhw.github.io/topics/golang">golang</a>
-    
   </div>
   
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/cybosplus">cybosplus</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/%EC%A6%9D%EA%B6%8Capi">증권API</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  저번에 올렸던 포스트 에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다. 이를 사용하여 Wrapper 라이브러를 작성하여 Github에 https://github.com/ippoeyeslhw/cpgo 프로젝트를 올렸다. 파이썬과 비교 파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다. 객체생성 객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다. stkmst := &amp;cpgo.CpClass{} stkmst.Create(&quot;CpDib.StockMst&quot;) defer stkmst.Release() 이에 대응되는 파이썬 코드는 stkmst = win32com.client.Dispatch(&quot;dscbo1.StockMst&quot;) 파이썬과는 다르게 COM을 다루고 있다는 느낌을 줄이려고 했다. 이벤트 이벤트를 처리하기위해 이벤트 핸들러는 Receiver 인터페이스를 구현하도록 하였다. type Receiver interface { Received(*CpClass) } 이 인터페이스를 구현하는 구조체를 아래와 같이 생성한다.
-  </p>
-
-  
-  <footer>
-    <a href="https://ippoeyeslhw.github.io/post/cpgo-lib/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">golang-with-cybosplus</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Jul 2016, 23:11</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://ippoeyeslhw.github.io/topics/golang">golang</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/cybosplus">cybosplus</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/%EC%A6%9D%EA%B6%8Capi">증권API</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  증권 API 중에 사이보스플러스가 사용하기 쉽다. 하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야 프로그래밍이 가능하다. GO언어로 만든 Github의 프로젝트중에 go-ole 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것 같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지 그 과정을 적어보고자 한다. 환경 윈도우 운영체제 사이보스플러스 설치 Go언어 설치 (주의!: 32비트 버젼이어야함) 개발에디터 (필자는 Sublime Text를 사용) 빌드 및 실행 (주의!: 관리자권한으로 실행하여야함) git 설치 (go get 명령으로 github의 프로젝트를 받아오기 위해) go-ole 패키지 설치 Oleviewer 혹은 tih 파일 (Optional) 아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데 64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.
-  </p>
-
-  
-  <footer>
-    <a href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://ippoeyeslhw.github.io/post/rename-file/">rename file</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Jun 2016, 20:13</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://ippoeyeslhw.github.io/topics/golang">golang</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/golang">golang</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  8년전 보았던 미드가 생각나서 구했는데 워낙 예전것이라 자막과 영상의 소스가 달라 일괄 변경할 필요가 생겼다. 그래서 go언어로 짜보았다. package main import ( &quot;fmt&quot; &quot;flag&quot; &quot;io/ioutil&quot; &quot;os&quot; &quot;path/filepath&quot; ) func getFileName( p string ) string { return p[0:len(p)-len(filepath.Ext(p))] } func main(){ fmt.Println(&quot;start renaming&quot;) src_ext := flag.String(&quot;src&quot;, &quot;.avi&quot;, &quot;source file-extension&quot;) dst_ext := flag.String(&quot;dst&quot;, &quot;.smi&quot;, &quot;destination file-extension&quot;) flag.Parse() fmt.Println(*src_ext, *dst_ext) // 현재 디렉토리 파일 검색 files, err := ioutil.ReadDir(&quot;.&quot;) if err != nil { fmt.Println(&quot;read dir fail&quot;) os.Exit(1) } src_list := make([]string, 0) dst_list := make([]string, 0) for _, file := range files { if filepath.Ext(file.Name()) == *src_ext { src_list = append(src_list, file.Name()) } if filepath.Ext(file.Name()) == *dst_ext { dst_list = append(dst_list, file.Name()) } } if len(src_list) != len(dst_list) { fmt.Println(&quot;diff num of files&quot;, len(src_list), len(dst_list)) os.Exit(1) } for i, nm := range src_list { fmt.Println(i, dst_list[i], &quot;-&gt;&quot;, getFileName(nm) + filepath.Ext(dst_list[i]) ) os.Rename(dst_list[i], getFileName(nm) + filepath.Ext(dst_list[i])) } } flag flag 패키지는 커맨드라인에서 flag를 달아줄때 해당 값을 읽어올때 사용한다.
-  </p>
-
-  
-  <footer>
-    <a href="https://ippoeyeslhw.github.io/post/rename-file/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/">mandelbrot fractal golang</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>28 May 2016, 16:56</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://ippoeyeslhw.github.io/topics/golang">golang</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/mandelbrot">mandelbrot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/fractal">fractal</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/image">image</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  go언어의 package문서를 보다보니 image패키지를 보게 되었다. go언어 익숙해질겸 기존에 몇번 작성해보았던 Mandelbrot Fractal 을 만들어 보기로 마음 먹었다. 픽셀 콘트롤 표준라이브러리의 image패키지를 찾아보다보니 픽셀을 Set하는 것처럼 보이는 부분이 있었다. func (p *RGBA) Set(x, y int, c color.Color) RGBA 구조체에 특정 x,y좌표의 픽셀에 Color를 지정하는것으로 보인다. 그렇다면 몇가지 의문이 생긴다. Jpeg, Png 같은 이미지로 저장을 할수 있는지 Color는 무엇인지 이미지 생성 및 저장 간단하게 이미지를 생성 및 저장해보기로 한다. png 포맷으로 저장하는 방법을 찾아보다가 보니 image 패키지의 서브디렉토리에 Png가 있었다.
-  </p>
-
-  
-  <footer>
-    <a href="https://ippoeyeslhw.github.io/post/mandelbrot-fractal-golang/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://ippoeyeslhw.github.io/post/hello-hugo/">hello hugo</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>26 May 2016, 23:08</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/hugo">hugo</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://ippoeyeslhw.github.io/tags/%ED%9C%B4%EA%B3%A0">휴고</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  정적블로그를 하고 싶다는 생각이 들었다. 최근 Go언어를 하다보니 자연스럽게 Hugo를 알게 되었고 정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다. 그래서 이제 블로그를 정적블로그로 만들기로 했다. 설치 설치는 Hugo installing을 참조하면 된다. 바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다. 나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다. C:\hugo\bin\hugo.exe C:\hugo\sites\ 실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록 하려고 구성하였다. 블로그구성하기 Hugo의 quickstart 문서를 보게되면 만들고자하는 사이트를 만드는 명령어가 나온다.
-  </p>
-
-  
-  <footer>
-    <a href="https://ippoeyeslhw.github.io/post/hello-hugo/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-
-  
-
-
-</div>
-
-</div>
-</div>
-<script src="https://ippoeyeslhw.github.io/js/ui.js"></script>
-
-
-
-
 </body>
 </html>
+
 
