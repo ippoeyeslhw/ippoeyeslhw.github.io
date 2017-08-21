@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cybosplus on lhw_itguy</title>
-    <link>http://localhost:1313/tags/cybosplus/</link>
+    <link>https://ippoeyeslhw.github.io/tags/cybosplus/</link>
     <description>Recent content in Cybosplus on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Tue, 22 Aug 2017 00:54:43 +0900</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/cybosplus/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ippoeyeslhw.github.io/tags/cybosplus/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cpgo Lib</title>
-      <link>http://localhost:1313/post/cpgo-lib/</link>
+      <link>https://ippoeyeslhw.github.io/post/cpgo-lib/</link>
       <pubDate>Tue, 22 Aug 2017 00:54:43 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/cpgo-lib/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
       <description>저번에 올렸던 포스트golang-with-cybosplus 에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다. 이를 사용하여 Wrapper 라이브러를 작성하여 Github에 https://github.com/ippoeyeslhw/cpgo 프로젝트를 올렸다.
 파이썬과 비교 파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다.
 객체생성 객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.
@@ -28,10 +28,10 @@ type Receiver interface { Received(*CpClass) } 이 인터페이스를 구현하�
     
     <item>
       <title>Golang With Cybosplus</title>
-      <link>http://localhost:1313/post/golang-with-cybosplus/</link>
+      <link>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
       <pubDate>Tue, 22 Aug 2017 00:41:14 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/golang-with-cybosplus/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
       <description>증권 API 중에 사이보스플러스가 사용하기 쉽다. 하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야 프로그래밍이 가능하다.
 GO언어로 만든 Github의 프로젝트중에 go-ole 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것 같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지 그 과정을 적어보고자 한다.
 환경  윈도우 운영체제 사이보스플러스 설치 Go언어 설치 (주의!: 32비트 버젼이어야함) 빌드 및 실행 (주의!: 관리자권한으로 실행하여야함) git 설치 (go get 명령으로 github의 프로젝트를 받아오기 위해) go-ole 패키지 설치 Oleviewer 혹은 tih 파일 (Optional)  아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데 64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.</description>

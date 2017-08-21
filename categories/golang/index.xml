@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on lhw_itguy</title>
-    <link>http://localhost:1313/categories/golang/</link>
+    <link>https://ippoeyeslhw.github.io/categories/golang/</link>
     <description>Recent content in Golang on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Tue, 22 Aug 2017 01:01:33 +0900</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ippoeyeslhw.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go Signal</title>
-      <link>http://localhost:1313/post/go-signal/</link>
+      <link>https://ippoeyeslhw.github.io/post/go-signal/</link>
       <pubDate>Tue, 22 Aug 2017 01:01:33 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/go-signal/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/go-signal/</guid>
       <description>고언어에서 os signal 을 콘트롤 하는 방법을 찾아보았다.
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/signal&amp;quot; &amp;quot;syscall&amp;quot; &amp;quot;time&amp;quot; ) func main() { // signal 채널을 만든다. signal_chan := make(chan os.Signal, 2) signal.Notify(signal_chan, syscall.SIGINT) // ctrl+c // loop isDone := false for isDone != true { // signal handler select { case sig := &amp;lt;-signal_chan: fmt.Println(&amp;quot;signal!! &amp;quot;, sig) isDone = true default: isDone = false } time.Sleep(1) } }  채널을 통해서 signal을 전달하게 된다.</description>
     </item>
     
     <item>
       <title>Cpgo Lib</title>
-      <link>http://localhost:1313/post/cpgo-lib/</link>
+      <link>https://ippoeyeslhw.github.io/post/cpgo-lib/</link>
       <pubDate>Tue, 22 Aug 2017 00:54:43 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/cpgo-lib/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/cpgo-lib/</guid>
       <description>저번에 올렸던 포스트golang-with-cybosplus 에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다. 이를 사용하여 Wrapper 라이브러를 작성하여 Github에 https://github.com/ippoeyeslhw/cpgo 프로젝트를 올렸다.
 파이썬과 비교 파이썬에서 구현하는 방법을 참고하여 유사하게 만들려고 노력했다.
 객체생성 객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.
@@ -38,10 +38,10 @@ type Receiver interface { Received(*CpClass) } 이 인터페이스를 구현하�
     
     <item>
       <title>Golang With Cybosplus</title>
-      <link>http://localhost:1313/post/golang-with-cybosplus/</link>
+      <link>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</link>
       <pubDate>Tue, 22 Aug 2017 00:41:14 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/golang-with-cybosplus/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</guid>
       <description>증권 API 중에 사이보스플러스가 사용하기 쉽다. 하지만 쉽다는 사이보스플러스조차도 COM에 관련된 지식이 있어야 프로그래밍이 가능하다.
 GO언어로 만든 Github의 프로젝트중에 go-ole 라는 것을 찾았다. 이를 찾고보니 사이보스플러스와 연동이 가능할것 같아서 연동해보기로 하고 여러 시행착오 끝에 어떻게 연동을 하였는지 그 과정을 적어보고자 한다.
 환경  윈도우 운영체제 사이보스플러스 설치 Go언어 설치 (주의!: 32비트 버젼이어야함) 빌드 및 실행 (주의!: 관리자권한으로 실행하여야함) git 설치 (go get 명령으로 github의 프로젝트를 받아오기 위해) go-ole 패키지 설치 Oleviewer 혹은 tih 파일 (Optional)  아마도 다른 언어들과 연동할때도 발생하는 문제일 텐데 64비트 바이너리로 언어를 설치하면 사이보스플러스와 연동이 되지 않는다.</description>
@@ -49,20 +49,20 @@ GO언어로 만든 Github의 프로젝트중에 go-ole 라는 것을 찾았다. 
     
     <item>
       <title>Rename File</title>
-      <link>http://localhost:1313/post/rename-file/</link>
+      <link>https://ippoeyeslhw.github.io/post/rename-file/</link>
       <pubDate>Tue, 22 Aug 2017 00:12:44 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/rename-file/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/rename-file/</guid>
       <description>8년전 보았던 미드가 생각나서 구했는데 워낙 예전것이라 자막과 영상의 소스가 달라 일괄 변경할 필요가 생겼다. 그래서 go언어로 짜보았다.
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;flag&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; &amp;quot;path/filepath&amp;quot; ) func getFileName( p string ) string { return p[0:len(p)-len(filepath.Ext(p))] } func main(){ fmt.Println(&amp;quot;start renaming&amp;quot;) src_ext := flag.String(&amp;quot;src&amp;quot;, &amp;quot;.avi&amp;quot;, &amp;quot;source file-extension&amp;quot;) dst_ext := flag.String(&amp;quot;dst&amp;quot;, &amp;quot;.smi&amp;quot;, &amp;quot;destination file-extension&amp;quot;) flag.Parse() fmt.Println(*src_ext, *dst_ext) // 현재 디렉토리 파일 검색 files, err := ioutil.ReadDir(&amp;quot;.&amp;quot;) if err != nil { fmt.</description>
     </item>
     
     <item>
       <title>Hello Hugo</title>
-      <link>http://localhost:1313/post/hello-hugo/</link>
+      <link>https://ippoeyeslhw.github.io/post/hello-hugo/</link>
       <pubDate>Mon, 21 Aug 2017 21:46:34 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/hello-hugo/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/hello-hugo/</guid>
       <description>정적블로그를 하고 싶다는 생각이 들었다. 최근 Go언어를 하다보니 자연스럽게 Hugo를 알게 되었고 정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다. 그래서 이제 블로그를 정적블로그로 만들기로 했다.
 설치 설치는 Hugo installing을 참조하면 된다. 바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.
 나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다.

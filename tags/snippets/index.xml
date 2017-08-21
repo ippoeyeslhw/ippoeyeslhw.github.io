@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Snippets on lhw_itguy</title>
-    <link>http://localhost:1313/tags/snippets/</link>
+    <link>https://ippoeyeslhw.github.io/tags/snippets/</link>
     <description>Recent content in Snippets on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Tue, 22 Aug 2017 01:01:33 +0900</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/snippets/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ippoeyeslhw.github.io/tags/snippets/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go Signal</title>
-      <link>http://localhost:1313/post/go-signal/</link>
+      <link>https://ippoeyeslhw.github.io/post/go-signal/</link>
       <pubDate>Tue, 22 Aug 2017 01:01:33 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/go-signal/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/go-signal/</guid>
       <description>고언어에서 os signal 을 콘트롤 하는 방법을 찾아보았다.
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/signal&amp;quot; &amp;quot;syscall&amp;quot; &amp;quot;time&amp;quot; ) func main() { // signal 채널을 만든다. signal_chan := make(chan os.Signal, 2) signal.Notify(signal_chan, syscall.SIGINT) // ctrl+c // loop isDone := false for isDone != true { // signal handler select { case sig := &amp;lt;-signal_chan: fmt.Println(&amp;quot;signal!! &amp;quot;, sig) isDone = true default: isDone = false } time.Sleep(1) } }  채널을 통해서 signal을 전달하게 된다.</description>
     </item>
     
     <item>
       <title>Thread Pool</title>
-      <link>http://localhost:1313/post/thread-pool/</link>
+      <link>https://ippoeyeslhw.github.io/post/thread-pool/</link>
       <pubDate>Tue, 22 Aug 2017 00:30:30 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/thread-pool/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/thread-pool/</guid>
       <description>파이썬에서 스레드풀 검색해본 결과 간단하게 구현할수 있는 방법을 구글링을 통해 찾았다. 워커 스레드는 클래스로 상속하고 run 메소드를 오버라이드 한다.
 daemon 프로퍼티는 daemon 스레드로 작업할 것을 명시하는것으로써 기본은 False이며 메인스레드가 종료되어도 끝까지 자기의 작업을 수행하며 True일 경우 메인스레드가 종료될시 같이 종료된다.
 작업스레드에서 작업종료시 task_done을 호출한다. 이때 메인스레드에서 queue.join 메소드를 이용하여 블락된채로 모든작업이 끝날 때 까지 대기할수 있다.
@@ -35,10 +35,10 @@ from queue import Queue from threading import Thread class Worker(Thread): def _
     
     <item>
       <title>Rename File</title>
-      <link>http://localhost:1313/post/rename-file/</link>
+      <link>https://ippoeyeslhw.github.io/post/rename-file/</link>
       <pubDate>Tue, 22 Aug 2017 00:12:44 +0900</pubDate>
       
-      <guid>http://localhost:1313/post/rename-file/</guid>
+      <guid>https://ippoeyeslhw.github.io/post/rename-file/</guid>
       <description>8년전 보았던 미드가 생각나서 구했는데 워낙 예전것이라 자막과 영상의 소스가 달라 일괄 변경할 필요가 생겼다. 그래서 go언어로 짜보았다.
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;flag&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;os&amp;quot; &amp;quot;path/filepath&amp;quot; ) func getFileName( p string ) string { return p[0:len(p)-len(filepath.Ext(p))] } func main(){ fmt.Println(&amp;quot;start renaming&amp;quot;) src_ext := flag.String(&amp;quot;src&amp;quot;, &amp;quot;.avi&amp;quot;, &amp;quot;source file-extension&amp;quot;) dst_ext := flag.String(&amp;quot;dst&amp;quot;, &amp;quot;.smi&amp;quot;, &amp;quot;destination file-extension&amp;quot;) flag.Parse() fmt.Println(*src_ext, *dst_ext) // 현재 디렉토리 파일 검색 files, err := ioutil.ReadDir(&amp;quot;.&amp;quot;) if err != nil { fmt.</description>
     </item>
