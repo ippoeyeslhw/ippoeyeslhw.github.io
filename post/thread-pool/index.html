@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thread Pool | lhw_itguy</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="http://localhost:1313/">/home/lhw_itguy</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Thread Pool</span></h1>
+
+<h2 class="date">2017/08/22</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/python">python</a> 
+  
+  
+  
+  Tags: <a href="/tags/python">python</a> <a href="/tags/snippets">snippets</a> 
+  
+  
+</p>
+</div>
+
+
+
+<main>
+<p>파이썬에서 스레드풀 검색해본 결과 간단하게 구현할수 있는 방법을
+구글링을 통해 찾았다.
+워커 스레드는 클래스로 상속하고 run 메소드를 오버라이드 한다.</p>
+
+<p>daemon 프로퍼티는 daemon 스레드로 작업할 것을 명시하는것으로써
+기본은 False이며 메인스레드가 종료되어도 끝까지 자기의 작업을 수행하며
+True일 경우 메인스레드가 종료될시 같이 종료된다.</p>
+
+<p>작업스레드에서 작업종료시 task_done을 호출한다.
+이때 메인스레드에서 queue.join 메소드를 이용하여 블락된채로 모든작업이
+끝날 때 까지 대기할수 있다.</p>
+
+<pre><code class="language-python">from queue import Queue
+from threading import Thread
+
+class Worker(Thread):
+    def __init__(self, tasks, results):
+        Thread.__init__(self)
+        self.daemon = True
+        self.tasks = tasks # type: Queue
+        self.results = results # type: Queue
+        self.start()
+
+    def run(self):
+        while True:
+            func, args, kargs = self.tasks.get()
+            try:
+                r = func(*args, **kargs)
+                if r: self.results.put(r)
+            except Exception as e:
+                print(e)
+            self.tasks.task_done()
+
+class ThreadPool:
+    def __init__(self, num_of_threads):
+        self.tasks = Queue(num_of_threads)
+        self.results = Queue()
+        for i in range(num_of_threads):
+            Worker(self.tasks, self.results)
+
+    def add_task(self, func, *args, **kargs):
+        self.tasks.put((func, args, kargs))
+
+    def wait_completion(self):
+        self.tasks.join()
+</code></pre>
+
+</main>
+
+    <footer>
+      
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      lhw_itguy | <a href="https://github.com/ippoeyeslhw">Github</a> | <a href="https://www.instagram.com/lhw_itguy/">Instagram</a>
+      
+    </footer>
+  </body>
+</html>
+

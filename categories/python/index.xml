@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on lhw_itguy</title>
+    <link>http://localhost:1313/categories/python/</link>
+    <description>Recent content in Python on lhw_itguy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 22 Aug 2017 00:30:30 +0900</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Thread Pool</title>
+      <link>http://localhost:1313/post/thread-pool/</link>
+      <pubDate>Tue, 22 Aug 2017 00:30:30 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/thread-pool/</guid>
+      <description>파이썬에서 스레드풀 검색해본 결과 간단하게 구현할수 있는 방법을 구글링을 통해 찾았다. 워커 스레드는 클래스로 상속하고 run 메소드를 오버라이드 한다.
+daemon 프로퍼티는 daemon 스레드로 작업할 것을 명시하는것으로써 기본은 False이며 메인스레드가 종료되어도 끝까지 자기의 작업을 수행하며 True일 경우 메인스레드가 종료될시 같이 종료된다.
+작업스레드에서 작업종료시 task_done을 호출한다. 이때 메인스레드에서 queue.join 메소드를 이용하여 블락된채로 모든작업이 끝날 때 까지 대기할수 있다.
+from queue import Queue from threading import Thread class Worker(Thread): def __init__(self, tasks, results): Thread.</description>
+    </item>
+    
+  </channel>
+</rss>

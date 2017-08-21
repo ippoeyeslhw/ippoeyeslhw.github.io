@@ -2,415 +2,75 @@
 <html lang="ko-kr">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
-    <base href="https://ippoeyeslhw.github.io">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cpgo Lib | lhw_itguy</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
 
-    <link rel="dns-prefetch" href="//fonts.googleapis.com/">
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400' rel='stylesheet' type='text/css'>
-
-    <title>
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
       
       
-         cpgo lib 
+      <li class="pull-left ">
+        <a href="http://localhost:1313/">/home/lhw_itguy</a>
+      </li>
       
-    </title>
-    <link rel="canonical" href="https://ippoeyeslhw.github.io/post/cpgo-lib/">
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
 
-    <style>
-  * {
-    border:0;
-    font:inherit;
-    font-size:100%;
-    vertical-align:baseline;
-    margin:0;
-    padding:0;
-    color: black;
-  }
-
-  body {
-    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
-    font-size:17px;
-    line-height:160%;
-    color:#1d1313;
-    max-width:700px;
-    margin:auto;
-  }
-
-  p {
-    margin: 5px 0 10px 0;
-  }
-
-  a img {
-    border:none;
-  }
-
-  img {
-    margin: 10px auto 10px auto;
-    max-width: 100%;
-    display: block;
-  }
-
-  pre, code {
-    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    background-color: #f7f7f7;
-  }
-
-  code {
-    font-size: 12px;
-    padding: 4px;
-  }
-
-  pre {
-    margin-top: 0;
-    margin-bottom: 16px;
-    word-wrap: normal;
-    padding: 16px;
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
-  }
-
-  pre>code {
-    padding: 0;
-    margin: 0;
-    font-size: 100%;
-    word-break: normal;
-    white-space: pre;
-    background: transparent;
-    border: 0;
-  }
-
-  pre code {
-    display: inline;
-    max-width: auto;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    line-height: inherit;
-    word-wrap: normal;
-    background-color: transparent;
-    border: 0;
-  }
-
-  pre code::before,
-  pre code::after {
-    content: normal;
-  }
-
-  em,q,em,dfn {
-    font-style:italic;
-  }
-
-  .sans,html .gist .gist-file .gist-meta {
-    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
-  }
-
-  .mono,pre,code,tt,p code,li code {
-    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
-  }
-
-  .heading,.serif,h1,h2,h3 {
-    font-family:"Old Standard TT",serif;
-  }
-
-  strong {
-    font-weight:600;
-  }
-
-  q:before {
-    content:"\201C";
-  }
-
-  q:after {
-    content:"\201D";
-  }
-
-  del,s {
-    text-decoration:line-through;
-  }
-
-  blockquote {
-    font-family:"Old Standard TT",serif;
-    text-align:center;
-    padding:50px;
-  }
-
-  blockquote p {
-    display:inline-block;
-    font-style:italic;
-  }
-
-  blockquote:before,blockquote:after {
-    font-family:"Old Standard TT",serif;
-    content:'\201C';
-    font-size:35px;
-    color:#403c3b;
-  }
-
-  blockquote:after {
-    content:'\201D';
-  }
-
-  hr {
-    width:40%;
-    height: 1px;
-    background:#403c3b;
-    margin: 25px auto;
-  }
-
-  h1 {
-    font-size:35px;
-  }
-
-  h2 {
-    font-size:28px;
-  }
-
-  h3 {
-    font-size:22px;
-    margin-top:18px;
-  }
-
-  h1 a,h2 a,h3 a {
-    text-decoration:none;
-  }
-
-  h1,h2 {
-    margin-top:28px;
-  }
-
-  #sub-header, time {
-    color:#403c3b;
-    font-size:13px;
-  }
-
-  #sub-header {
-    margin: 0 4px;
-  }
-
-  #nav h1 a {
-    font-size:35px;
-    color:#1d1313;
-    line-height:120%;
-  }
-
-  .posts_listing a,#nav a {
-    text-decoration: none;
-  }
-
-  li {
-    margin-left: 20px;
-  }
-
-  ul li {
-    margin-left: 5px;
-  }
-
-  ul li {
-    list-style-type: none;
-  }
-  ul li:before {
-    content:"\00BB \0020";
-  }
-
-  #nav ul li:before, .posts_listing li:before {
-    content:'';
-    margin-right:0;
-  }
-
-  #content {
-    text-align:left;
-    width:100%;
-    font-size:15px;
-    padding:60px 0 80px;
-  }
-
-  #content h1,#content h2 {
-    margin-bottom:5px;
-  }
-
-  #content h2 {
-    font-size:25px;
-  }
-
-  #content .entry-content {
-    margin-top:15px;
-  }
-
-  #content time {
-    margin-left:3px;
-  }
-
-  #content h1 {
-    font-size:30px;
-  }
-
-  .highlight {
-    margin: 10px 0;
-  }
-
-  .posts_listing {
-    margin:0 0 50px;
-  }
-
-  .posts_listing li {
-    margin:0 0 25px 15px;
-  }
-
-  .posts_listing li a:hover,#nav a:hover {
-    text-decoration: underline;
-  }
-
-  #nav {
-    text-align:center;
-    position:static;
-    margin-top:60px;
-  }
-
-  #nav ul {
-    display: table;
-    margin: 8px auto 0 auto;
-  }
-
-  #nav li {
-    list-style-type:none;
-    display:table-cell;
-    font-size:15px;
-    padding: 0 20px;
-  }
-
-  #links {
-    margin: 50px 0 0 0;
-  }
-
-  #links :nth-child(2) {
-    float:right;
-  }
-
-  #not-found {
-    text-align: center;
-  }
-
-  #not-found a {
-    font-family:"Old Standard TT",serif;
-    font-size: 200px;
-    text-decoration: none;
-    display: inline-block;
-    padding-top: 225px;
-  }
-
-  @media (max-width: 750px) {
-    body {
-      padding-left:20px;
-      padding-right:20px;
-    }
-
-    #nav h1 a {
-      font-size:28px;
-    }
-
-    #nav li {
-      font-size:13px;
-      padding: 0 15px;
-    }
-
-    #content {
-      margin-top:0;
-      padding-top:50px;
-      font-size:14px;
-    }
-
-    #content h1 {
-      font-size:25px;
-    }
-
-    #content h2 {
-      font-size:22px;
-    }
-
-    .posts_listing li div {
-      font-size:12px;
-    }
-  }
-
-  @media (max-width: 400px) {
-    body {
-      padding-left:20px;
-      padding-right:20px;
-    }
-
-    #nav h1 a {
-      font-size:22px;
-    }
-
-    #nav li {
-      font-size:12px;
-      padding: 0 10px;
-    }
-
-    #content {
-      margin-top:0;
-      padding-top:20px;
-      font-size:12px;
-    }
-
-    #content h1 {
-      font-size:20px;
-    }
-
-    #content h2 {
-      font-size:18px;
-    }
-
-    .posts_listing li div{
-      font-size:12px;
-    }
-  }
-</style>
-
-
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
   </head>
 
   <body>
-    <section id=nav>
-      <h1><a href="/">lhw_itguy</a></h1>
-      <ul>
-        
-          <li><a href="https://github.com/ippoeyeslhw">Github</a></li>
-        
-          <li><a href="https://www.instagram.com/lhw_itguy/">Instagram</a></li>
-        
-      </ul>
-    </section>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Cpgo Lib</span></h1>
+
+<h2 class="date">2017/08/22</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/golang">golang</a> 
+  
+  
+  
+  Tags: <a href="/tags/golang">golang</a> <a href="/tags/cybosplus">cybosplus</a> <a href="/tags/com">COM</a> <a href="/tags/library">library</a> 
+  
+  
+</p>
+</div>
 
 
-<section id=content>
-  <h1> cpgo lib </h1>
 
-  <div id=sub-header>
-    January 2017 · 2 minute read
-  </div>
+<main>
 
-  <div class="entry-content">
-    
 
 <p>저번에 올렸던 <a href="/post/golang-with-cybosplus">포스트golang-with-cybosplus</a> 에서 사이보스플러스와 Go 언어를 연동하는 법을 살폈다. 이를 사용하여 Wrapper 라이브러를 작성하여 Github에 <a href="https://github.com/ippoeyeslhw/cpgo">https://github.com/ippoeyeslhw/cpgo</a> 프로젝트를 올렸다.</p>
-
-<hr />
 
 <h2 id="파이썬과-비교">파이썬과 비교</h2>
 
@@ -420,14 +80,14 @@
 
 <p>객체를 생성할때는 CpClass 객체를 만든뒤 Create를 호출한다.</p>
 
-<pre><code>stkmst := &amp;cpgo.CpClass{}
+<pre><code class="language-go">stkmst := &amp;cpgo.CpClass{}
 stkmst.Create(&quot;CpDib.StockMst&quot;)
 defer stkmst.Release()
 </code></pre>
 
 <p>이에 대응되는 파이썬 코드는</p>
 
-<pre><code>stkmst = win32com.client.Dispatch(&quot;dscbo1.StockMst&quot;)
+<pre><code class="language-python">stkmst = win32com.client.Dispatch(&quot;dscbo1.StockMst&quot;)
 </code></pre>
 
 <p>파이썬과는 다르게 COM을 다루고 있다는 느낌을 줄이려고 했다.</p>
@@ -436,14 +96,12 @@ defer stkmst.Release()
 
 <p>이벤트를 처리하기위해 이벤트 핸들러는 Receiver 인터페이스를 구현하도록 하였다.</p>
 
-<pre><code>type Receiver interface {
+<pre><code class="language-go">type Receiver interface {
     Received(*CpClass)
 }
-</code></pre>
+이 인터페이스를 구현하는 구조체를 아래와 같이 생성한다.
 
-<p>이 인터페이스를 구현하는 구조체를 아래와 같이 생성한다.</p>
-
-<pre><code>type RqTestStruct struct {
+type RqTestStruct struct {
 }
 
 func (t *RqTestStruct) Received(c *CpClass) {
@@ -453,7 +111,7 @@ func (t *RqTestStruct) Received(c *CpClass) {
 
 <p>이에 대응되는 파이썬의 이벤트 핸들러는</p>
 
-<pre><code>class CpSubPubEventHandler:
+<pre><code class="language-python">class CpSubPubEventHandler:
     def __init__(self):
         pass
     def OnReceived(self):
@@ -462,22 +120,23 @@ func (t *RqTestStruct) Received(c *CpClass) {
 
 <p>위 핸들러를 객체에 연동하려면</p>
 
-<pre><code>evnt := &amp;RqTestStruct{}
+<pre><code class="language-go">evnt := &amp;RqTestStruct{}
 cpobj.BindEvent(evnt)
 </code></pre>
 
 <p>이에 대응되는 파이썬 코드는</p>
 
-<pre><code>win32com.client.WithEvents(cpobj, CpSubPubEventHandler)
+<pre><code class="language-python">win32com.client.WithEvents(cpobj, CpSubPubEventHandler)
 </code></pre>
 
-<p>cpgo는 객체를 만들어서 바인딩하는 것이고 파이썬은 클래스를 등록하는 것이다.</p>
+<p>cpgo는 객체를 만들어서 바인딩하는 것이고 파이썬은 클래스를 등록하는 것이다.
+이는 실행 퍼포먼스에 영향이 조금 있을것이다.</p>
 
 <h2 id="이벤트-수신대기">이벤트 수신대기</h2>
 
 <p>go-ole패키지에 이상하게도 PeekMessage 메서드가 없었다. 따라서 이를 구현해준뒤에 pythoncom 에 있는 PumpWaitingMessages 함수를 유사하게 구현하였다.</p>
 
-<pre><code>for  {
+<pre><code class="language-go">for  {
     cpgo.PumpWaitingMessages()
     time.Sleep(1)
 }
@@ -485,7 +144,7 @@ cpobj.BindEvent(evnt)
 
 <p>파이썬과 매우 유사하다.</p>
 
-<pre><code>while True:
+<pre><code class="language-python">while True:
     pythoncom.PumpWaitingMessages()
     time.sleep(0.001)
 </code></pre>
@@ -500,49 +159,37 @@ cpobj.BindEvent(evnt)
 
 <h2 id="go-scheduler">Go-Scheduler</h2>
 
-<p>원인으로 OS thread가 중간에 교체가 되는것이 아닌가 하여 검색을 해보니
-golang 에서는 go scheduler 가 있어서 M개의 OS-threads 와 N개의 goroutines
-을 적당하게 관리해준다고 한다.</p>
+<p>원인으로 OS thread가 중간에 교체가 되는것이 아닌가 하여 검색을 해보니 golang 에서는 go scheduler 가 있어서 M개의 OS-threads 와 N개의 goroutines 을 적당하게 관리해준다고 한다.</p>
 
-<p>COM 에서는 이벤트를 맺은 윈도우 스레드에만 메시지를 전달하는데 만일
-go scheduler 가 중간에 os-thread 를 바꿔버린다면 이벤트 수신이 중간에 끊기게
-되는 것이다.</p>
+<p>COM 에서는 이벤트를 맺은 윈도우 스레드에만 메시지를 전달하는데 만일 go scheduler 가 중간에 os-thread 를 바꿔버린다면 이벤트 수신이 중간에 끊기게 되는 것이다.</p>
 
 <p>따라서 이를 해결하기 위해 CreateThread 메서드를 추가했다.</p>
 
-<pre><code>type Background func(uintptr) uintptr
+<pre><code class="language-go">type Background func(uintptr) uintptr
 </code></pre>
 
 <p>Background 인터페이스는 uintptr 을 인자로 받아 uintptr을 리턴한다.</p>
 
-<pre><code>func CreateThread(fnc Background, arg1 uintptr) (ret int32, err error)
+<pre><code class="language-go">func CreateThread(fnc Background, arg1 uintptr) (ret int32, err error)
 </code></pre>
 
-<p>go-scheduler 를 통하지 않고 이렇게 직접 스레드를 생성하여 중간에 교체가
-되지 않도록 하여 이벤트를 끊김없이 받을수 있도록 한다.</p>
+<p>go-scheduler 를 통하지 않고 이렇게 직접 스레드를 생성하여 중간에 교체가 되지 않도록 하여 이벤트를 끊김없이 받을수 있도록 한다.</p>
 
 <p>다만 스레드함수는 이상하게 dll 로드하여 메서드를 따와도 수행이 되지 않았다.</p>
 
-<p>구글링 결과..  <code>import &quot;C&quot;</code> 를 해야만 동작한다고 한다. 좀 황당하지만
-어떠한 C코드도 없이 단지 import 만 하면 된다.  이렇게 되면 순수 go언어
-컴파일러로 바이나리를 만드는것이 아니고 gcc가 필요하게 된다.</p>
+<p>구글링 결과.. import &ldquo;C&rdquo; 를 해야만 동작한다고 한다. 좀 황당하지만 어떠한 C코드도 없이 단지 import 만 하면 된다. 이렇게 되면 순수 go언어 컴파일러로 바이나리를 만드는것이 아니고 gcc가 필요하게 된다.</p>
 
-  </div>
+</main>
 
-  <div id=links>
-    
-      <a class="basic-alignment left" href="https://ippoeyeslhw.github.io/post/golang-with-cybosplus/">&laquo; golang with cybosplus</a>
-    
-    
-      <a class="basic-alignment left" href="https://ippoeyeslhw.github.io/post/go-signal/">go signal &raquo;</a>
-    
-  </div>
-</section>
+    <footer>
+      
+<script async src="//yihui.name/js/center-img.js"></script>
 
-  </div>
-  
-</body>
+      
+      <hr/>
+      lhw_itguy | <a href="https://github.com/ippoeyeslhw">Github</a> | <a href="https://www.instagram.com/lhw_itguy/">Instagram</a>
+      
+    </footer>
+  </body>
 </html>
-
-
 
