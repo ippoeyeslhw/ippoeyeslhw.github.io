@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://ippoeyeslhw.github.io/post/gaussian-random/</loc>
+    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ippoeyeslhw.github.io/post/go-http-request/</loc>
     <lastmod>2017-08-22T20:32:12+09:00</lastmod>
   </url>
@@ -73,12 +78,30 @@
   
   <url>
     <loc>https://ippoeyeslhw.github.io/</loc>
-    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
+    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://ippoeyeslhw.github.io/tags/hugo/</loc>
     <lastmod>2017-08-21T21:46:34+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/tags/javascript/</loc>
+    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/tags/js-show/</loc>
+    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/categories/js-show/</loc>
+    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,7 +117,7 @@
   
   <url>
     <loc>https://ippoeyeslhw.github.io/post/</loc>
-    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
+    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
     <priority>0</priority>
   </url>
   
