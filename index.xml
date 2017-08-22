@@ -104,12 +104,12 @@ C:\hugo\bin\hugo.exe C:\hugo\sites\  실행파일은 bin 폴더에다가 넣고 
     </item>
     
     <item>
-      <title>Knowhow</title>
+      <title>Knowhow list</title>
       <link>https://ippoeyeslhw.github.io/knowhow/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://ippoeyeslhw.github.io/knowhow/</guid>
-      <description> &amp;ldquo;python3&amp;rdquo; 에서 &amp;ldquo;http request&amp;rdquo; 를 &amp;ldquo;날리고&amp;rdquo; 싶을때  py3-http-request   </description>
+      <description> {python3} 에서 {http request} 를 {날리고} 싶을때  py3-http-request  {golang} 에서 {http request} 를 {날리고} 싶을때  go-http-request  {PyCharm} 에서 {코드 작성시 임의변수(앞으로 특정객체가 대입이 될)} 를 {자동완성하고} 싶을때  type hint 를 준다. type-hinting-in-pycharm  {golang} 에서 {Ctrl+c 를 누르면 종료가 되는 것} 를 {만들고} 싶을때  go-signal  {git} 에서 {간단한 사용법} 를 {찾고} 싶을때  git-간편안내서   </description>
     </item>
     
   </channel>
