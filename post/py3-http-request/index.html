@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Py3 Http Request | lhw_itguy</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://ippoeyeslhw.github.io/">/home/lhw_itguy</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Py3 Http Request</span></h1>
+
+<h2 class="date">2017/08/22</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/python">python</a> 
+  
+  
+  
+  Tags: <a href="/tags/python">python</a> <a href="/tags/snippets">snippets</a> 
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<p>파이썬3 에서 써드파티 라이브러리 없이 Http Request 하는 법을 포스팅한다.</p>
+
+<h2 id="get-요청-기본">GET 요청 기본</h2>
+
+<pre><code class="language-python">import urllib.request
+
+url = 'http://www.naver.com'
+f = urllib.request.urlopen(url)
+print (f.read().decode('utf-8'))
+</code></pre>
+
+<p>가장 간단하게 urlopen 메소드를 사용하는 방법이다.
+f는 class &lsquo;http.client.HTTPResponse&rsquo; 이며
+f.read() 메소드는 bytes 오브젝트를 반환하며 이를 디코딩해서 str로 사용한다.</p>
+
+<h2 id="get-요청-header">GET 요청 + HEADER</h2>
+
+<pre><code class="language-python">import urllib.request
+
+url = 'http://www.naver.com'
+REQ_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36',
+}
+req = urllib.request.Request(url, headers=REQ_HEADERS)
+f = urllib.request.urlopen(req)
+print (f.read().decode('utf-8'))
+</code></pre>
+
+<p>간혹 헤더정보를 담아 보내고 싶을때가 있을것이다.
+어떤 사이트는 User-Agent 에 따라서 응답을 다르게 주기도 한다.</p>
+
+<p>헤더를 담아보내기 위해 Request 객체를 만들어서 해당 객체를 urlopen 메소드에
+담아 호출한다.</p>
+
+<h2 id="post-요청">POST 요청</h2>
+
+<pre><code class="language-python">import urllib.request
+import urllib.parse
+
+url = 'http://www.naver.com'
+REQ_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36',
+    'content-type' : 'application/x-www-form-urlencoded'
+}
+data = urllib.parse.urlencode({
+    'bar': 'foo'
+})
+encoded_data = data.encode('utf-8')
+req = urllib.request.Request(url, headers=REQ_HEADERS,data=encoded_data)
+f = urllib.request.urlopen(req)
+print (f.read().decode('utf-8'))
+</code></pre>
+
+<p>폼 형태로 요청하는 방식이다.</p>
+
+<h2 id="post-요청-json">POST 요청 + JSON</h2>
+
+<pre><code class="language-python">import json
+import urllib.request
+import urllib.parse
+
+url = 'http://www.naver.com'
+REQ_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36',
+    'content-type' : 'application/json'
+}
+data = json.dumps({ 'bar': 'foo'})
+encoded_data = data.encode('utf-8')
+req = urllib.request.Request(url, headers=REQ_HEADERS,data=encoded_data)
+f = urllib.request.urlopen(req)
+print (f.read().decode('utf-8'))
+</code></pre>
+
+<p>위랑 다른점은 content-type 과 실어보낸 data가 다르다.</p>
+
+</main>
+
+    <footer>
+      
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      lhw_itguy | <a href="https://github.com/ippoeyeslhw">Github</a> | <a href="https://www.instagram.com/lhw_itguy/">Instagram</a>
+      
+    </footer>
+  </body>
+</html>
+

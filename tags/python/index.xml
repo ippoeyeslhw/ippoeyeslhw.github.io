@@ -6,10 +6,21 @@
     <description>Recent content in Python on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Tue, 22 Aug 2017 00:30:30 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 22 Aug 2017 19:43:41 +0900</lastBuildDate>
     
 	<atom:link href="https://ippoeyeslhw.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Py3 Http Request</title>
+      <link>https://ippoeyeslhw.github.io/post/py3-http-request/</link>
+      <pubDate>Tue, 22 Aug 2017 19:43:41 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/post/py3-http-request/</guid>
+      <description>파이썬3 에서 써드파티 라이브러리 없이 Http Request 하는 법을 포스팅한다.
+GET 요청 기본 import urllib.request url = &#39;http://www.naver.com&#39; f = urllib.request.urlopen(url) print (f.read().decode(&#39;utf-8&#39;))  가장 간단하게 urlopen 메소드를 사용하는 방법이다. f는 class &amp;lsquo;http.client.HTTPResponse&amp;rsquo; 이며 f.read() 메소드는 bytes 오브젝트를 반환하며 이를 디코딩해서 str로 사용한다.
+GET 요청 + HEADER import urllib.request url = &#39;http://www.naver.com&#39; REQ_HEADERS = { &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&#39;, } req = urllib.</description>
+    </item>
     
     <item>
       <title>Thread Pool</title>

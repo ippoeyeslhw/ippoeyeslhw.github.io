@@ -6,10 +6,31 @@
     <description>Recent content in Home on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Tue, 22 Aug 2017 01:01:33 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 22 Aug 2017 20:32:12 +0900</lastBuildDate>
     
 	<atom:link href="https://ippoeyeslhw.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go Http Request</title>
+      <link>https://ippoeyeslhw.github.io/post/go-http-request/</link>
+      <pubDate>Tue, 22 Aug 2017 20:32:12 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/post/go-http-request/</guid>
+      <description>고언어에서 HTTP request하는 법을 포스팅한다.
+package main import ( &amp;quot;bytes&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;net/url&amp;quot; ) func main() { // data uri := &amp;amp;url.Values{} uri.Add(&amp;quot;bar&amp;quot;, &amp;quot;foo&amp;quot;) // request req, err := http.NewRequest(&amp;quot;GET&amp;quot;, &amp;quot;http://www.naver.com&amp;quot;, bytes.NewBufferString(uri.Encode())) if err != nil { panic(err) } // set header req.Header.Add(&amp;quot;User-Agent&amp;quot;, &amp;quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&amp;quot;) // request client := &amp;amp;http.Client{} resp, err := client.Do(req) if err != nil { panic(err) } // read response data, err := ioutil.</description>
+    </item>
+    
+    <item>
+      <title>Py3 Http Request</title>
+      <link>https://ippoeyeslhw.github.io/post/py3-http-request/</link>
+      <pubDate>Tue, 22 Aug 2017 19:43:41 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/post/py3-http-request/</guid>
+      <description>파이썬3 에서 써드파티 라이브러리 없이 Http Request 하는 법을 포스팅한다.
+GET 요청 기본 import urllib.request url = &#39;http://www.naver.com&#39; f = urllib.request.urlopen(url) print (f.read().decode(&#39;utf-8&#39;))  가장 간단하게 urlopen 메소드를 사용하는 방법이다. f는 class &amp;lsquo;http.client.HTTPResponse&amp;rsquo; 이며 f.read() 메소드는 bytes 오브젝트를 반환하며 이를 디코딩해서 str로 사용한다.
+GET 요청 + HEADER import urllib.request url = &#39;http://www.naver.com&#39; REQ_HEADERS = { &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&#39;, } req = urllib.</description>
+    </item>
     
     <item>
       <title>Go Signal</title>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Go Http Request | lhw_itguy</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://ippoeyeslhw.github.io/">/home/lhw_itguy</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Go Http Request</span></h1>
+
+<h2 class="date">2017/08/22</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/golang">golang</a> 
+  
+  
+  
+  Tags: <a href="/tags/golang">golang</a> <a href="/tags/snippets">snippets</a> 
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<p>고언어에서 HTTP request하는 법을 포스팅한다.</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;bytes&quot;
+	&quot;fmt&quot;
+	&quot;io/ioutil&quot;
+	&quot;net/http&quot;
+	&quot;net/url&quot;
+)
+
+func main() {
+	// data
+	uri := &amp;url.Values{}
+	uri.Add(&quot;bar&quot;, &quot;foo&quot;)
+
+	// request
+	req, err := http.NewRequest(&quot;GET&quot;, &quot;http://www.naver.com&quot;, bytes.NewBufferString(uri.Encode()))
+	if err != nil {
+		panic(err)
+	}
+	// set header
+	req.Header.Add(&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&quot;)
+	// request
+	client := &amp;http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	// read response
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(data))
+}
+</code></pre>
+
+<p>데이터를 보내기 위해 urlencoding 을 해서 string으로 만들고 싶을떄는
+net/url 패키지에서 url.Values 를 사용하면 된다.
+Add메서드로 Key value 추가가능</p>
+
+<p>bytes 패키지를 통해 string으로 부터 byte buffer를 만들어내는 NewBufferString 메서드를 사용하여 데이터로 보내면 된다.</p>
+
+<p>헤더는 request 에서 Header를 통해 추가한다.</p>
+
+<p>이렇게 만든 request를 가지고 Client .Do 메서드를 사용하여 응답을 받는데
+이때 ioutil을 사용하여 읽어낸다. 바이트로 리턴되므로 string으로 변환하면
+응답 html를 구할수 있다.</p>
+
+<h2 id="query-string-처리">Query string 처리</h2>
+
+<pre><code class="language-go">	req, err := http.NewRequest(&quot;GET&quot;, urlStr, nil)
+	if err != nil {
+		return nil, err
+	}
+	// Set parameters
+	query := req.URL.Query()
+	query.Add(&quot;bar&quot;, &quot;foo&quot;)
+	
+	req.URL.RawQuery = query.Encode()
+</code></pre>
+
+</main>
+
+    <footer>
+      
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      lhw_itguy | <a href="https://github.com/ippoeyeslhw">Github</a> | <a href="https://www.instagram.com/lhw_itguy/">Instagram</a>
+      
+    </footer>
+  </body>
+</html>
+
