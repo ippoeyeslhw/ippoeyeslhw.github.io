@@ -6,10 +6,21 @@
     <description>Recent content in Python on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Tue, 22 Aug 2017 19:43:41 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 24 Aug 2017 20:57:17 +0900</lastBuildDate>
     
 	<atom:link href="https://ippoeyeslhw.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Decorator Elapsed Time</title>
+      <link>https://ippoeyeslhw.github.io/post/decorator-elapsed-time/</link>
+      <pubDate>Thu, 24 Aug 2017 20:57:17 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/post/decorator-elapsed-time/</guid>
+      <description>파이썬의 데코레이터를 이용하여 Elapsed time 을 측정하는 간단한 예제는 데코레이터를 설명하는데 자주 쓰인다.
+def print_elapsed(func): def wrapper(*args, **kwargs): start = time.time() print (&#39;--- start time check (%s)-----&#39;%(func.__name__)) func(*args, **kwargs) elased = time.time() - start print(&#39;--- end time check Elapsed: %s&#39;%(elased)) print(&#39; &#39;) return wrapper  인자를 넘겨주는 부분이 약간 헷갈릴수 있는데 데코레이터 자체는 함수를 인자로 받아 함수를 리턴해주는 것이고
+실제 그 함수를 사용할때는 리턴받은 함수에 인자를 넘겨주는 셈이 된다고 이해하면 된다.</description>
+    </item>
     
     <item>
       <title>Py3 Http Request</title>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Posts | lhw_itguy</title>
+    <title>Decorator Elapsed Time | lhw_itguy</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <header>
@@ -63,66 +63,48 @@
   <body>
     <br/>
 
+<div class="article-meta">
+<h1><span class="title">Decorator Elapsed Time</span></h1>
+
+<h2 class="date">2017/08/24</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/python">python</a> 
+  
+  
+  
+  Tags: <a href="/tags/python">python</a> <a href="/tags/snippets">snippets</a> 
+  
+  
+</p>
+</div>
 
 
-<h1>Posts</h1>
 
+<main>
+<p>파이썬의 데코레이터를 이용하여
+Elapsed time 을 측정하는 간단한 예제는
+데코레이터를 설명하는데 자주 쓰인다.</p>
 
+<pre><code class="language-python">def print_elapsed(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        print ('--- start time check (%s)-----'%(func.__name__))
+        func(*args, **kwargs)
+        elased = time.time() - start
+        print('--- end time check Elapsed: %s'%(elased))
+        print(' ')
+    return wrapper
+</code></pre>
 
+<p>인자를 넘겨주는 부분이 약간 헷갈릴수 있는데
+데코레이터 자체는 함수를 인자로 받아 함수를 리턴해주는 것이고</p>
 
-<ul>
-  
-  <li>
-    <span class="date">2017/08/24</span>
-    <a href="/post/decorator-elapsed-time/">Decorator Elapsed Time</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/gaussian-random/">Gaussian Random</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/go-http-request/">Go Http Request</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/py3-http-request/">Py3 Http Request</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/go-signal/">Go Signal</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/cpgo-lib/">Cpgo Lib</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/golang-with-cybosplus/">Golang With Cybosplus</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/thread-pool/">Thread Pool</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/rename-file/">Rename File</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/21</span>
-    <a href="/post/hello-hugo/">Hello Hugo</a>
-  </li>
-  
-</ul>
+<p>실제 그 함수를 사용할때는 리턴받은 함수에 인자를 넘겨주는 셈이
+된다고 이해하면 된다.</p>
+
+</main>
 
     <footer>
       
