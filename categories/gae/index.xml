@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gae on lhw_itguy</title>
+    <link>https://ippoeyeslhw.github.io/categories/gae/</link>
+    <description>Recent content in Gae on lhw_itguy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 08 Sep 2017 22:39:07 +0900</lastBuildDate>
+    
+	<atom:link href="https://ippoeyeslhw.github.io/categories/gae/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gcloud_git_error</title>
+      <link>https://ippoeyeslhw.github.io/post/gcloud_git_error/</link>
+      <pubDate>Fri, 08 Sep 2017 22:39:07 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/post/gcloud_git_error/</guid>
+      <description>구글 앱 엔진을 사용하기 위해 google cloud platform documents 를 읽고 잘 처리하면 된다.
+이때 미리 저장된 저장소에서 프로젝트를 가져올때 google cloud 소스저장소 간혹 git 관련 문제가 있다.
+Repositories 에 가서 복제 버튼을 눌러 가이드대로 수행시에
+gcloud source repos clone python-gae-quickstart --project=projectname  요놈을 실행할때 auth 실패 로 인해 git exit status 128 에러가 뜰때가 있다. 이 경우 C:\Program Files\Git\mingw64\etc\gitconfig 파일을 열고
+[credential] helper = gcloud.cmd old = manager  이 부분을 추가해주면 된다.</description>
+    </item>
+    
+  </channel>
+</rss>

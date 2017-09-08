@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://ippoeyeslhw.github.io/post/gcloud_git_error/</loc>
+    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ippoeyeslhw.github.io/post/py-datetime-stamp/</loc>
     <lastmod>2017-08-28T21:15:49+09:00</lastmod>
   </url>
@@ -75,8 +80,20 @@
   </url>
   
   <url>
-    <loc>https://ippoeyeslhw.github.io/tags/golang/</loc>
-    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
+    <loc>https://ippoeyeslhw.github.io/categories/gae/</loc>
+    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/tags/gae/</loc>
+    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/tags/gcloud/</loc>
+    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -87,8 +104,14 @@
   </url>
   
   <url>
+    <loc>https://ippoeyeslhw.github.io/tags/golang/</loc>
+    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ippoeyeslhw.github.io/</loc>
-    <lastmod>2017-08-28T21:15:49+09:00</lastmod>
+    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
   </url>
   
   <url>
@@ -104,13 +127,13 @@
   </url>
   
   <url>
-    <loc>https://ippoeyeslhw.github.io/tags/js-show/</loc>
+    <loc>https://ippoeyeslhw.github.io/categories/js-show/</loc>
     <lastmod>2017-08-22T22:08:50+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ippoeyeslhw.github.io/categories/js-show/</loc>
+    <loc>https://ippoeyeslhw.github.io/tags/js-show/</loc>
     <lastmod>2017-08-22T22:08:50+09:00</lastmod>
     <priority>0</priority>
   </url>
@@ -127,18 +150,18 @@
   
   <url>
     <loc>https://ippoeyeslhw.github.io/post/</loc>
+    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/categories/python/</loc>
     <lastmod>2017-08-28T21:15:49+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ippoeyeslhw.github.io/tags/python/</loc>
-    <lastmod>2017-08-28T21:15:49+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/categories/python/</loc>
     <lastmod>2017-08-28T21:15:49+09:00</lastmod>
     <priority>0</priority>
   </url>

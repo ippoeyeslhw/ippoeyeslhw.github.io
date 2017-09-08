@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Posts | lhw_itguy</title>
+    <title>Gcloud_git_error | lhw_itguy</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <header>
@@ -63,76 +63,53 @@
   <body>
     <br/>
 
+<div class="article-meta">
+<h1><span class="title">Gcloud_git_error</span></h1>
+
+<h2 class="date">2017/09/08</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/gae">gae</a> 
+  
+  
+  
+  Tags: <a href="/tags/gcloud">gcloud</a> <a href="/tags/gae">gae</a> 
+  
+  
+</p>
+</div>
 
 
-<h1>Posts</h1>
 
+<main>
+<p>구글 앱 엔진을 사용하기 위해
+<a href="https://cloud.google.com/docs/?hl=ko">google cloud platform documents</a>
+를 읽고 잘 처리하면 된다.</p>
 
+<p>이때 미리 저장된 저장소에서 프로젝트를 가져올때
+<a href="https://console.cloud.google.com/code/develop">google cloud 소스저장소</a>
+간혹 git 관련 문제가 있다.</p>
 
+<p>Repositories 에 가서
+복제 버튼을 눌러 가이드대로 수행시에</p>
 
-<ul>
-  
-  <li>
-    <span class="date">2017/09/08</span>
-    <a href="/post/gcloud_git_error/">Gcloud_git_error</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/28</span>
-    <a href="/post/py-datetime-stamp/">Py Datetime Stamp</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/24</span>
-    <a href="/post/decorator-elapsed-time/">Decorator Elapsed Time</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/gaussian-random/">Gaussian Random</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/go-http-request/">Go Http Request</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/py3-http-request/">Py3 Http Request</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/go-signal/">Go Signal</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/cpgo-lib/">Cpgo Lib</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/golang-with-cybosplus/">Golang With Cybosplus</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/thread-pool/">Thread Pool</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/rename-file/">Rename File</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/21</span>
-    <a href="/post/hello-hugo/">Hello Hugo</a>
-  </li>
-  
-</ul>
+<pre><code class="language-nohilight">gcloud source repos clone python-gae-quickstart --project=projectname
+</code></pre>
+
+<p>요놈을 실행할때
+<strong>auth 실패</strong> 로 인해 git exit status 128 에러가 뜰때가 있다.
+이 경우 C:\Program Files\Git\mingw64\etc\gitconfig
+파일을 열고</p>
+
+<pre><code class="language-nohilight">[credential]
+	helper = gcloud.cmd
+	old = manager
+</code></pre>
+
+<p>이 부분을 추가해주면 된다.</p>
+
+</main>
 
     <footer>
       

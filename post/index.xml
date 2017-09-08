@@ -6,10 +6,23 @@
     <description>Recent content in Posts on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Mon, 28 Aug 2017 21:15:49 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Sep 2017 22:39:07 +0900</lastBuildDate>
     
 	<atom:link href="https://ippoeyeslhw.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gcloud_git_error</title>
+      <link>https://ippoeyeslhw.github.io/post/gcloud_git_error/</link>
+      <pubDate>Fri, 08 Sep 2017 22:39:07 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/post/gcloud_git_error/</guid>
+      <description>구글 앱 엔진을 사용하기 위해 google cloud platform documents 를 읽고 잘 처리하면 된다.
+이때 미리 저장된 저장소에서 프로젝트를 가져올때 google cloud 소스저장소 간혹 git 관련 문제가 있다.
+Repositories 에 가서 복제 버튼을 눌러 가이드대로 수행시에
+gcloud source repos clone python-gae-quickstart --project=projectname  요놈을 실행할때 auth 실패 로 인해 git exit status 128 에러가 뜰때가 있다. 이 경우 C:\Program Files\Git\mingw64\etc\gitconfig 파일을 열고
+[credential] helper = gcloud.cmd old = manager  이 부분을 추가해주면 된다.</description>
+    </item>
     
     <item>
       <title>Py Datetime Stamp</title>
@@ -18,7 +31,8 @@
       
       <guid>https://ippoeyeslhw.github.io/post/py-datetime-stamp/</guid>
       <description>파이썬에서 Datetime 을 이용하여 unix timestamp 를 구하고 싶을 경우가 있다. 1970-1-1 을 기준으로 차이값(time delta)를 구한뒤에 총 초를 구하고 밀리세컨 단위로 바꿔주면 된다.
-import datetime def unix_timestamp(y,m,d,h): dt = datetime.datetime(y,m,d,h) epoch = datetime.datetime(1970,1,1) return int((dt-epoch).total_seconds() * 1000) stmp = unix_timestamp(2017,8,28,13) print (stmp)  이렇게 구하면 날짜 지정하기가 쉬워진다.</description>
+import datetime def unix_timestamp(y,m,d,h): dt = datetime.datetime(y,m,d,h) epoch = datetime.datetime(1970,1,1) return int((dt-epoch).total_seconds() * 1000) stmp = unix_timestamp(2017,8,28,13) print (stmp)  혹은 timestamp 메서드를 이용하되 utc timezone 지정을 해주고 출력을 해본다.
+import datetime def unix_timestamp(y,m,d,h): dt = datetime.datetime(y,m,d,h) return int(dt.replace(tzinfo=datetime.timezone.utc).timestamp() * 1000)  이렇게 구하면 날짜 지정하기가 쉬워진다.</description>
     </item>
     
     <item>
