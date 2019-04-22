@@ -3,184 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-<<<<<<< HEAD
-    <loc>https://ippoeyeslhw.github.io/post/gcloud_git_error/</loc>
-    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/py-datetime-stamp/</loc>
-    <lastmod>2017-08-28T21:15:49+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/decorator-elapsed-time/</loc>
-    <lastmod>2017-08-24T20:57:17+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/gaussian-random/</loc>
-    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/go-http-request/</loc>
-    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/py3-http-request/</loc>
-    <lastmod>2017-08-22T19:43:41+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/go-signal/</loc>
-    <lastmod>2017-08-22T01:01:33+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/cpgo-lib/</loc>
-    <lastmod>2017-08-22T00:54:43+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/golang-with-cybosplus/</loc>
-    <lastmod>2017-08-22T00:41:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/thread-pool/</loc>
-    <lastmod>2017-08-22T00:30:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/rename-file/</loc>
-    <lastmod>2017-08-22T00:12:44+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/post/hello-hugo/</loc>
-    <lastmod>2017-08-21T21:46:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/com/</loc>
-    <lastmod>2017-08-22T00:54:43+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/cybosplus/</loc>
-    <lastmod>2017-08-22T00:54:43+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/categories/gae/</loc>
-    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/gae/</loc>
-    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/gcloud/</loc>
-    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/categories/golang/</loc>
-    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/golang/</loc>
-    <lastmod>2017-08-22T20:32:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/</loc>
-    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/hugo/</loc>
-    <lastmod>2017-08-21T21:46:34+09:00</lastmod>
-=======
     <loc>https://ippoeyeslhw.github.io/</loc>
     <lastmod>2019-04-16T01:16:18+09:00</lastmod>
->>>>>>> gh-pages
     <priority>0</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
-    <loc>https://ippoeyeslhw.github.io/tags/javascript/</loc>
-    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/categories/js-show/</loc>
-    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/js-show/</loc>
-    <lastmod>2017-08-22T22:08:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/knowhow/</loc>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/library/</loc>
-    <lastmod>2017-08-22T00:54:43+09:00</lastmod>
-=======
     <loc>https://ippoeyeslhw.github.io/posts/</loc>
     <lastmod>2019-04-16T01:16:18+09:00</lastmod>
->>>>>>> gh-pages
     <priority>0</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
-    <loc>https://ippoeyeslhw.github.io/post/</loc>
-    <lastmod>2017-09-08T22:39:07+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/categories/python/</loc>
-    <lastmod>2017-08-28T21:15:49+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/python/</loc>
-    <lastmod>2017-08-28T21:15:49+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ippoeyeslhw.github.io/tags/snippets/</loc>
-    <lastmod>2017-08-28T21:15:49+09:00</lastmod>
-=======
     <loc>https://ippoeyeslhw.github.io/posts/go-http-request/</loc>
     <lastmod>2019-04-16T01:16:18+09:00</lastmod>
   </url>
@@ -197,7 +31,6 @@
   
   <url>
     <loc>https://ippoeyeslhw.github.io/categories/</loc>
->>>>>>> gh-pages
     <priority>0</priority>
   </url>
   
