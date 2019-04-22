@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>hello-hugo | lhw_itguy</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}body{font-family:-apple-system,BlinkMacSystemFont,avenir next,Avenir,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol}code{font-family:lucida console,Monaco,monospace;font-size:85%}</style>
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">lhw_itguy</a>
+        <div class="header-menu">
+            <a href="/posts/">posts</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>hello-hugo</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2019-04-16">Apr 16, 2019</time>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>정적블로그를 하고 싶다는 생각이 들었다. 최근 Go언어를 하다보니 자연스럽게 Hugo를 알게 되었고 정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다. 그래서 이제 블로그를 정적블로그로 만들기로 했다.</p>
+
+<h2 id="설치">설치</h2>
+
+<p>설치는 Hugo installing을 참조하면 된다. 바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.</p>
+
+<p>나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다.</p>
+
+<pre><code>C:\hugo\bin\hugo.exe
+C:\hugo\sites\
+</code></pre>
+
+<p>실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록 하려고 구성하였다.</p>
+
+<h2 id="블로그구성하기">블로그구성하기</h2>
+
+<p>Hugo의 quickstart 문서를 보게되면 만들고자하는 사이트를 만드는 명령어가 나온다. 일단 sites 폴더로 이동한뒤에 아래 명령을 수행한다. 참고로 윈도우 탐색기에서 해당 폴더를 열고 Shift+마우스오른쪽 버튼을 눌러 여기서 명령창 열기 를 눌러도 된다.</p>
+
+<pre><code>$ hugo new site blog
+</code></pre>
+
+<p>여러개의 폴더와 문서가 생성된것을 볼수 있다.</p>
+
+<p>##테마추가하기
+Hugo 사이트에서 Theme Showcase를 눌러보면 여러 테마가 나온다. 맘에드는 테마를 골라서 설치하면 된다. 나는 윈도우 기준으로 설치하고 있으므로 테마 파일을 받은뒤에</p>
+
+<pre><code>C:\hugo\sites\blog\themes
+</code></pre>
+
+<p>위 폴더를 생상한뒤에 테마명으로 폴더를 생성하여 받은 파일을 풀어놓았다. 그뒤에 중요한 작업이 있는데</p>
+
+<pre><code>C:\hugo\sites\blog\config.toml
+</code></pre>
+
+<p>위 파일에</p>
+
+<pre><code>theme = &quot;theme-name&quot;
+</code></pre>
+
+<p>이 내용이 추가가 되어야 한다.</p>
+
+<p>그리고 테마를 고르면 사용방법이 나오는데 위 config 파일에 테마 설정을 작성해 넣는식으로 사용한다. 이는 테마마다 사용법이 다르다.</p>
+
+<h2 id="post-쓰기">Post 쓰기</h2>
+
+<p>hugo에서는 Post를 쓸때 Markdown 파일을 작성하도록 한다. 이글도 Markdown으로 쓰고 있다. quickstart 문서를 보면 Step3에 포스트를 작성하는 법이 나온다.</p>
+
+<pre><code>$ hugo new post/first-post.md
+</code></pre>
+
+<p>이 명령을 수행하고 나면 post라는 폴더와 위 이름의 .md 파일이 생성되어 있음을 확인할수 있다.</p>
+
+<h2 id="정적페이지-생성">정적페이지 생성</h2>
+
+<p>md파일을 작성할때 Draft는 초고를 의미하므로 기본적으로 true로 되어있다. 이를 False로 바꾼뒤에 blog 폴더하에서</p>
+
+<pre><code>$ hugo
+</code></pre>
+
+<p>단순하게 위 명령만 치면 자동으로 페이지를 생성하여</p>
+
+<pre><code>C:\hugo\sites\blog\public 
+</code></pre>
+
+<p>위 폴더에 각종파일들이 생성된다. 이것들이 정적페이지들이다. 이를 호스팅하는 곳에 올리면 된다. 개인적으로는 github의 gh-pages 브랜치를 사용하고 있다.</p>
+
+<h2 id="로컬에서-확인">로컬에서 확인</h2>
+
+<p>로컬에서 잠시 웹서버를 올려서 어떻게 보이는지 확인할수 있다.</p>
+
+<pre><code>$ hugo server
+</code></pre>
+
+<p>blog 폴더 안에서 위 명령을 실행하면 웹서버가 뜬다. localhost:1313/blog 이런식으로 접근하면 된다.</p>
+
+<p>Draft 버젼 또한 보고싶은 경우가 있다. 이때는 -D 옵션을 준다.</p>
+
+<pre><code>$ hugo -D server
+</code></pre>
+
+<p>어찌보면 이렇게 블로그를 생성하는것은 불편하기도 한다. 명령어를 쳐서 파일을 만들고 폴더를 만든뒤에 집어넣어야 되고 생성을 시킨뒤에 그걸 또 호스팅 서버에 올려야 하기도 한다. 하지만 이렇게 만들어 놓으면 뭔가 명확하고 확실한 느낌이 난다. DB와도 상관이 없고 서버에 부담없이 깔끔하다. 다양한 기능이 필요가 없기에 이런 정적페이지 생성기가 유용해보인다.</p>
+
+</article>
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="/posts/">Posts</a>,
+        
+        <a href="https://github.com/ippoeyeslhw/ippoeyeslhw.github.io">GitHub</a>,
+        
+    </div>
+    
+
+    
+    
+</div>
+</body>
+
+</html>

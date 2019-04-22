@@ -10,6 +10,7 @@
 	<atom:link href="https://ippoeyeslhw.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
+<<<<<<< HEAD
     <item>
       <title>Gae</title>
       <link>https://ippoeyeslhw.github.io/categories/gae/</link>
@@ -46,5 +47,7 @@
       <description></description>
     </item>
     
+=======
+>>>>>>> gh-pages
   </channel>
 </rss>

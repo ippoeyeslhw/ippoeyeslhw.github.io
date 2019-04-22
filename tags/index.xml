@@ -6,11 +6,11 @@
     <description>Recent content in Tags on lhw_itguy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Tue, 22 Aug 2017 00:54:43 +0900</lastBuildDate>
     
 	<atom:link href="https://ippoeyeslhw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
+<<<<<<< HEAD
     <item>
       <title>Com</title>
       <link>https://ippoeyeslhw.github.io/tags/com/</link>
@@ -110,5 +110,7 @@
       <description></description>
     </item>
     
+=======
+>>>>>>> gh-pages
   </channel>
 </rss>

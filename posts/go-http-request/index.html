@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>go-http-request | lhw_itguy</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}body{font-family:-apple-system,BlinkMacSystemFont,avenir next,Avenir,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol}code{font-family:lucida console,Monaco,monospace;font-size:85%}</style>
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">lhw_itguy</a>
+        <div class="header-menu">
+            <a href="/posts/">posts</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>go-http-request</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2019-04-16">Apr 16, 2019</time>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>고언어에서 HTTP request하는 법을 포스팅한다.</p>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;bytes&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;net/http&quot;
+    &quot;net/url&quot;
+)
+
+func main() {
+    // data
+    uri := &amp;url.Values{}
+    uri.Add(&quot;bar&quot;, &quot;foo&quot;)
+
+    // request
+    req, err := http.NewRequest(&quot;GET&quot;, &quot;http://www.naver.com&quot;, bytes.NewBufferString(uri.Encode()))
+    if err != nil {
+        panic(err)
+    }
+    // set header
+    req.Header.Add(&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&quot;)
+    // request
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        panic(err)
+    }
+    // read response
+    data, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(string(data))
+}
+</code></pre>
+
+<p>데이터를 보내기 위해 urlencoding 을 해서 string으로 만들고 싶을때는 net/url 패키지에서 url.Values 를 사용하면 된다. Add메서드로 Key value 추가가능</p>
+
+<p>bytes 패키지를 통해 string으로 부터 byte buffer를 만들어내는 NewBufferString 메서드를 사용하여 데이터로 보내면 된다.</p>
+
+<p>헤더는 request 에서 Header를 통해 추가한다.</p>
+
+<p>이렇게 만든 request를 가지고 Client .Do 메서드를 사용하여 응답을 받는데 이때 ioutil을 사용하여 읽어낸다. 바이트로 리턴되므로 string으로 변환하면 응답 html를 구할수 있다.</p>
+
+<h2 id="query-string-처리">Query string 처리</h2>
+
+<pre><code class="language-go">    req, err := http.NewRequest(&quot;GET&quot;, urlStr, nil)
+    if err != nil {
+        return nil, err
+    }
+    // Set parameters
+    query := req.URL.Query()
+    query.Add(&quot;bar&quot;, &quot;foo&quot;)
+    
+    req.URL.RawQuery = query.Encode()
+</code></pre>
+
+<p>깔끔하게 key value 로 추가 가능하다. 복잡하게 포맷문자열을 생성하지 않아도 된다.</p>
+
+</article>
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="/posts/">Posts</a>,
+        
+        <a href="https://github.com/ippoeyeslhw/ippoeyeslhw.github.io">GitHub</a>,
+        
+    </div>
+    
+
+    
+    
+</div>
+</body>
+
+</html>
