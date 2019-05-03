@@ -1,118 +1,172 @@
 <!DOCTYPE html>
 <html lang="ko-kr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Golang | lhw_itguy</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>golang - lhw_itguy</title>
+  <meta property="og:title" content="golang - lhw_itguy" />
+  <meta name="twitter:title" content="golang - lhw_itguy" />
+  <meta name="author" content=""/>
+  <meta property="og:site_name" content="lhw_itguy" />
+  <meta property="og:url" content="https://ippoeyeslhw.github.io/tags/golang/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.55.1" />
+  <link href="/tags/golang/index.xml" rel="alternate" type="application/rss+xml" title="lhw_itguy" />
+  <link href="/tags/golang/index.xml" rel="feed" type="application/rss+xml" title="lhw_itguy" />
 
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  <nav>
-    <ul>
-      
-      
-      <li class="pull-left ">
-        <a href="https://ippoeyeslhw.github.io/">/home/lhw_itguy</a>
-      </li>
-      
-      
-      <li class="pull-left ">
-        <a href="/categories/">~/categories</a>
-      </li>
-      
-      
-      <li class="pull-left ">
-        <a href="/tags/">~/tags</a>
-      </li>
-      
-      
-      <li class="pull-left ">
-        <a href="/knowhow/">~/knowhow</a>
-      </li>
-      
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
 
-      
-      
-      <li class="pull-right">
-        <a href="/index.xml">~/subscribe</a>
-      </li>
-      
+  <script src="/js/script.js"></script>
+  <script src="/js/custom.js"></script>
+  <script defer src="/js/fontawesome.js"></script>
+</head>
 
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">lhw_itguy</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-"><a href="/posts/" title="posts">posts</a></li>
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
     </ul>
   </nav>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-105152957-1', 'auto');
-    ga('send', 'pageview');
-  
-  </script>
 </header>
+<hr class="site-header-bottom">
 
-  </head>
+  <div class="breadcrumb">
+    <a href="/tags/">Tags</a> / Golang
+  </div>
+  <div class="main" role="main">
+    <section class="list taxonomy-list">
+      <article class="article">
+        <a href="/posts/go-http-request/" class="article-titles">
+          <h2 class="article-title">go-http-request</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>April 16, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/go/">
+              <i class="fas fa-tag"></i>
+              go
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/golang/">
+              <i class="fas fa-tag"></i>
+              golang
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/http/">
+              <i class="fas fa-tag"></i>
+              http
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          고언어에서 HTTP request하는 법을 포스팅한다.
+package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;io/ioutil&quot; &quot;net/http&quot; &quot;net/url&quot; ) func main() { // data uri := &amp;url.Values{} uri.Add(&quot;bar&quot;, &quot;foo&quot;) // request req, err := http.NewRequest(&quot;GET&quot;, &quot;http://www.naver.com&quot;, bytes.NewBufferString(uri.Encode())) if err != nil { panic(err) } // set header req.Header.Add(&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&quot;) // request client := &amp;http.Client{} resp, err := client.Do(req) if err != nil { panic(err) } // read response data, err := ioutil.
+        </div>
+        <div class="article-readmore"><a href="/posts/go-http-request/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/posts/go-signal/" class="article-titles">
+          <h2 class="article-title">go-signal</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>April 16, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/go/">
+              <i class="fas fa-tag"></i>
+              go
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/golang/">
+              <i class="fas fa-tag"></i>
+              golang
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/signal/">
+              <i class="fas fa-tag"></i>
+              signal
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          고언어에서 os signal 을 콘트롤 하는 방법을 찾아보았다.
+package main import ( &quot;fmt&quot; &quot;os&quot; &quot;os/signal&quot; &quot;syscall&quot; &quot;time&quot; ) func main() { // signal 채널을 만든다. signal_chan := make(chan os.Signal, 2) signal.Notify(signal_chan, syscall.SIGINT) // ctrl+c // loop isDone := false for isDone != true { // signal handler select { case sig := &lt;-signal_chan: fmt.Println(&quot;signal!! &quot;, sig) isDone = true default: isDone = false } time.Sleep(1) } }  채널을 통해서 signal을 전달하게 된다.
+        </div>
+        <div class="article-readmore"><a href="/posts/go-signal/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/posts/hello-hugo/" class="article-titles">
+          <h2 class="article-title">hello-hugo</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>April 16, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/go/">
+              <i class="fas fa-tag"></i>
+              go
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/golang/">
+              <i class="fas fa-tag"></i>
+              golang
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/hugo/">
+              <i class="fas fa-tag"></i>
+              hugo
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          정적블로그를 하고 싶다는 생각이 들었다. 최근 Go언어를 하다보니 자연스럽게 Hugo를 알게 되었고 정적 사이트를 생성하는데 편리하고 속도가 빠른것을 알게되었다. 그래서 이제 블로그를 정적블로그로 만들기로 했다.
+설치 설치는 Hugo installing을 참조하면 된다. 바이나리를 받아서 적당한 폴더에다가 넣어놓은뒤에 환경변수에 등록해주면 된다.
+나같은 경우는 윈도우 환경이므로 윈도우 바이너리를 받은후 폴더도 생성하였다.
+C:\hugo\bin\hugo.exe C:\hugo\sites\  실행파일은 bin 폴더에다가 넣고 sites 라는 폴더에다가는 정적웹페이지를 생성하도록 하려고 구성하였다.
+블로그구성하기 Hugo의 quickstart 문서를 보게되면 만들고자하는 사이트를 만드는 명령어가 나온다.
+        </div>
+        <div class="article-readmore"><a href="/posts/hello-hugo/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+    </section>
+    
 
-  <body>
-    <br/>
+  </div>
 
 
 
-<h1>Golang</h1>
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2019 LHW ITGUY</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-rsslink">
+      <a href="/tags/golang/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+        <i class="fas fa-rss"></i>
+      </a>
+    </li>
+    <li class="site-footer-item-"><a href="/posts/" title="Posts">Posts</a></li>
+    <li class="site-footer-item-"><a href="https://github.com/ippoeyeslhw/ippoeyeslhw.github.io" title="GitHub">GitHub</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
 
 
-
-
-<ul>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/go-http-request/">Go Http Request</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/go-signal/">Go Signal</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/cpgo-lib/">Cpgo Lib</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/golang-with-cybosplus/">Golang With Cybosplus</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/22</span>
-    <a href="/post/rename-file/">Rename File</a>
-  </li>
-  
-  <li>
-    <span class="date">2017/08/21</span>
-    <a href="/post/hello-hugo/">Hello Hugo</a>
-  </li>
-  
-</ul>
-
-    <footer>
-      
-<script async src="//yihui.name/js/center-img.js"></script>
-
-      
-      <hr/>
-      lhw_itguy | <a href="https://github.com/ippoeyeslhw">Github</a> | <a href="https://www.instagram.com/lhw_itguy/">Instagram</a>
-      
-    </footer>
-  </body>
+</body>
 </html>
-

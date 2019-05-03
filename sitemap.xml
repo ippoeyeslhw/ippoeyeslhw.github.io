@@ -15,6 +15,18 @@
   </url>
   
   <url>
+    <loc>https://ippoeyeslhw.github.io/tags/</loc>
+    <lastmod>2019-04-16T01:16:18+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/tags/go/</loc>
+    <lastmod>2019-04-16T01:16:18+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ippoeyeslhw.github.io/posts/go-http-request/</loc>
     <lastmod>2019-04-16T01:16:18+09:00</lastmod>
   </url>
@@ -25,17 +37,36 @@
   </url>
   
   <url>
+    <loc>https://ippoeyeslhw.github.io/tags/golang/</loc>
+    <lastmod>2019-04-16T01:16:18+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ippoeyeslhw.github.io/posts/hello-hugo/</loc>
     <lastmod>2019-04-16T01:16:18+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ippoeyeslhw.github.io/categories/</loc>
+    <loc>https://ippoeyeslhw.github.io/tags/http/</loc>
+    <lastmod>2019-04-16T01:16:18+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ippoeyeslhw.github.io/tags/</loc>
+    <loc>https://ippoeyeslhw.github.io/tags/hugo/</loc>
+    <lastmod>2019-04-16T01:16:18+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/tags/signal/</loc>
+    <lastmod>2019-04-16T01:16:18+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ippoeyeslhw.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   

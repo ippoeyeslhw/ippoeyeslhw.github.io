@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>http on lhw_itguy</title>
+    <link>https://ippoeyeslhw.github.io/tags/http/</link>
+    <description>Recent content in http on lhw_itguy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <copyright>&amp;copy; Copyright 2019 LHW ITGUY</copyright>
+    <lastBuildDate>Tue, 16 Apr 2019 01:16:18 +0900</lastBuildDate>
+    
+	<atom:link href="https://ippoeyeslhw.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>go-http-request</title>
+      <link>https://ippoeyeslhw.github.io/posts/go-http-request/</link>
+      <pubDate>Tue, 16 Apr 2019 01:16:18 +0900</pubDate>
+      
+      <guid>https://ippoeyeslhw.github.io/posts/go-http-request/</guid>
+      <description>고언어에서 HTTP request하는 법을 포스팅한다.
+package main import ( &amp;quot;bytes&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;net/url&amp;quot; ) func main() { // data uri := &amp;amp;url.Values{} uri.Add(&amp;quot;bar&amp;quot;, &amp;quot;foo&amp;quot;) // request req, err := http.NewRequest(&amp;quot;GET&amp;quot;, &amp;quot;http://www.naver.com&amp;quot;, bytes.NewBufferString(uri.Encode())) if err != nil { panic(err) } // set header req.Header.Add(&amp;quot;User-Agent&amp;quot;, &amp;quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36&amp;quot;) // request client := &amp;amp;http.Client{} resp, err := client.Do(req) if err != nil { panic(err) } // read response data, err := ioutil.</description>
+    </item>
+    
+  </channel>
+</rss>
